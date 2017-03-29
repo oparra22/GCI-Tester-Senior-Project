@@ -1,0 +1,24 @@
+﻿<Window x:Class="GCITester.productionReport"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GCITester"
+        mc:Ignorable="d"
+        Title="Production Report" Height="472" Width="650.333">
+    <Grid>
+        <Label x:Name="reportsLabel" Content="Reports Avaliable" HorizontalAlignment="Left" Margin="379,11,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.36,0.141" FontSize="14"/>
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="342" Margin="379,40,0,0" VerticalAlignment="Top" Width="247" Background="#FFFDF6F6"/>
+        <Button x:Name="reportButton" Content="Open Report" HorizontalAlignment="Left" Margin="379,387,0,0" VerticalAlignment="Top" Width="151" Height="28" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="14" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="reportButton_Click_1"/>
+        <TextBox x:Name="filterSearchBox" HorizontalAlignment="Left" Height="20" Margin="10,99,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="149"/>
+        <Label x:Name="filterLabel" Content="Filter by Name" HorizontalAlignment="Left" Height="26" Margin="10,73,0,0" VerticalAlignment="Top" Width="99" FontSize="14"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="45" Margin="10,10,0,0" VerticalAlignment="Top" Width="183" Source="GCILogo.jpg" RenderTransformOrigin="0.61,0.535"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="20" Margin="105,198,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="149"/>
+        <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Height="20" Margin="105,240,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="149"/>
+        <Label x:Name="label2" Content="Generate Legacy Report" HorizontalAlignment="Left" Height="32" Margin="64,161,0,0" VerticalAlignment="Top" Width="166" FontSize="14"/>
+        <Label x:Name="label3" Content="Part ID:" HorizontalAlignment="Left" Height="33" Margin="10,198,0,0" VerticalAlignment="Top" Width="70"/>
+        <Label x:Name="label4" Content="Batch Name:" HorizontalAlignment="Left" Height="29" Margin="10,236,0,0" VerticalAlignment="Top" Width="80"/>
+        <Button x:Name="legacyButton" Content="Pull Report" HorizontalAlignment="Left" Margin="90,387,0,0" VerticalAlignment="Top" Width="151" Height="28" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="14" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="legacyButton_Click"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="61" Margin="10,287,0,0" TextWrapping="Wrap" Text="Generating a Legacy Report will require a pull from the database" VerticalAlignment="Top" Width="355"/>
+    </Grid>
+</Window>
