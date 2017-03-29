@@ -1,0 +1,1 @@
+This folder contains the Embedded code for the project. 

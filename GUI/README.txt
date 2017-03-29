@@ -1,0 +1,1 @@
+All GUI code for the project is in this folder.
