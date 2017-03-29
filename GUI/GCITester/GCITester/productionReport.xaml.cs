@@ -26,7 +26,7 @@ namespace GCITester
         public productionReport()
         {
             InitializeComponent();
-            DirectoryInfo dinfo = new DirectoryInfo(@"..\..\Reports\Production Reports");
+            DirectoryInfo dinfo = new DirectoryInfo(@"..\..\..\..\..\Reports\Production Reports");
             FileInfo[] Files = dinfo.GetFiles();
            
             foreach (FileInfo file in Files)
@@ -45,7 +45,7 @@ namespace GCITester
             else
             {
                 string file = listBox.SelectedItem.ToString();
-                string fullFileName = System.IO.Path.Combine(@"..\..\Reports\Production Reports", file);
+                string fullFileName = System.IO.Path.Combine(@"..\..\..\..\..\Reports\Production Reports", file);
                 Process.Start(fullFileName);
             }
         }

@@ -68,6 +68,9 @@
     <Compile Include="productionLimits.xaml.cs">
       <DependentUpon>productionLimits.xaml</DependentUpon>
     </Compile>
+    <Compile Include="productionReport.xaml.cs">
+      <DependentUpon>productionReport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="productionTest.xaml.cs">
       <DependentUpon>productionTest.xaml</DependentUpon>
     </Compile>
@@ -110,6 +113,10 @@
     <Page Include="productionLimits.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="productionReport.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="productionTest.xaml">
       <SubType>Designer</SubType>
