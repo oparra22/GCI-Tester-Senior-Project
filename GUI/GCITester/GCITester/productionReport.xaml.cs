@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.IO;
 using System.Diagnostics;
+using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace GCITester
 {
@@ -22,19 +24,39 @@ namespace GCITester
     /// 
     public partial class productionReport : Window
     {
+        DataTable dt;
         //list Production reports in a given directory
         public productionReport()
         {
+           
             InitializeComponent();
             DirectoryInfo dinfo = new DirectoryInfo(@"..\..\..\..\..\Reports\Production Reports");
             FileInfo[] Files = dinfo.GetFiles();
-           
-            foreach (FileInfo file in Files)
+
+            //file list to string for filter purposes
+            var fileList = Files.ToList();
+            
+            //show all files before filtering
+            listBox.ItemsSource = fileList;
+            
+            //create view then filter
+            System.ComponentModel.ICollectionView view = CollectionViewSource.GetDefaultView(listBox.ItemsSource);
+            view.Filter = CustomFilter;
+        }
+
+        //filter the listview function
+        private bool CustomFilter(object obj)
+        {
+            if (string.IsNullOrEmpty(filterSearchBox.Text))
             {
-                listBox.Items.Add(file);
+                return true;
+            }
+            else
+            {
+                return (obj.ToString().IndexOf(filterSearchBox.Text, StringComparison.OrdinalIgnoreCase) >= 0);
             }
         }
-     
+
         //button press to open the report selected
         private void reportButton_Click_1(object sender, RoutedEventArgs e)
         { 
@@ -53,13 +75,41 @@ namespace GCITester
         //grab values from text boxes to query DB for legacy data report
         private void legacyButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Works");
+            string partID = partID_textbox.Text;
+            string testDataEntryID = testDataID_testbox.Text;
+
+            MessageBox.Show(string.Format("Pulling Legacy Report for Part ID: {0}  Test Entry ID: {1}", partID, testDataEntryID));
+
+
+            GCIDB.Initialize();
+            //string connectionString = "SERVER=localhost;PORT=3306;DATABASE=gci;UID=root;PASSWORD=root";
+
+            //MySqlConnection connection = new MySqlConnection(connectionString);
+            //GCIDB.GetProductionData(partID, testDataEntryID);
+             //MySqlCommand cmd = new MySqlCommand("SELECT * from productiondata", connection);
+
+            //DataGrid dt = new DataGrid;
+
+            GCIDB.OpenConnection();
+          
+           // connection.Open();
+            //DataTable dt = new DataTable();
+            //dt.Load(cmd.ExecuteReader());
+           // connection.Close();
+            dt = GCIDB.GetProductionData(partID, testDataEntryID);
+
+            dataGrid.DataContext = dt;
+
+
+            //MySqlConnection connection = new MySqlConnection
+            
 
         }
 
+        //textbox for filter of listview, refresh with every keystroke
         private void filterSearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+           CollectionViewSource.GetDefaultView(listBox.ItemsSource).Refresh();
         }
     }
 }

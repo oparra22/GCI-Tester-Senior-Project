@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -56,9 +60,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Communication.cs" />
+    <Compile Include="GCIDB.cs" />
+    <Compile Include="LifetimeLimitEntity.cs" />
     <Compile Include="lifetimeTest.xaml.cs">
       <DependentUpon>lifetimeTest.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LimitEntity.cs" />
     <Compile Include="numericUpDown.xaml.cs">
       <DependentUpon>numericUpDown.xaml</DependentUpon>
     </Compile>
@@ -83,6 +90,7 @@
     <Compile Include="shortTest.xaml.cs">
       <DependentUpon>shortTest.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TestPinEntity.cs" />
     <Compile Include="tests.xaml.cs">
       <DependentUpon>tests.xaml</DependentUpon>
     </Compile>
@@ -157,6 +165,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
