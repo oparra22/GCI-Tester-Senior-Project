@@ -239,7 +239,7 @@ namespace GCITester
         public static DataTable GetProductionData(String PartName, String BatchName)
         {
             DataTable dtResult = new DataTable();
-            string query = @"SELECT * FROM GCI.ProductionData WHERE PartName='" + PartName + "' AND BatchName='" + BatchName + "' ORDER BY CreationDate,DUTPinNumber ASC";
+            string query = @"SELECT * FROM GCI.ProductionData_v WHERE PartName='" + PartName + "' AND BatchName='" + BatchName + "' ORDER BY CreationDate,DUTPinNumber ASC";
            // string query = "SELECT * from productiondata";
             if (OpenConnection() == true)
             {

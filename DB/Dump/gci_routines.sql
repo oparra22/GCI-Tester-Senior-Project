@@ -90,58 +90,58 @@ SET character_set_client = @saved_cs_client;
 -- Final view structure for view `productiondata_v`
 --
 
-/*!50001 DROP TABLE IF EXISTS `productiondata_v`*/;
-/*!50001 DROP VIEW IF EXISTS `productiondata_v`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8 */;
-/*!50001 SET character_set_results     = utf8 */;
-/*!50001 SET collation_connection      = utf8_general_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `productiondata_v` AS select `pd`.`ProductionTestID` AS `ProductionTestID`,`pd`.`CreationDate` AS `CreationDate`,`pd`.`BatchName` AS `BatchName`,`p`.`PartName` AS `PartName`,`pd`.`DUTPinNumber` AS `DutPinNumber`,`pl`.`AverageVoltage` AS `BaselineVoltage`,`pd`.`AverageVoltage` AS `AverageVoltage`,`pd`.`StdDevVoltage` AS `StdDevVoltage`,`pd`.`TestResult` AS `TestResult` from ((`productiondata` `pd` left join `part` `p` on((`pd`.`PartID` = `p`.`PartID`))) left join `productionlimits` `pl` on(((`pd`.`ProductionLimitID` = `pl`.`ProductionLimitID`) and (`pd`.`DUTPinNumber` = `pl`.`DUTPinNumber`)))) where ((`p`.`IsActive` = 1) and (`pd`.`MeasurementNumber` = 0)) */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
+DROP TABLE IF EXISTS `productiondata_v`;
+DROP VIEW IF EXISTS `productiondata_v`;
+SET @saved_cs_client          = @@character_set_client;
+SET @saved_cs_results         = @@character_set_results;
+SET @saved_col_connection     = @@collation_connection;
+SET character_set_client      = utf8;
+SET character_set_results     = utf8;
+SET collation_connection      = utf8_general_ci;
+CREATE ALGORITHM=UNDEFINED 
+DEFINER=`root`@`localhost` SQL SECURITY DEFINER
+VIEW `productiondata_v` AS select `pd`.`ProductionTestID` AS `ProductionTestID`,`pd`.`CreationDate` AS `CreationDate`,`pd`.`BatchName` AS `BatchName`,`p`.`PartName` AS `PartName`,`pd`.`DUTPinNumber` AS `DutPinNumber`,`pl`.`AverageVoltage` AS `BaselineVoltage`,`pd`.`AverageVoltage` AS `AverageVoltage`,`pd`.`StdDevVoltage` AS `StdDevVoltage`,`pd`.`TestResult` AS `TestResult` from ((`productiondata` `pd` left join `part` `p` on((`pd`.`PartID` = `p`.`PartID`))) left join `productionlimits` `pl` on(((`pd`.`ProductionLimitID` = `pl`.`ProductionLimitID`) and (`pd`.`DUTPinNumber` = `pl`.`DUTPinNumber`)))) where ((`p`.`IsActive` = 1) and (`pd`.`MeasurementNumber` = 0));
+SET character_set_client      = @saved_cs_client;
+SET character_set_results     = @saved_cs_results;
+SET collation_connection      = @saved_col_connection;
 
 --
 -- Final view structure for view `lifetimedata_v_individuals`
 --
 
-/*!50001 DROP TABLE IF EXISTS `lifetimedata_v_individuals`*/;
-/*!50001 DROP VIEW IF EXISTS `lifetimedata_v_individuals`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8 */;
-/*!50001 SET character_set_results     = utf8 */;
-/*!50001 SET collation_connection      = utf8_general_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `lifetimedata_v_individuals` AS select `ld`.`LifetimeTestID` AS `LifetimeTestID`,`ld`.`SerialNumber` AS `SerialNumber`,`ld`.`BatchName` AS `BatchName`,`p`.`PartName` AS `PartName`,`ld`.`TestHour` AS `TestHour`,`ll`.`LowerRange` AS `LowerRange`,`ll`.`UpperRange` AS `UpperRange`,`ld`.`Temperature` AS `Temperature`,`ld`.`DUTPinNumber` AS `DUTPinNumber`,`ld`.`MeasurementNumber` AS `MeasurementNumber`,`ld`.`MeasuredVoltage` AS `MeasuredVoltage`,`ld`.`CreationDate` AS `CreationDate` from ((`lifetimedata` `ld` left join `part` `p` on((`ld`.`PartID` = `p`.`PartID`))) left join `lifetimelimit` `ll` on((`ld`.`LifetimeLimitID` = `ll`.`LifetimeLimitID`))) where (`p`.`IsActive` = 1) */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
+DROP TABLE IF EXISTS `lifetimedata_v_individuals`;
+DROP VIEW IF EXISTS `lifetimedata_v_individuals`;
+SET @saved_cs_client          = @@character_set_client;
+SET @saved_cs_results         = @@character_set_results;
+SET @saved_col_connection     = @@collation_connection;
+SET character_set_client      = utf8;
+SET character_set_results     = utf8;
+SET collation_connection      = utf8_general_ci;
+CREATE ALGORITHM=UNDEFINED
+DEFINER=`root`@`localhost` SQL SECURITY DEFINER
+VIEW `lifetimedata_v_individuals` AS select `ld`.`LifetimeTestID` AS `LifetimeTestID`,`ld`.`SerialNumber` AS `SerialNumber`,`ld`.`BatchName` AS `BatchName`,`p`.`PartName` AS `PartName`,`ld`.`TestHour` AS `TestHour`,`ll`.`LowerRange` AS `LowerRange`,`ll`.`UpperRange` AS `UpperRange`,`ld`.`Temperature` AS `Temperature`,`ld`.`DUTPinNumber` AS `DUTPinNumber`,`ld`.`MeasurementNumber` AS `MeasurementNumber`,`ld`.`MeasuredVoltage` AS `MeasuredVoltage`,`ld`.`CreationDate` AS `CreationDate` from ((`lifetimedata` `ld` left join `part` `p` on((`ld`.`PartID` = `p`.`PartID`))) left join `lifetimelimit` `ll` on((`ld`.`LifetimeLimitID` = `ll`.`LifetimeLimitID`))) where (`p`.`IsActive` = 1);
+SET character_set_client      = @saved_cs_client;
+SET character_set_results     = @saved_cs_results;
+SET collation_connection      = @saved_col_connection;
 
 --
 -- Final view structure for view `lifetimedata_v_average`
 --
 
-/*!50001 DROP TABLE IF EXISTS `lifetimedata_v_average`*/;
-/*!50001 DROP VIEW IF EXISTS `lifetimedata_v_average`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8 */;
-/*!50001 SET character_set_results     = utf8 */;
-/*!50001 SET collation_connection      = utf8_general_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `lifetimedata_v_average` AS select `ld`.`LifetimeTestID` AS `LifetimeTestID`,`ld`.`SerialNumber` AS `SerialNumber`,`ld`.`BatchName` AS `BatchName`,`p`.`PartName` AS `PartName`,`ld`.`TestHour` AS `TestHour`,`ll`.`LowerRange` AS `LowerRange`,`ll`.`UpperRange` AS `UpperRange`,`ld`.`Temperature` AS `Temperature`,`ld`.`DUTPinNumber` AS `DUTPinNumber`,`ld`.`AverageVoltage` AS `AverageVoltage`,`ld`.`StdDevVoltage` AS `StdDevVoltage`,`ld`.`CreationDate` AS `CreationDate` from ((`lifetimedata` `ld` left join `part` `p` on((`ld`.`PartID` = `p`.`PartID`))) left join `lifetimelimit` `ll` on((`ld`.`LifetimeLimitID` = `ll`.`LifetimeLimitID`))) where ((`ld`.`MeasurementNumber` = 0) and (`p`.`IsActive` = 1)) */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
+DROP TABLE IF EXISTS `lifetimedata_v_average`;
+DROP VIEW IF EXISTS `lifetimedata_v_average`;
+SET @saved_cs_client          = @@character_set_client;
+SET @saved_cs_results         = @@character_set_results;
+SET @saved_col_connection     = @@collation_connection;
+SET character_set_client      = utf8;
+SET character_set_results     = utf8;
+SET collation_connection      = utf8_general_ci;
+CREATE ALGORITHM=UNDEFINED 
+DEFINER=`root`@`localhost` SQL SECURITY DEFINER
+VIEW `lifetimedata_v_average` AS select `ld`.`LifetimeTestID` AS `LifetimeTestID`,`ld`.`SerialNumber` AS `SerialNumber`,`ld`.`BatchName` AS `BatchName`,`p`.`PartName` AS `PartName`,`ld`.`TestHour` AS `TestHour`,`ll`.`LowerRange` AS `LowerRange`,`ll`.`UpperRange` AS `UpperRange`,`ld`.`Temperature` AS `Temperature`,`ld`.`DUTPinNumber` AS `DUTPinNumber`,`ld`.`AverageVoltage` AS `AverageVoltage`,`ld`.`StdDevVoltage` AS `StdDevVoltage`,`ld`.`CreationDate` AS `CreationDate` from ((`lifetimedata` `ld` left join `part` `p` on((`ld`.`PartID` = `p`.`PartID`))) left join `lifetimelimit` `ll` on((`ld`.`LifetimeLimitID` = `ll`.`LifetimeLimitID`))) where ((`ld`.`MeasurementNumber` = 0) and (`p`.`IsActive` = 1));
+SET character_set_client      = @saved_cs_client;
+SET character_set_results     = @saved_cs_results;
+SET collation_connection      = @saved_col_connection;
 
 --
 -- Dumping routines for database 'gci'
