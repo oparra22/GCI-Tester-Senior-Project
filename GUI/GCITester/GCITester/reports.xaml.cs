@@ -35,7 +35,8 @@ namespace GCITester
 
         private void lifetimeReport_Click(object sender, RoutedEventArgs e)
         {
-
+            lifetimeReport window = new lifetimeReport();
+            window.ShowDialog();
         }
 
         private void backToMain_Click(object sender, RoutedEventArgs e)

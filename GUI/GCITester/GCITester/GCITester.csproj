@@ -62,6 +62,9 @@
     <Compile Include="Communication.cs" />
     <Compile Include="GCIDB.cs" />
     <Compile Include="LifetimeLimitEntity.cs" />
+    <Compile Include="lifetimeReport.xaml.cs">
+      <DependentUpon>lifetimeReport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="lifetimeTest.xaml.cs">
       <DependentUpon>lifetimeTest.xaml</DependentUpon>
     </Compile>
@@ -94,6 +97,10 @@
     <Compile Include="tests.xaml.cs">
       <DependentUpon>tests.xaml</DependentUpon>
     </Compile>
+    <Page Include="lifetimeReport.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="lifetimeTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

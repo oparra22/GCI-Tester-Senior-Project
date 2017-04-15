@@ -286,14 +286,15 @@ namespace GCITester
             DataTable dtResult = new DataTable();
 
             string sqlSerialNumbersList = string.Empty; 
-            for (int i = 0;i< SerialNumbers.Count;i++)
+            /*for (int i = 0;i< SerialNumbers.Count;i++)
             {
                 string SerialNumber = SerialNumbers[i];
                 sqlSerialNumbersList += "'" + SerialNumbers[i] + "'";
                 if (i < SerialNumbers.Count - 1)
                     sqlSerialNumbersList += ",";
-            }
-            string query = @"SELECT LifetimeTestID,CreationDate,PartName,BatchName,SerialNumber,TestHour,Temperature,DUTPinNumber,AverageVoltage FROM GCI.LifetimeData_v_average WHERE PartName='" + PartName + "' AND BatchName='" + BatchName + "' AND SerialNumber IN (" + sqlSerialNumbersList + ") ORDER BY SerialNumber,TestHour, DUTPinNumber ASC";
+            }*/
+            // string query = @"SELECT LifetimeTestID,CreationDate,PartName,BatchName,SerialNumber,TestHour,Temperature,DUTPinNumber,AverageVoltage FROM GCI.LifetimeData_v_average WHERE PartName='" + PartName + "' AND BatchName='" + BatchName + "' AND SerialNumber IN (" + sqlSerialNumbersList + ") ORDER BY SerialNumber,TestHour, DUTPinNumber ASC";
+            string query = @"SELECT * FROM GCI.LifetimeData_v_average";
             if (OpenConnection() == true)
             {
                 //Create Command
@@ -302,12 +303,12 @@ namespace GCITester
                 //MySqlDataReader dataReader = cmd.ExecuteReader();
 
                 //Read the data and store them in the list
-                MySqlDataAdapter TestAdapter = new MySqlDataAdapter(cmd);
-
+                //MySqlDataAdapter TestAdapter = new MySqlDataAdapter(cmd);
+                dtResult.Load(cmd.ExecuteReader());
                 
 
-                TestAdapter.Fill(dtResult);
-                TestAdapter.Dispose();
+                //TestAdapter.Fill(dtResult);
+                //TestAdapter.Dispose();
 
                 /*while (dataReader.Read())
                 {

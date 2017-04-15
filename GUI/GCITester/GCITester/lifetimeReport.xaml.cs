@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data;
 
 namespace GCITester
 {
@@ -19,9 +20,32 @@ namespace GCITester
     /// </summary>
     public partial class lifetimeReport : Window
     {
+        DataTable dt; 
         public lifetimeReport()
         {
             InitializeComponent();
         }
+
+        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void Legacy_Click(object sender, RoutedEventArgs e)
+        {
+            string partname = "  ";
+            string batchname = " ";
+            List<string> SerialNumbers = new List<string>();
+            //Show that the Button is functioning
+            MessageBox.Show("Button Works");
+            GCIDB.Initialize();
+            GCIDB.OpenConnection();
+
+            dt = GCIDB.GetLifetimeData(partname, batchname, SerialNumbers);
+            dataGrid.DataContext = dt;
+            
+
+        }
     }
 }
+
