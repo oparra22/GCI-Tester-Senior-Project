@@ -5,11 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GCITester"
         mc:Ignorable="d"
-        Title="pinTest" Height="462.524" Width="494.563">
+        Title="pinTest" Height="492.161" Width="497.257">
     <Grid>
-        <Button x:Name="testButton" Content="Test Pin" HorizontalAlignment="Left" Margin="188,51,0,0" VerticalAlignment="Top" Width="124" Height="43" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="testButton_Click" BorderBrush="#FF15315F"/>
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="290" Margin="39,119,0,0" VerticalAlignment="Top" Width="413" BorderThickness="5" BorderBrush="#FF15315F"/>
-        <local:numericUpDown x:Name="pinCount" HorizontalAlignment="Left" Margin="39,51,0,0" VerticalAlignment="Top" Height="43" Width="109"/>
+        <Button x:Name="testButton" Content="Test Pin" HorizontalAlignment="Left" Margin="308,10,0,0" VerticalAlignment="Top" Width="124" Height="43" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="testButton_Click" BorderBrush="#FF15315F"/>
+        <ListBox x:Name="manualTestPinResults" HorizontalAlignment="Left" Height="290" Margin="39,149,0,0" VerticalAlignment="Top" Width="413" BorderThickness="5" BorderBrush="#FF15315F" Loaded="manualTestPinResults_Loaded"/>
+        <local:numericUpDown x:Name="pinCount" HorizontalAlignment="Left" Margin="166,10,0,0" VerticalAlignment="Top" Height="43" Width="109"/>
+        <TextBlock x:Name="partText" HorizontalAlignment="Left" Margin="39,19,0,0" TextWrapping="Wrap" Text="Pin #" VerticalAlignment="Top" Height="58" Width="127" FontSize="20" FontFamily="Microsoft JhengHei UI" FontWeight="Bold"/>
+        <TextBlock x:Name="partText_Copy" HorizontalAlignment="Left" Margin="39,86,0,0" TextWrapping="Wrap" Text="Iterations" VerticalAlignment="Top" Height="58" Width="127" FontSize="20" FontFamily="Microsoft JhengHei UI" FontWeight="Bold"/>
+        <local:numericUpDown x:Name="iterCount" HorizontalAlignment="Left" Margin="166,82,0,0" VerticalAlignment="Top" Height="43" Width="109"/>
 
     </Grid>
 </Window>

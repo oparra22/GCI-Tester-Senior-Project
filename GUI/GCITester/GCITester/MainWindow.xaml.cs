@@ -30,12 +30,13 @@ namespace GCITester
 
         private void openPort_Click(object sender, RoutedEventArgs e)
         {
-            testsButton.IsEnabled = true; 
+            testsButton.IsEnabled = true;
+            Communication.OpenPort();
         }
 
         private void settingsButton_Click(object sender, RoutedEventArgs e)
         {
-            settings window = new settings();
+            Settings window = new Settings();
             window.Show();
             //this.Close();
         }

@@ -21,8 +21,21 @@ namespace GCITester
     public partial class numericUpDown : UserControl
     {
 
-        int pinNum = 0;
+        int pinNum;
+        int lowerLimit = 0;
         string pinString;
+
+        public void setValue(int v)
+        {
+            pinNum = v;
+            pinString = pinNum.ToString();
+            counterBox.Text = pinString;
+        }
+
+        public void setLimit(int l)
+        {
+            lowerLimit = l;
+        }
 
         public numericUpDown()
         {
@@ -38,7 +51,7 @@ namespace GCITester
         //decrement pin number
         private void downPinButton_Click(object sender, RoutedEventArgs e)
         {
-            if (pinNum != 0)
+            if (pinNum != lowerLimit)
             {
                 pinNum--;
             }
@@ -46,5 +59,11 @@ namespace GCITester
             counterBox.Text = pinString;
         }
 
+        public int pinValue()
+        {
+            return pinNum;
+        }
+
+       
     }
 }

@@ -39,6 +39,9 @@ namespace GCITester
         private static int StartLoc = 0;
         public static int PinID1 = 0;
         public static int PinID2 = 0;
+        public static int PinID3 = 0;
+        public static int PinID4 = 0;
+
         public static int PinValue = 0;
 
         //Method for opening the port
@@ -113,7 +116,7 @@ namespace GCITester
             switch (e.EventType)
             {
                 case SerialError.Frame:
-                  //  System.Windows.Forms.MessageBox.Show("Framing error");
+                    System.Windows.Forms.MessageBox.Show("Framing error");
                     break;
                 case SerialError.Overrun:
                     //System.Windows.Forms.MessageBox.Show("Overrun error");
@@ -122,13 +125,13 @@ namespace GCITester
                         OnOverFlowError();
                     break;
                 case SerialError.RXOver:
-                   // System.Windows.Forms.MessageBox.Show("RX Over");
+                    System.Windows.Forms.MessageBox.Show("RX Over");
                     break;
                 case SerialError.RXParity:
-                   // System.Windows.Forms.MessageBox.Show("RX Parity");
+                    System.Windows.Forms.MessageBox.Show("RX Parity");
                     break;
                 case SerialError.TXFull:
-                   // System.Windows.Forms.MessageBox.Show("TX Parity");
+                    System.Windows.Forms.MessageBox.Show("TX Parity");
                     break;
             }
         }
@@ -157,7 +160,7 @@ namespace GCITester
             byte[] buffer = new byte[sp.BytesToRead];
             int bytesRead = sp.Read(buffer, 0, buffer.Length);
 
-
+            Console.WriteLine($"Bytes read= {bytesRead}");
             // message has successfully been received
             //indata = Encoding.ASCII.GetString(buffer, 0, bytesRead);
 
@@ -169,7 +172,7 @@ namespace GCITester
                 byte Byte = buffer[i];
 
 
-
+                Console.WriteLine($"Byte {i} = {buffer[i]}");
                 RecvBuffer[RecvBufferCurIndex] = Byte;
 
 
@@ -177,6 +180,7 @@ namespace GCITester
                 {
                     ReadingResult = true;
                     StartLoc = RecvBufferCurIndex;
+                    Console.WriteLine("R read");
                     /*PinID1 = (int)indata[i + 1];
                     PinValue = (indata[i + 2] << 8) | indata[i + 3];
                     if (OnResultComplete != null)
@@ -188,19 +192,45 @@ namespace GCITester
 
                 }
 
-                if (ReadingResult == true && RecvBufferCurIndex >= 6)
+                //if (ReadingResult == true && RecvBufferCurIndex >= 6)
+                if (ReadingResult == true && RecvBufferCurIndex >= 7)
                 {
                     //For debugging, comment out before final
                     Console.WriteLine($"Reading Result");
                     PinID1 = (int)RecvBuffer[StartLoc + 1];
                     PinID2 = (int)RecvBuffer[StartLoc + 2];
-                    PinValue = (RecvBuffer[StartLoc + 3] << 8) | RecvBuffer[StartLoc + 4];
+                    PinID3 = (int)RecvBuffer[StartLoc + 3];
+                    PinID4 = (int)RecvBuffer[StartLoc + 4];
+                    //Print Buffer to Console For Debugging purposes
+                    Console.WriteLine($"buffer[{RecvBufferCurIndex}] = {RecvBuffer[RecvBufferCurIndex]}");
+                    Console.WriteLine($"buffer[{RecvBufferCurIndex + 1}] = {RecvBuffer[RecvBufferCurIndex + 1]}");
+                    Console.WriteLine($"buffer[{RecvBufferCurIndex + 2}] = {RecvBuffer[RecvBufferCurIndex + 2]}");
+                    Console.WriteLine($"buffer[{RecvBufferCurIndex + 3}] = {RecvBuffer[RecvBufferCurIndex + 3]}");
+                    Console.WriteLine($"buffer[{RecvBufferCurIndex + 4}] = {RecvBuffer[RecvBufferCurIndex + 4]}");
+                    Console.WriteLine($"buffer[{RecvBufferCurIndex + 5}] = {RecvBuffer[RecvBufferCurIndex + 5]}");
+                    Console.WriteLine($"buffer[{RecvBufferCurIndex + 6}] = {RecvBuffer[RecvBufferCurIndex + 6]}");
+                    Console.WriteLine($"buffer[{RecvBufferCurIndex + 7}] = {RecvBuffer[RecvBufferCurIndex + 7]}");
+                    Console.WriteLine($"buffer[{RecvBufferCurIndex + 8}] = {RecvBuffer[RecvBufferCurIndex + 8]}");
+
+
+
+                    Console.WriteLine($"PinID1 = {PinID1} PinID2{PinID2} Byte R = {(Byte)'R'}");
+                    Console.WriteLine($"PinID3 = {PinID3} PinID4{PinID4} Byte R = {(Byte)'R'}");
+
+
+                    PinValue = (RecvBuffer[StartLoc + 5] << 8) | RecvBuffer[StartLoc + 6];//adjusted
+                    Console.WriteLine($"pinValue = {PinValue}");
+
                     //MessageBox.Show($"PinValue = {PinValue}");
                     //MessageBox.Show($"index {StartLoc + 5} = {RecvBuffer[StartLoc + 5]} - index {StartLoc + 6} = {RecvBuffer[StartLoc + 6]}");
-                    if (RecvBuffer[StartLoc + 5] == 255 && RecvBuffer[StartLoc + 6] == 255)
+                    //if (RecvBuffer[StartLoc + 7] == 255 && RecvBuffer[StartLoc + 8] == 255)
+                    Console.WriteLine("Before Final check");
+                    if (RecvBuffer[StartLoc + 7] == (Byte)'Z')
+                        Console.WriteLine($"Final Character Read: Byte Z = {(Byte)'Z'}");
                     {
                         if (OnResultComplete != null)
                             OnResultComplete();
+                        Console.WriteLine("FUCK");  
                     }
                     ResetRecvBuffer();
                     return;
@@ -213,17 +243,40 @@ namespace GCITester
         //Function for testing a pin, used in manually test a pin screen
         public static void TestPin(Byte PinID1, Byte PinID2)
         {
+            Console.WriteLine("Continuity Test Ran");
+
             if (!(comPort.IsOpen == true))
             {
                 OpenPort();
             }
 
-            Byte[] Data = new Byte[3];
+            Byte[] Data = new Byte[5];
             Data[0] = (Byte)'T';
             Data[1] = PinID1;
             Data[2] = PinID2;
+            Data[3] = 0;
+            Data[4] = 0;
 
-            comPort.Write(Data, 0, 3);
+            comPort.Write(Data, 0, 5);
+            //debugging comment out of final
+            Console.WriteLine("TestPin Method Finished");
+        }
+        public static void TestPinShort(Byte PinID1, Byte PinID2, Byte PinID3, Byte PinID4)
+        {
+            Console.WriteLine("Short Test Ran");
+            if (!(comPort.IsOpen == true))
+            {
+                OpenPort();
+            }
+
+            Byte[] Data = new Byte[5];
+            Data[0] = (Byte)'S';
+            Data[1] = PinID1;
+            Data[2] = PinID2;
+            Data[3] = PinID3;
+            Data[4] = PinID4;
+
+            comPort.Write(Data, 0, 5); // was 3
             //debugging comment out of final
             Console.WriteLine("TestPin Method Finished");
         }
