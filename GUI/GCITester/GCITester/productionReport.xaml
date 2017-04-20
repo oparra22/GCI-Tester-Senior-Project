@@ -14,7 +14,12 @@
         <Image x:Name="image" HorizontalAlignment="Left" Height="45" Margin="10,10,0,0" VerticalAlignment="Top" Width="183" Source="GCILogo.jpg" RenderTransformOrigin="0.61,0.535"/>
         <Button x:Name="legacyButton" Content="Pull Data" HorizontalAlignment="Left" Margin="10,451,0,0" VerticalAlignment="Top" Width="151" Height="28" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="14" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="legacyButton_Click"/>
         <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="367" Margin="643,74,0,0" VerticalAlignment="Top" Width="678" ItemsSource="{Binding}"/>
-        <ListBox x:Name="partName_listBox1" HorizontalAlignment="Left" Height="342" Margin="10,101,0,0" VerticalAlignment="Top" Width="151"/>
-        <ListBox x:Name="listBox1" HorizontalAlignment="Left" Height="340" Margin="185,101,0,0" VerticalAlignment="Top" Width="147"/>
+        <ListBox x:Name="partName_listBox1" HorizontalAlignment="Left" Height="324" Margin="10,119,0,0" VerticalAlignment="Top" Width="151"/>
+        <ListBox x:Name="batchName_listBox1" HorizontalAlignment="Left" Height="322" Margin="207,119,0,0" VerticalAlignment="Top" Width="147"/>
+        <Label x:Name="label" Content="PartName" HorizontalAlignment="Left" Height="24" Margin="10,65,0,0" VerticalAlignment="Top" Width="105"/>
+        <TextBox x:Name="filterPartName_textBox" HorizontalAlignment="Left" Height="21" Margin="10,89,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="151" TextChanged="filterPartName_textBox_TextChanged"/>
+        <Label x:Name="label1" Content="Batch Name " HorizontalAlignment="Left" Height="29" Margin="207,65,0,0" VerticalAlignment="Top" Width="117"/>
+        <TextBox x:Name="filterBatchName_textBox" HorizontalAlignment="Left" Height="21" Margin="207,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="147" TextChanged="filterBatchName_textBox_TextChanged"/>
+        <Button x:Name="generateBatch_button" Content=">>" HorizontalAlignment="Left" Height="28" Margin="166,243,0,0" VerticalAlignment="Top" Width="36" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="14" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="generateBatch_button_Click"/>
     </Grid>
 </Window>

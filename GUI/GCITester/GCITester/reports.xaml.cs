@@ -30,7 +30,7 @@ namespace GCITester
           //  portFlag = 1;
             productionReport window = new productionReport();
             window.ShowDialog();
-            this.Close();
+            
         }
 
         private void lifetimeReport_Click(object sender, RoutedEventArgs e)
