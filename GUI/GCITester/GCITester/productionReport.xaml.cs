@@ -75,10 +75,11 @@ namespace GCITester
         //grab values from text boxes to query DB for legacy data report
         private void legacyButton_Click(object sender, RoutedEventArgs e)
         {
-            string partID = partID_textbox.Text;
-            string testDataEntryID = testDataID_testbox.Text;
-
-            MessageBox.Show(string.Format("Pulling Legacy Report for Part ID: {0}  Test Entry ID: {1}", partID, testDataEntryID));
+            //string partID = partID_textbox.Text;
+            //string testDataEntryID = testDataID_testbox.Text;
+            string partID ="";
+            string BatchID = "";
+            //MessageBox.Show(string.Format("Pulling Legacy Report for Part ID: {0}  Test Entry ID: {1}", partID, testDataEntryID));
 
 
             GCIDB.Initialize();
@@ -96,7 +97,7 @@ namespace GCITester
             //DataTable dt = new DataTable();
             //dt.Load(cmd.ExecuteReader());
            // connection.Close();
-            dt = GCIDB.GetProductionData(partID, testDataEntryID);
+            dt = GCIDB.GetProductionData(partID,BatchID);
 
             dataGrid.DataContext = dt;
 
@@ -109,7 +110,7 @@ namespace GCITester
         //textbox for filter of listview, refresh with every keystroke
         private void filterSearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-           CollectionViewSource.GetDefaultView(listBox.ItemsSource).Refresh();
+          CollectionViewSource.GetDefaultView(listBox.ItemsSource).Refresh();
         }
     }
 }
