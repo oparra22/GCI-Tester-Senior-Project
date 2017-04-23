@@ -34,7 +34,8 @@ namespace GCITester
 
         private void shortTestButton_Click(object sender, RoutedEventArgs e)
         {
-
+            shortTest window = new shortTest();
+            window.Show();
         }
 
         private void productionTestButton_Click(object sender, RoutedEventArgs e)

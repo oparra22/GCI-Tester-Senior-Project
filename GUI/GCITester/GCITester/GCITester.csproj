@@ -122,6 +122,9 @@
     <Compile Include="shortTest.xaml.cs">
       <DependentUpon>shortTest.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ShortTestControl.xaml.cs">
+      <DependentUpon>ShortTestControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TestPinEntity.cs" />
     <Compile Include="tests.xaml.cs">
       <DependentUpon>tests.xaml</DependentUpon>
@@ -175,6 +178,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="shortTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ShortTestControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -5,15 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GCITester"
         mc:Ignorable="d"
-        Title="shortTest" Height="772.427" Width="537.088"
-        >
+        Title="shortTest" Height="772.427" Width="537.088" Loaded="form1_load">
     <Grid>
-        <ComboBox x:Name="partNumberBox" HorizontalAlignment="Left" Margin="300,46,0,0" VerticalAlignment="Top" Width="185" Height="40" BorderThickness="5" BorderBrush="#FF15315F"/>
-        <ComboBox x:Name="testboardBox" HorizontalAlignment="Left" Margin="300,109,0,0" VerticalAlignment="Top" Width="185" Height="39" BorderThickness="5" BorderBrush="#FF15315F"/>
-        <TextBlock x:Name="partText" HorizontalAlignment="Left" Margin="34,46,0,0" TextWrapping="Wrap" Text="Part Number" VerticalAlignment="Top" Height="58" Width="127" FontSize="20" FontFamily="Microsoft JhengHei UI" FontWeight="Bold"/>
-        <TextBlock x:Name="testText" HorizontalAlignment="Left" Margin="34,109,0,0" TextWrapping="Wrap" Text="Test Board" VerticalAlignment="Top" Height="58" Width="127" FontSize="20" FontFamily="Microsoft JhengHei UI" FontWeight="Bold"/>
-        <TextBlock x:Name="testNumText" HorizontalAlignment="Left" Margin="29,173,0,0" TextWrapping="Wrap" Text="Pin to Test" VerticalAlignment="Top" Height="37" Width="261" FontSize="20" FontFamily="Microsoft JhengHei UI" FontWeight="Bold"/>
-        <local:numericUpDown x:Name="pinCount" HorizontalAlignment="Left" Margin="300,166,0,0" VerticalAlignment="Top" Width="147" Height="44"/>
 
+        <TextBlock x:Name="testNumText" HorizontalAlignment="Left" Margin="38,32,0,0" TextWrapping="Wrap" Text="Select pins to test" VerticalAlignment="Top" Height="36" Width="260" FontSize="20" FontFamily="Microsoft JhengHei UI" FontWeight="Bold"/>
+        <Button x:Name="testButton" Content="Test Pins" HorizontalAlignment="Left" Margin="38,194,0,0" VerticalAlignment="Top" Width="168" Height="70" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="24" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="testButton_Click" BorderBrush="#FF15315F"/>
+        <local:ShortTestControl Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="38,73,0,0" VerticalAlignment="Top" Height="298" x:Name="shortTestControl"/>
+        <ListBox x:Name="manualShortTestResults" HorizontalAlignment="Left" Height="370" Margin="38,335,0,0" VerticalAlignment="Top" Width="445" Loaded="manualShortTestResults_Loaded"/>
     </Grid>
 </Window>
