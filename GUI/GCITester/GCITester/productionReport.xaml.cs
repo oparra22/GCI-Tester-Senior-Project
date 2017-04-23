@@ -138,30 +138,7 @@ namespace GCITester
             }
 
         }
-
        
-       
-        //once user has selected the part, then they will get a list of batches after >> button press
-        private void generateBatch_button_Click(object sender, RoutedEventArgs e)
-        {
-            if (partName_listBox1.SelectedIndex == -1)
-            {
-                MessageBox.Show("Select a Part Name!");
-            }
-            else
-            {
-                //pull batch names from the DB, then render the view for filtering
-                SelectedPartName = partName_listBox1.SelectedItem.ToString();
-                GCIDB.Initialize();
-                GCIDB.OpenConnection();
-                batchNames = GCIDB.GetProductionBatchNameList(SelectedPartName);
-                batchName_listBox1.ItemsSource = batchNames;
-           
-                System.ComponentModel.ICollectionView batchName_view = CollectionViewSource.GetDefaultView(batchName_listBox1.ItemsSource);
-                batchName_view.Filter = batchName_CustomFilter;
-            }
-            
-        }
         //textbox for filter of listview, refresh with every keystroke
         private void filterSearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -178,6 +155,58 @@ namespace GCITester
         private void filterBatchName_textBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             CollectionViewSource.GetDefaultView(batchName_listBox1.ItemsSource).Refresh();
+        }
+
+        private void partName_listBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (partName_listBox1.SelectedIndex == -1)
+            {
+                MessageBox.Show("Select a Part Name!");
+            }
+            else
+            {
+                //pull batch names from the DB, then render the view for filtering
+                SelectedPartName = partName_listBox1.SelectedItem.ToString();
+                GCIDB.Initialize();
+                GCIDB.OpenConnection();
+                batchNames = GCIDB.GetProductionBatchNameList(SelectedPartName);
+                batchName_listBox1.ItemsSource = batchNames;
+
+                System.ComponentModel.ICollectionView batchName_view = CollectionViewSource.GetDefaultView(batchName_listBox1.ItemsSource);
+                batchName_view.Filter = batchName_CustomFilter;
+            }
+        }
+
+        private void batchName_listBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            if (batchName_listBox1.SelectedIndex == -1)
+            {
+                MessageBox.Show("Select a Batch Name!");
+            }
+            else
+            {
+                SelectedBatchName = batchName_listBox1.SelectedItem.ToString();
+               // MessageBox.Show(string.Format("Pulling Legacy Report for Part ID: {0}  Batch ID: {1}", SelectedPartName, SelectedBatchName));
+
+                //connect to DB, get production data then return into datatable
+                GCIDB.Initialize();
+                GCIDB.OpenConnection();
+                dt = GCIDB.GetProductionData(SelectedPartName, SelectedBatchName);
+                dataGrid.DataContext = dt;
+            }
+
+        }
+
+        private void generateReport_button_Click(object sender, RoutedEventArgs e)
+        {
+            ProductionReportData ProductionReport = new ProductionReportData(dt, SelectedPartName, SelectedBatchName);
+            ProductionReport.GenerateExcelOutput(SelectedPartName, SelectedBatchName);
+        }
+
+        private void exportExcel_button_Click(object sender, RoutedEventArgs e)
+        {
+            ExportToExcel.FastExportToExcel(dt);
         }
     }
 }

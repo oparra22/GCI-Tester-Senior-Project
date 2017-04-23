@@ -198,8 +198,12 @@ namespace GCITester
                 oRange.EntireColumn.NumberFormat = "MM/DD/YYYY HH:MM:SS";
             }
 
-            oRange = excelSheet.get_Range(excelSheet.Cells[1, 1],
-                          excelSheet.Cells[dt.Rows.Count, dt.Columns.Count]);
+            Excel.Range c1 = excelSheet.Cells[1, 1];
+            Excel.Range c2 = excelSheet.Cells[dt.Rows.Count, dt.Columns.Count];
+            oRange = (Excel.Range)excelSheet.get_Range(c1, c2);
+
+            //oRange = excelSheet.get_Range(excelSheet.Cells[1, 1],
+                          //excelSheet.Cells[dt.Rows.Count, dt.Columns.Count]);
             oRange.EntireColumn.AutoFit();
 
 

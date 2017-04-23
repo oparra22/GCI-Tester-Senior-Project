@@ -111,6 +111,7 @@
     <Compile Include="productionReport.xaml.cs">
       <DependentUpon>productionReport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProductionReportData.cs" />
     <Compile Include="productionTest.xaml.cs">
       <DependentUpon>productionTest.xaml</DependentUpon>
     </Compile>

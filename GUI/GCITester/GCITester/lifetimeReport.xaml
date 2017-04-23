@@ -5,39 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GCITester"
         mc:Ignorable="d"
-        Title="lifetimeReport" Height="558.2" Width="1486.918">
+        Title="lifetimeReport" Height="558.2" Width="1377.918">
     <Grid Margin="0,0,-6.4,0.4">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="102*"/>
-            <ColumnDefinition Width="688*"/>
-            <ColumnDefinition Width="0*"/>
-            <ColumnDefinition Width="801*"/>
+            <ColumnDefinition Width="91*"/>
+            <ColumnDefinition Width="699*"/>
+            <ColumnDefinition Width="11*"/>
+            <ColumnDefinition Width="628*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="420" Margin="28,38,0,0" VerticalAlignment="Top" Width="655" ItemsSource="{Binding}" SelectionChanged="dataGrid_SelectionChanged" Grid.Column="3"/>
-        <Button x:Name="Legacy" Content="Pull Data" HorizontalAlignment="Left" Margin="10,474,0,0" VerticalAlignment="Top" Width="123" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="14" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="Legacy_Click" Grid.ColumnSpan="2" Height="22"/>
-        <ListBox x:Name="partName_listbox" HorizontalAlignment="Left" Height="349" Margin="15,109,0,0" VerticalAlignment="Top" Width="107" Grid.ColumnSpan="2"/>
-        <ListBox x:Name="batchName_listbox"  HorizontalAlignment="Left" Height="350" Margin="78,109,0,0" VerticalAlignment="Top" Width="104" Grid.Column="1"/>
-        <ListBox x:Name="files_listbox" HorizontalAlignment="Left" Height="188" Margin="343,270,0,0" VerticalAlignment="Top" Width="287" Grid.Column="1" RenderTransformOrigin="0.478,0.545" Background="#FFFDF6F6" />
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="430" Margin="628,30,0,0" VerticalAlignment="Top" Width="637" ItemsSource="{Binding}" SelectionChanged="dataGrid_SelectionChanged" Grid.Column="1" Grid.ColumnSpan="3"/>
+        <ListBox x:Name="partName_listbox" HorizontalAlignment="Left" Height="349" Margin="15,109,0,0" VerticalAlignment="Top" Width="107" Grid.ColumnSpan="2" SelectionChanged="partName_listbox_SelectionChanged"/>
+        <ListBox x:Name="batchName_listbox"  HorizontalAlignment="Left" Height="350" Margin="53,110,0,0" VerticalAlignment="Top" Width="104" Grid.Column="1" SelectionChanged="batchName_listbox_SelectionChanged"/>
+        <ListBox x:Name="files_listbox" HorizontalAlignment="Left" Height="188" Margin="309,270,0,0" VerticalAlignment="Top" Width="299" Grid.Column="1" RenderTransformOrigin="0.478,0.545" Background="#FFFDF6F6" />
         <Image x:Name="image" HorizontalAlignment="Left" Height="45" Margin="10,10,0,0" VerticalAlignment="Top" Width="183" Source="GCILogo.jpg" RenderTransformOrigin="0.751,0.444" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="batchName_textBox" HorizontalAlignment="Left" Height="23" Margin="78,81,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="104" RenderTransformOrigin="0.577,1.696" TextChanged="batchName_textBox_TextChanged" Grid.Column="1"/>
+        <TextBox x:Name="batchName_textBox" HorizontalAlignment="Left" Height="23" Margin="53,82,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="104" RenderTransformOrigin="0.577,1.696" TextChanged="batchName_textBox_TextChanged" Grid.Column="1"/>
         <TextBox x:Name="partName_textBox" HorizontalAlignment="Left" Height="23" Margin="15,81,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="104" Grid.ColumnSpan="2" TextChanged="partName_textBox_TextChanged"/>
-        <TextBox x:Name="filterFiles_textBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="343,242,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="287" TextChanged="filterFiles_textBox_TextChanged"/>
-        <Button x:Name="toExcel_button" Content="Export to Excel" Grid.Column="3" HorizontalAlignment="Left" Height="22" Margin="554,474,0,0" VerticalAlignment="Top" Width="129" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="14" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" />
+        <TextBox x:Name="filterFiles_textBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="309,242,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="299" TextChanged="filterFiles_textBox_TextChanged"/>
+        <Button x:Name="toExcel_button" Content="Export Raw Data to Excel" Grid.Column="3" HorizontalAlignment="Left" Height="22" Margin="384,474,0,0" VerticalAlignment="Top" Width="197" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="14" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="toExcel_button_Click" />
         <Label x:Name="partName_label" Grid.ColumnSpan="2" Content="Part Name" HorizontalAlignment="Left" Height="30" Margin="10,60,0,0" VerticalAlignment="Top" Width="96"/>
-        <Label x:Name="batchName_label" Content="Batch Name" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="78,60,0,0" VerticalAlignment="Top" Width="94"/>
-        <Label x:Name="reportAvail_label" Content="Reports Available" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="343,207,0,0" VerticalAlignment="Top" Width="174"/>
-        <ListBox x:Name="serialNumbers_listBox" Grid.Column="1" HorizontalAlignment="Left" Height="349" Margin="224,110,0,0" VerticalAlignment="Top" Width="105"/>
-        <TextBox x:Name="serialNumbersFilter_textBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="224,81,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="105" TextChanged="serialNumbersFilter_textBox_TextChanged"/>
-        <Label x:Name="label" Content="Serial Numers" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="224,60,0,0" VerticalAlignment="Top" Width="105"/>
-        <Button x:Name="getBatches_button" Content=">>" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="39,244,0,0" VerticalAlignment="Top" Width="34" RenderTransformOrigin="0.036,0.083" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="14" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="getBatches_button_Click"/>
-        <Button x:Name="getSerials_button" Content=">>" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="187,244,0,0" VerticalAlignment="Top" Width="32" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="14" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="getSerials_button_Click"/>
-        <Button x:Name="openReport_button" Content="Open File" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="343,474,0,0" VerticalAlignment="Top" Width="106" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="14" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="openReport_button_Click" />
-        <TextBox x:Name="customerName_textBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="452,81,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="178"/>
-        <TextBox x:Name="PO_textBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="452,110,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="178"/>
-        <TextBox x:Name="prodDesc_textBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="452,138,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="178"/>
-        <Label x:Name="label1" Content="Customer Name" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="334,81,0,0" VerticalAlignment="Top" Width="99"/>
-        <Label x:Name="label2" Content="PO#" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="334,110,0,0" VerticalAlignment="Top" Width="99"/>
-        <Label x:Name="label3" Content="Product Description" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="334,138,0,0" VerticalAlignment="Top" Width="99"/>
-        <Button x:Name="generateReort_button" Content="Generate Report" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="343,178,0,0" VerticalAlignment="Top" Width="287" Click="generateReort_button_Click"/>
+        <Label x:Name="batchName_label" Content="Batch Name" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="53,60,0,0" VerticalAlignment="Top" Width="94"/>
+        <Label x:Name="reportAvail_label" Content="Reports Available" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="309,212,0,0" VerticalAlignment="Top" Width="174"/>
+        <ListBox x:Name="serialNumbers_listBox" Grid.Column="1" HorizontalAlignment="Left" Height="349" Margin="178,110,0,0" VerticalAlignment="Top" Width="105" SelectionChanged="serialNumbers_listBox_SelectionChanged"/>
+        <TextBox x:Name="serialNumbersFilter_textBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="178,82,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="105" TextChanged="serialNumbersFilter_textBox_TextChanged"/>
+        <Label x:Name="label" Content="Serial Numers" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="178,60,0,0" VerticalAlignment="Top" Width="105"/>
+        <Button x:Name="openReport_button" Content="Open File" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="309,474,0,0" VerticalAlignment="Top" Width="106" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="14" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="openReport_button_Click" />
+        <TextBox x:Name="customerName_textBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="430,82,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="178"/>
+        <TextBox x:Name="PO_textBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="430,109,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="178"/>
+        <TextBox x:Name="prodDesc_textBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="429,138,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="178"/>
+        <Label x:Name="label1" Content="Customer Name" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="309,82,0,0" VerticalAlignment="Top" Width="99"/>
+        <Label x:Name="label2" Content="PO#" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="309,110,0,0" VerticalAlignment="Top" Width="99"/>
+        <Label x:Name="label3" Content="Product Description" Grid.Column="1" HorizontalAlignment="Left" Height="35" Margin="309,138,0,0" VerticalAlignment="Top" Width="115"/>
+        <Button x:Name="generateReort_button" Content="Generate Report" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="309,178,0,0" VerticalAlignment="Top" Width="299"  Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="14" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="generateReort_button_Click"/>
     </Grid>
 </Window>

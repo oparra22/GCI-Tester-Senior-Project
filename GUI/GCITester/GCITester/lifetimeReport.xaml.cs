@@ -114,14 +114,24 @@ namespace GCITester
         private void Legacy_Click(object sender, RoutedEventArgs e)
         {
             
-            List<string> SerialNumbers = new List<string>();
+           // List<string> SerialNumbers = GetSelectedSerialNumbers();
             //Show that the Button is functioning
             MessageBox.Show(string.Format("Pulling Legacy Report for Part ID: {0}  Batch ID: {1} and Serial Number: {2}", SelectedPartName, SelectedBatchName, SelectedSerialNumbers));
             GCIDB.Initialize();
             GCIDB.OpenConnection();
 
-            dt = GCIDB.GetLifetimeData(SelectedPartName, SelectedBatchName, SelectedSerialNumbers);
-            dataGrid.DataContext = dt;
+            List<String> SerialNumbers = GetSelectedSerialNumbers();
+            if (SerialNumbers.Count == 0)
+            {
+                MessageBox.Show("Please select serial numbers.");
+                return;
+            }
+            DataTable dtResult = GCIDB.GetLifetimeData(SelectedPartName, SelectedBatchName, SerialNumbers);
+            LifetimeLimitEntity Limits = GCIDB.GetLifetimeLimits(SelectedPartName);
+            LifeTimeReportData LifetimeReport = new LifeTimeReportData(dtResult, Limits);
+
+            //dt = GCIDB.GetLifetimeData(SelectedPartName, SelectedBatchName, SelectedSerialNumbers);
+            dataGrid.DataContext = dtResult;
             
 
         }
@@ -141,46 +151,8 @@ namespace GCITester
             CollectionViewSource.GetDefaultView(partName_listbox.ItemsSource).Refresh();
         }
 
-        private void getBatches_button_Click(object sender, RoutedEventArgs e)
-        {
-            if (partName_listbox.SelectedIndex == -1)
-            {
-                MessageBox.Show("Select a Part Name!");
-            }
-            else
-            {
-                //pull batch names from the DB, then render the view for filtering
-                SelectedPartName = partName_listbox.SelectedItem.ToString();
-                GCIDB.Initialize();
-                GCIDB.OpenConnection();
-                batchNames = GCIDB.GetBatchNameList(SelectedPartName);
-                batchName_listbox.ItemsSource = batchNames;
+        
 
-                System.ComponentModel.ICollectionView batchName_view = CollectionViewSource.GetDefaultView(batchName_listbox.ItemsSource);
-                batchName_view.Filter = batchName_CustomFilter;
-            }
-        }
-
-        private void getSerials_button_Click(object sender, RoutedEventArgs e)
-        {
-            if (batchName_listbox.SelectedIndex == -1 || partName_listbox.SelectedIndex == -1)
-            {
-                MessageBox.Show("Select a Batch Name & Part Name!");
-            }
-            else
-            {
-                //pull batch names from the DB, then render the view for filtering
-                SelectedPartName = partName_listbox.SelectedItem.ToString();
-                SelectedBatchName = batchName_listbox.SelectedItem.ToString();
-                GCIDB.Initialize();
-                GCIDB.OpenConnection();
-                SerialNumbers = GCIDB.GetSerialNumberList(SelectedPartName, SelectedBatchName);
-                serialNumbers_listBox.ItemsSource = SerialNumbers;
-
-                System.ComponentModel.ICollectionView serial_view = CollectionViewSource.GetDefaultView(serialNumbers_listBox.ItemsSource);
-                serial_view.Filter = serialNumber_CustomFilter;
-            }
-        }
 
         private void serialNumbersFilter_textBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -229,6 +201,84 @@ namespace GCITester
             LifeTimeReportData LifetimeReport = new LifeTimeReportData(dtResult, Limits);
             LifetimeReport.GenerateExcelOutput(customerName_textBox.Text, PO_textBox.Text, prodDesc_textBox.Text, SelectedPartName, SelectedBatchName);
             //ExportToExcel.FastExportToExcel(dtResult);
+        }
+
+        private void toExcel_button_Click(object sender, RoutedEventArgs e)
+        {
+            List<String> SerialNumbers = GetSelectedSerialNumbers();
+            if (SerialNumbers.Count == 0)
+            {
+                MessageBox.Show("Please select serial numbers.");
+                return;
+            }
+            DataTable dtResult = GCIDB.GetLifetimeData(SelectedPartName, SelectedBatchName, SerialNumbers);
+            //LifetimeLimitEntity Limits = GCIDB.GetLifetimeLimits(SelectedPartName);
+            //LifeTimeReportData LifetimeReport = new LifeTimeReportData(dtResult, Limits);
+            //LifetimeReport.GenerateExcelOutput(customerName_textBox.Text, PO_textBox.Text, prodDesc_textBox.Text, SelectedPartName, SelectedBatchName);
+            ExportToExcel.FastExportToExcel(dtResult);
+        }
+
+        private void partName_listbox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (partName_listbox.SelectedIndex == -1)
+            {
+                MessageBox.Show("Select a Part Name!");
+            }
+            else
+            {
+                //pull batch names from the DB, then render the view for filtering
+                SelectedPartName = partName_listbox.SelectedItem.ToString();
+                GCIDB.Initialize();
+                GCIDB.OpenConnection();
+                batchNames = GCIDB.GetBatchNameList(SelectedPartName);
+                batchName_listbox.ItemsSource = batchNames;
+
+                System.ComponentModel.ICollectionView batchName_view = CollectionViewSource.GetDefaultView(batchName_listbox.ItemsSource);
+                batchName_view.Filter = batchName_CustomFilter;
+            }
+        }
+
+        private void batchName_listbox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (batchName_listbox.SelectedIndex == -1 || partName_listbox.SelectedIndex == -1)
+            {
+                MessageBox.Show("Select a Batch Name & Part Name!");
+            }
+            else
+            {
+                //pull batch names from the DB, then render the view for filtering
+                SelectedPartName = partName_listbox.SelectedItem.ToString();
+                SelectedBatchName = batchName_listbox.SelectedItem.ToString();
+                GCIDB.Initialize();
+                GCIDB.OpenConnection();
+                SerialNumbers = GCIDB.GetSerialNumberList(SelectedPartName, SelectedBatchName);
+                serialNumbers_listBox.ItemsSource = SerialNumbers;
+
+                System.ComponentModel.ICollectionView serial_view = CollectionViewSource.GetDefaultView(serialNumbers_listBox.ItemsSource);
+                serial_view.Filter = serialNumber_CustomFilter;
+            }
+        }
+
+        private void serialNumbers_listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // List<string> SerialNumbers = GetSelectedSerialNumbers();
+            //Show that the Button is functioning
+            //MessageBox.Show(string.Format("Pulling Legacy Report for Part ID: {0}  Batch ID: {1} and Serial Number: {2}", SelectedPartName, SelectedBatchName, SelectedSerialNumbers));
+            GCIDB.Initialize();
+            GCIDB.OpenConnection();
+
+            List<String> SerialNumbers = GetSelectedSerialNumbers();
+            if (SerialNumbers.Count == 0)
+            {
+                MessageBox.Show("Please select serial numbers.");
+                return;
+            }
+            DataTable dtResult = GCIDB.GetLifetimeData(SelectedPartName, SelectedBatchName, SerialNumbers);
+            LifetimeLimitEntity Limits = GCIDB.GetLifetimeLimits(SelectedPartName);
+            LifeTimeReportData LifetimeReport = new LifeTimeReportData(dtResult, Limits);
+
+            //dt = GCIDB.GetLifetimeData(SelectedPartName, SelectedBatchName, SelectedSerialNumbers);
+            dataGrid.DataContext = dtResult;
         }
     }
 }
