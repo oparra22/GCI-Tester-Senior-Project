@@ -15,13 +15,16 @@ using System.Data;
 using System.IO;
 using System.Diagnostics;
 
+
 namespace GCITester
 {
+    
     /// <summary>
     /// Interaction logic for lifetimeReport.xaml
     /// </summary>
     public partial class lifetimeReport : Window
     {
+        
         public List<String> partNames;
         public List<String> batchNames;
         public List<String> SerialNumbers;
@@ -201,6 +204,31 @@ namespace GCITester
                 string fullFileName = System.IO.Path.Combine(@"..\..\..\..\..\Reports\Lifetime Reports", file);
                 Process.Start(fullFileName);
             }
+        }
+
+        List<String> GetSelectedSerialNumbers()
+        {
+            List<String> Result = new List<string>();
+            foreach (Object selecteditem in serialNumbers_listBox.SelectedItems)
+            {
+                Result.Add(selecteditem.ToString());
+            }
+            return Result;
+        }
+
+        private void generateReort_button_Click(object sender, RoutedEventArgs e)
+        {
+            List<String> SerialNumbers = GetSelectedSerialNumbers();
+            if (SerialNumbers.Count == 0)
+            {
+                MessageBox.Show("Please select serial numbers.");
+                return;
+            }
+            DataTable dtResult = GCIDB.GetLifetimeData(SelectedPartName, SelectedBatchName, SerialNumbers);
+            LifetimeLimitEntity Limits = GCIDB.GetLifetimeLimits(SelectedPartName);
+            LifeTimeReportData LifetimeReport = new LifeTimeReportData(dtResult, Limits);
+            LifetimeReport.GenerateExcelOutput(customerName_textBox.Text, PO_textBox.Text, prodDesc_textBox.Text, SelectedPartName, SelectedBatchName);
+            //ExportToExcel.FastExportToExcel(dtResult);
         }
     }
 }
