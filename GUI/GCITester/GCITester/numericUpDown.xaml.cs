@@ -25,6 +25,7 @@ namespace GCITester
         int lowerLimit = 0;
         string pinString;
 
+        //sets default value of numeric up and down
         public void setValue(int v)
         {
             pinNum = v;
@@ -32,6 +33,7 @@ namespace GCITester
             counterBox.Text = pinString;
         }
 
+        //sets the lower limit 
         public void setLimit(int l)
         {
             lowerLimit = l;
