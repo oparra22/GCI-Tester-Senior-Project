@@ -41,7 +41,9 @@ namespace GCITester
 
         private void backToMain_Click(object sender, RoutedEventArgs e)
         {
-
+            MainWindow window = new MainWindow();
+            this.Close();
+            window.Show();
         }
     }
 }
