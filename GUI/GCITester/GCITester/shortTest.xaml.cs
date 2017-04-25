@@ -28,6 +28,7 @@ namespace GCITester
         //public List<int> listOfPins { get; set; }
         public List<int> listPins = new List<int>();
         private int FuckSeth = 0;
+        private int resultsIndex = 0;
         int flag;
         // public ObservableCollection<int> names = new ObservableCollection<int>();
 
@@ -128,8 +129,22 @@ namespace GCITester
             Double Voltagedrop = (VoltageRef - VoltageIn);
             Double Current = Voltagedrop / 4700; 
             Double Resistance = VoltageIn / Current;
+            bool shortPass = false;
+            if (Resistance > 1000)
+            {
+                shortPass = true;
+                
+            }
+            else
+            {
+                shortPass = false;
+            }
+            Communication.SetResultLED(shortPass);
             //AddLog("Pin " + TestedPin.ToString() + " Measured: " + VoltageIn.ToString() + "V  [0x" + Communication.PinValue.ToString("X4") + "]" + "\t Voltage Drop: " + (double)(VoltageRef - Voltage) + "Testedpin 2 = " + TestedPin2);
-            AddLog("Pin1:" + TestedPin +" Pin2:" + TestedPin2 + ". VoltageIn read:" + VoltageIn + " VoltageDrop:" +Voltagedrop+ ". Resistance:" + Resistance+ "Ohms");
+            AddLog("Pin1:" + TestedPin +" Pin2:" + TestedPin2 + ". VoltageIn read:" + VoltageIn + " VoltageDrop:" +Voltagedrop+ ". Resistance:" + Resistance+ "Ohms.");
+            //AddLog("Bool shortPass = " + shortPass);
+            //manualShortTestResults.ScrollIntoView(manualShortTestResults.Items[manualShortTestResults.Items.Count - 1]);
+            //manualShortTestResults.ScrollIntoView(manualShortTestResults.SelectedItem);
             flag = 1;
         }
 
@@ -146,11 +161,16 @@ namespace GCITester
             //It does the same as the block commented out above, just converted for WPF
             Dispatcher.BeginInvoke(new Action(delegate ()
             {
+                //resultsIndex++;
                 manualShortTestResults.Items.Add(Text);
                 manualShortTestResults.Items.MoveCurrentToLast();
-                manualShortTestResults.ScrollIntoView(manualShortTestResults.Items.CurrentItem);
+                //manualShortTestResults.ScrollIntoView(manualShortTestResults.Items.CurrentItem);
+                //manualShortTestResults.SelectedIndex = manualShortTestResults.Items.Count - 1;
+                //manualShortTestResults.ScrollIntoView(manualShortTestResults.SelectedItem);
+                manualShortTestResults.ScrollIntoView(manualShortTestResults.Items[manualShortTestResults.Items.Count - 1]);
             }));
 
+            
         }
 
         private void OnWindowClosing(object sender, CancelEventArgs e)

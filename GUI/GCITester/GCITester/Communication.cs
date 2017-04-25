@@ -110,6 +110,29 @@ namespace GCITester
             RecvBufferCurIndex = 0;
         }
 
+        public static void SetResultLED(bool Result)
+        {
+            Byte[] Data = new Byte[5];
+            if (!(comPort.IsOpen == true))
+                OpenPort();
+            if (Result == true)
+            {
+                Data[0] = (Byte)'G';
+                Data[1] = 1;
+                Data[2] = 0;
+                Data[3] = 0;
+                Data[4] = 0;
+            }
+            else
+            {
+                Data[0] = (Byte)'B';
+                Data[1] = 1;
+                Data[2] = 0;
+                Data[3] = 0;
+                Data[4] = 0;
+            }
+            comPort.Write(Data, 0, 5);
+        }
         public static void ErrorHandler(object sender, SerialErrorReceivedEventArgs e)
         {
             //System.Windows.Forms.MessageBox.Show("Please screen shot this and send to amagner@abound.com - " + e.

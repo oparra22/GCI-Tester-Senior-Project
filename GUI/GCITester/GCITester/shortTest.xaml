@@ -11,6 +11,6 @@
         <TextBlock x:Name="testNumText" HorizontalAlignment="Left" Margin="38,32,0,0" TextWrapping="Wrap" Text="Select pins to test" VerticalAlignment="Top" Height="36" Width="260" FontSize="20" FontFamily="Microsoft JhengHei UI" FontWeight="Bold"/>
         <Button x:Name="testButton" Content="Test Pins" HorizontalAlignment="Left" Margin="38,194,0,0" VerticalAlignment="Top" Width="168" Height="70" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="24" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="testButton_Click" BorderBrush="#FF15315F"/>
         <local:ShortTestControl Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="38,73,0,0" VerticalAlignment="Top" Height="298" x:Name="shortTestControl"/>
-        <ListBox x:Name="manualShortTestResults" HorizontalAlignment="Left" Height="370" Margin="38,335,0,0" VerticalAlignment="Top" Width="445" Loaded="manualShortTestResults_Loaded"/>
+        <ListBox x:Name="manualShortTestResults" HorizontalAlignment="Left" Height="370" Margin="38,335,0,0" VerticalAlignment="Top" Width="445" Loaded="manualShortTestResults_Loaded" />
     </Grid>
 </Window>
