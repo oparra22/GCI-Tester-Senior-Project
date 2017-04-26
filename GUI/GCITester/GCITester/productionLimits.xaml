@@ -26,7 +26,9 @@
         <Button x:Name="cancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="33,758,0,0" VerticalAlignment="Top" Width="159" Height="48" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="cancel_click" BorderBrush="#FF15315F" Grid.Column="1"/>
         <Button x:Name="saveButton" Content="Save" HorizontalAlignment="Left" Margin="308,758,0,0" VerticalAlignment="Top" Width="159" Height="48" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="saveButton_Click" BorderBrush="#FF15315F" Grid.Column="1"/>
         <Label x:Name="labelProgress" HorizontalAlignment="Left" Margin="33,318,0,0"  Content="Progress:" VerticalAlignment="Top" Height="36" Width="250" FontSize="16" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.Column="1"/>
-        <local:numericUpDown x:Name="numericSigma" Grid.Column="1" HorizontalAlignment="Left" Margin="84,681,0,0" VerticalAlignment="Top" Width="147" Height="44"/>
+        <local:numericUpDown x:Name="numericSigma" Grid.Column="1" HorizontalAlignment="Left" Margin="66,681,0,0" VerticalAlignment="Top" Width="147" Height="44"/>
+        <Label x:Name="sigLabel1" HorizontalAlignment="Left" Margin="10,689,0,0"  Content="Use ± " VerticalAlignment="Top" Height="36" Width="74" FontSize="16" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.Column="1"/>
+        <TextBlock x:Name="sigLabel1_Copy" HorizontalAlignment="Left" Margin="179,681,0,0"  Text="σ for initial limits - Can be altered in Part Editor" VerticalAlignment="Top" Height="72" Width="296" FontSize="16" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.Column="1" TextWrapping="Wrap" />
 
     </Grid>
 </Window>
