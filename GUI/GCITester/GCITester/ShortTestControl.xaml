@@ -19,7 +19,7 @@
             </Button.RenderTransform>
         </Button>
         <TextBox x:Name="counterBox_Short" Height="43" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" BorderBrush="#FF15315F" BorderThickness="5" FontSize="20" TextAlignment="Center" Margin="0,0,221,0" TextChanged="counterBox_Short_TextChanged" KeyDown="PossiblePins_Loaded" MouseLeave="PossiblePins_Loaded" />
-        <ComboBox x:Name="PossiblePins" HorizontalAlignment="Center" Height="43" Margin="132,0,5,0" VerticalAlignment="Top" Width="163" BorderBrush="#FF15315F" Loaded="PossiblePins_Loaded"/>
+        <ComboBox x:Name="PossiblePins" VerticalContentAlignment="Center" HorizontalAlignment="Center" Height="43" Margin="164,0,76,0" VerticalAlignment="Top" Width="60" MaxDropDownHeight="800" BorderBrush="#FF15315F"  BorderThickness="5" FontSize="16" Loaded="PossiblePins_Loaded"/>
 
     </Grid>
 </UserControl>

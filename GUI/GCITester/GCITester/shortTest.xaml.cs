@@ -133,11 +133,13 @@ namespace GCITester
             if (Resistance > 1000)
             {
                 shortPass = true;
-                
+                AddLog("Passed. Pins Tested: Pin1:" + TestedPin + " Pin2:" + TestedPin2 + ". Resistance:"  + Resistance + "Ohms." + ". VoltageIn read:" + VoltageIn + " VoltageDrop:" + Voltagedrop);
+
             }
             else
             {
                 shortPass = false;
+                AddLog("Failed. Pins Tested: Pin1:" + TestedPin + " Pin2:" + TestedPin2 + ". Resistance:" + Resistance + "Ohms." + ". VoltageIn read:" + VoltageIn + " VoltageDrop:" + Voltagedrop);
             }
             Communication.SetResultLED(shortPass);
             //AddLog("Pin " + TestedPin.ToString() + " Measured: " + VoltageIn.ToString() + "V  [0x" + Communication.PinValue.ToString("X4") + "]" + "\t Voltage Drop: " + (double)(VoltageRef - Voltage) + "Testedpin 2 = " + TestedPin2);
@@ -183,7 +185,18 @@ namespace GCITester
         private void manualShortTestResults_Loaded(object sender, RoutedEventArgs e)
         {
             Communication.OnResultComplete += new Communication.ResultComplete(Communication_OnResultComplete);
+            manualShortTestResults.Items.Add("Fuck Seth");
+            manualShortTestResults.Items.Add("Fuck baldy");
+            manualShortTestResults.Items.Add("Fuck Bob");
+            manualShortTestResults.Items.Add("Fuck Robert");
         }
+
+        private void clearButton_Click(object sender, RoutedEventArgs e)
+        {
+            manualShortTestResults.Items.Clear();
+        }
+
+
     }
 
 }
