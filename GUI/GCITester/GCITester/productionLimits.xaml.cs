@@ -27,8 +27,8 @@ namespace GCITester
         string SelectedSocketName = string.Empty;
 
         Dictionary<Byte, Byte> GCIToDUTMap = new Dictionary<byte, byte>();
-        //Dictionary<Byte, LearnResult> LearnResults;
-        //List<LearnControl> LearnControl;
+        Dictionary<Byte, LearnResult> LearnResults;
+        List<LearnControl> LearnControl;
         int CurrentDeviceNumber = 0;
         int TotalDevices = 0;
         public productionLimits()
@@ -36,9 +36,9 @@ namespace GCITester
             InitializeComponent();
         }
 
-        
 
-        
+
+
 
 
         private void updownTest_Loaded(object sender, RoutedEventArgs e)
@@ -49,33 +49,32 @@ namespace GCITester
         //Button start copied and complete
         private void start_Click(object sender, RoutedEventArgs e)
         {
-            //LearnResults = new Dictionary<byte, LearnResult>();
-            //LearnControl = new List<LearnControl>();
-            //List<Byte> PinsToTest = GCIToDUTMap.Keys.ToList<Byte>();
-            //CurrentDeviceNumber = 0;
-            //TotalDevices = (int)numericNumberOfParts.Value;
-            //int TotalIterations = (int)numericIterations.Value;
+            LearnResults = new Dictionary<byte, LearnResult>();
+            LearnControl = new List<LearnControl>();
+            List<Byte> PinsToTest = GCIToDUTMap.Keys.ToList<Byte>();
+            CurrentDeviceNumber = 0;
+            TotalDevices = (int)numPartsTestCount.pinValue();//Number is called pin value, will need to be adjusted to just value
+            int TotalIterations = (int)numIterPartCount.pinValue();
 
-            //LearnControl ControlSetup = new LearnControl();
-            //ControlSetup.PinsToTest = PinsToTest;
-            //ControlSetup.TotalIterations = TotalIterations;
-            //for (int i = 0; i < TotalDevices; i++)
-            //{
-            //    LearnControl.Add(ControlSetup);
-            //}
+            LearnControl ControlSetup = new LearnControl();
+            ControlSetup.PinsToTest = PinsToTest;
+            ControlSetup.TotalIterations = TotalIterations;
+            for (int i = 0; i < TotalDevices; i++)
+            {
+                LearnControl.Add(ControlSetup);
+            }
 
-            //Byte NextPin = LearnControl[CurrentDeviceNumber].GetNextPin();
+            Byte NextPin = LearnControl[CurrentDeviceNumber].GetNextPin();
 
-            //SetButtonState(false);
-
+            SetButtonState(false);
+            //This file is commented out but need to be uncommented in order to test the pin
             //if (NextPin != 0)
-            //    Communication.TestPin(NextPin);
+                //Communication.TestPin(NextPin);
 
         }
 
         private void cancel_click(object sender, RoutedEventArgs e)
         {
-            //this.DialogResult = Window.DialogResult.Cancel;
             this.Close();
         }
 
@@ -110,6 +109,7 @@ namespace GCITester
                 socketOnBoardCombobox.Items.Add(Socket);
             }
         }
+        
         private void partNumberBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (partNumberBox.Items.Count > 0)
@@ -143,112 +143,168 @@ namespace GCITester
                 GCIToDUTMap = GCIDB.GetPinMap(SelectedPartName, SelectedBoardName, SelectedSocketName);
             }
         }
-        //void Communication_OnResultComplete()
-        //{
-        //    Double VoltageRef = Properties.Settings.Default.VoltageReference;
-        //    Byte TestedPin = Communication.PinID;
-        //    Double Voltage = (Communication.PinValue * VoltageRef) / 1023.0;
+        void Communication_OnResultComplete()
+        {
+            Double VoltageRef = Properties.Settings.Default.VoltageReference;
+            Byte TestedPin = (Byte)Communication.PinID1;  //Was PinID
+            Double Voltage = (Communication.PinValue * VoltageRef) / 1023.0;
 
-        //    if (LearnResults.ContainsKey(TestedPin))
-        //    {
-        //        LearnResults[TestedPin].VoltageReadings.Add(Voltage);
-        //    }
-        //    else
-        //    {
-        //        LearnResults.Add(TestedPin, new LearnResult(TestedPin, Voltage));
-        //    }
+            if (LearnResults.ContainsKey(TestedPin))
+            {
+                LearnResults[TestedPin].VoltageReadings.Add(Voltage);
+            }
+            else
+            {
+                LearnResults.Add(TestedPin, new LearnResult(TestedPin, Voltage));
+            }
 
 
-        //    if (CurrentDeviceNumber < LearnControl.Count)
-        //    {
-        //        Byte NextPin = LearnControl[CurrentDeviceNumber].GetNextPin();
-        //        UpdateCurrentIteration(true);
-        //        if (NextPin != 0)
-        //        {
-        //            //UpdateCurrentIteration(true);
-        //            Communication.TestPin(NextPin);
-        //        }
-        //        else
-        //        {
-        //            CurrentDeviceNumber++;
-        //            if (CurrentDeviceNumber != LearnControl.Count)
-        //            {
-        //                if (MessageBox.Show("Please place part #" + (CurrentDeviceNumber + 1).ToString() + " in the socket", "Next Part", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.OK)
-        //                {
-        //                    NextPin = LearnControl[CurrentDeviceNumber].GetNextPin();
-        //                    Communication.TestPin(NextPin);
-        //                }
-        //            }
-        //            else
-        //            {
-        //                UpdateCurrentIteration(false);
-        //                SetButtonState(true);
-        //                BuildReport();
-        //                MessageBox.Show("Testing complete");
-        //            }
+            if (CurrentDeviceNumber < LearnControl.Count)
+            {
+                Byte NextPin = LearnControl[CurrentDeviceNumber].GetNextPin();
+                UpdateCurrentIteration(true);
+                if (NextPin != 0)
+                {
+                    //this item was already commented out, leave it commented
+                    //UpdateCurrentIteration(true); 
 
-        //        }
 
-        //    }
+                    //Communication.TestPin(NextPin); this line needs to be uncommented
+                }
+                else
+                {
+                    CurrentDeviceNumber++;
+                    if (CurrentDeviceNumber != LearnControl.Count)
+                    {
+                        if (MessageBox.Show("Please place part #" + (CurrentDeviceNumber + 1).ToString() + " in the socket", "Next Part", MessageBoxButton.OKCancel, MessageBoxImage.Information) == MessageBoxResult.OK)
+                        {
+                            NextPin = LearnControl[CurrentDeviceNumber].GetNextPin();
+                            //Communication.TestPin(NextPin); This needs to be uncommented
+                        }
+                    }
+                    else
+                    {
+                        UpdateCurrentIteration(false);
+                        SetButtonState(true);
+                        BuildReport();
+                        MessageBox.Show("Testing complete");
+                    }
 
-        //}
+                }
 
-        //private void SetButtonState(bool Enabled)
-        //{
-        //    this.Invoke(new MethodInvoker(delegate
-        //    {
-        //        buttonSave.Enabled = Enabled;
-        //        buttonStart.Enabled = Enabled;
-        //    }));
-        //}
+            }
 
-        //private void BuildReport()
-        //{
-        //    this.Invoke(new MethodInvoker(delegate
-        //    {
-        //        treeResults.Nodes.Clear();
-        //        TreeNode Root = new TreeNode(SelectedPartName);
-        //        treeResults.Nodes.Add(Root);
+        }
 
-        //        foreach (Byte PinID in LearnResults.Keys)
-        //        {
-        //            TreeNode Name = new TreeNode("Pin " + GCIToDUTMap[PinID].ToString());
-        //            TreeNode Average = new TreeNode("Average: " + LearnResults[PinID].GetVoltageAverage() + " V");
-        //            TreeNode StdDev = new TreeNode("StdDev: " + LearnResults[PinID].GetStandardDeviation() + " V");
-        //            TreeNode MeasuredValues = new TreeNode(LearnResults[PinID].VoltageReadings.Count.ToString() + " Measured Voltages");
-        //            for (int i = 0; i < LearnResults[PinID].VoltageReadings.Count; i++)
-        //            {
-        //                TreeNode Value = new TreeNode("Iteration " + (i + 1).ToString() + ") " + LearnResults[PinID].VoltageReadings[i].ToString());
-        //                MeasuredValues.Nodes.Add(Value);
-        //            }
-        //            Name.Nodes.Add(Average);
-        //            Name.Nodes.Add(StdDev);
-        //            Name.Nodes.Add(MeasuredValues);
-        //            Root.Nodes.Add(Name);
-        //        }
-        //    }));
-        //}
+        private void SetButtonState(bool Enabled)
+        {
+            Dispatcher.BeginInvoke(new Action(delegate ()
+            {
+                saveButton.IsEnabled = Enabled;
+                startButton.IsEnabled = Enabled;
+            }));
+        }
 
-        //private void UpdateCurrentIteration(bool Visible)
-        //{
-        //    this.Invoke(new MethodInvoker(delegate
-        //    {
-        //        if (Visible == true)
-        //            labelProgress.Visible = true;
-        //        else
-        //        {
-        //            labelProgress.Visible = false;
-        //            return;
-        //        }
-        //        labelProgress.Text = "Progress (" + (CurrentDeviceNumber + 1).ToString() + " / " + TotalDevices.ToString() + ")  Pin (" + (LearnControl[CurrentDeviceNumber].CurrentPinNumber + 1).ToString() + "/" + LearnControl[CurrentDeviceNumber].PinsToTest.Count.ToString() + ")";
-        //    }));
-        //}
+        private void BuildReport()
+        {
+            Dispatcher.BeginInvoke(new Action(delegate ()
+            {
+                treeResults.Items.Clear();//Changed treeResults.Nodes to treeResults.Nodes
+                TreeViewItem Root = new TreeViewItem(); //TreeNode is now TreeViewItem
+                //added line
+                Root.Header = SelectedPartName;
+                treeResults.Items.Add(Root);
+
+                foreach (Byte PinID in LearnResults.Keys)
+                {
+                    TreeViewItem Name = new TreeViewItem();
+                    Name.Header = "Pin " + GCIToDUTMap[PinID].ToString();
+
+                    TreeViewItem Average = new TreeViewItem();
+                    Average.Header = "Average: " + LearnResults[PinID].GetVoltageAverage() + " V";
+
+                    TreeViewItem StdDev = new TreeViewItem();
+                    StdDev.Header = "StdDev: " + LearnResults[PinID].GetStandardDeviation() + " V";
+
+                    TreeViewItem MeasuredValues = new TreeViewItem();
+                    MeasuredValues.Header = LearnResults[PinID].VoltageReadings.Count.ToString() + " Measured Voltages";
+                    for (int i = 0; i < LearnResults[PinID].VoltageReadings.Count; i++)
+                    {
+                        TreeViewItem Value = new TreeViewItem();
+                        Value.Header = "Iteration " + (i + 1).ToString() + ") " + LearnResults[PinID].VoltageReadings[i].ToString();
+                        MeasuredValues.Items.Add(Value);
+                    }
+                    Name.Items.Add(Average);
+                    Name.Items.Add(StdDev);
+                    Name.Items.Add(MeasuredValues);
+                    Root.Items.Add(Name);
+                }
+            }));
+        }
+
+        private void UpdateCurrentIteration(bool Visible)
+        {
+            
+            Dispatcher.BeginInvoke(new Action(delegate ()
+            {
+                if (Visible == true)
+                    labelProgress.Visibility = Visibility.Visible;
+                else
+                {
+                    labelProgress.Visibility = Visibility.Hidden;
+                    return;
+                }
+                labelProgress.Content = "Progress (" + (CurrentDeviceNumber + 1).ToString() + " / " + TotalDevices.ToString() + ")  Pin (" + (LearnControl[CurrentDeviceNumber].CurrentPinNumber + 1).ToString() + "/" + LearnControl[CurrentDeviceNumber].PinsToTest.Count.ToString() + ")";
+            }));
+        }
 
         private void productionLimits_OnClosing(object sender, CancelEventArgs e)
         {
-            //Communication.OnResultComplete -= new Communication.ResultComplete(Communication_OnResultComplete);
+            Communication.OnResultComplete -= new Communication.ResultComplete(Communication_OnResultComplete);
         }
 
+        private void saveButton_Click(object sender, RoutedEventArgs e)
+        {
+            int ProductionLimitID = GCIDB.AssociatePartToNewProductionLimit(SelectedPartName);
+            if (ProductionLimitID != 0)
+            {
+                /*List<LimitEntity> UserLimits = BuildLimitEntityList();
+                foreach (LimitEntity entry in UserLimits)
+                {
+                    GCIDB.AddProductionLimit(LimitID, entry.PinID, entry.UCL, entry.LCL);
+                }*/
+                foreach (Byte PinID in LearnResults.Keys)
+                {
+                    Byte DutPinID = GCIToDUTMap[PinID];
 
+                    Double Average = LearnResults[PinID].GetVoltageAverage();
+                    Double StdDev = LearnResults[PinID].GetStandardDeviation();
+
+                    int NumberOfSigmas = (int)numericSigma.pinValue();
+
+                    Double UCL = Average + NumberOfSigmas * StdDev;
+                    Double LCL = Average - NumberOfSigmas * StdDev;
+
+                    GCIDB.AddProductionLimit(ProductionLimitID, DutPinID, UCL, LCL, Average, StdDev);
+                }
+
+                MessageBox.Show("Limits saved to the database", "Success", MessageBoxButton.OK);
+            }
+
+            this.DialogResult = this.ShowDialog();
+            this.Close();
+        }
+
+        private void productionLimits_Load(object sender, RoutedEventArgs e)
+        {
+            /****** All three of the next few lines will need to be uncommented, and the pin will be set as a getter/setter******/
+            //numPartsTestCount.pinValue = Properties.Settings.Default.Learn_DefaultIterations;
+            //numIterPartCount.pinValue = Properties.Settings.Default.Learn_DefaultNumberOfParts;
+            //numericSigma.pinValue = Properties.Settings.Default.ProductionLimit_DefaultSigma;
+            GCIDB.Initialize();
+            PopulatePartList();
+            Communication.OnResultComplete += new Communication.ResultComplete(Communication_OnResultComplete);
+
+        }
     }
 }

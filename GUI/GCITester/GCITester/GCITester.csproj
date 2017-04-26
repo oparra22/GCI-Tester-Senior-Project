@@ -89,6 +89,8 @@
     <Compile Include="Communication.cs" />
     <Compile Include="ExportToExcel.cs" />
     <Compile Include="GCIDB.cs" />
+    <Compile Include="LearnControl.cs" />
+    <Compile Include="LearnResult.cs" />
     <Compile Include="LifetimeLimitEntity.cs" />
     <Compile Include="lifetimeReport.xaml.cs">
       <DependentUpon>lifetimeReport.xaml</DependentUpon>
