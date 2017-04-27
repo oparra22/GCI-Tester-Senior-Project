@@ -1,0 +1,16 @@
+﻿<Window x:Class="GCITester.about"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GCITester"
+        mc:Ignorable="d"
+        Title="about" Height="723.495" Width="378.641">
+    <Grid>
+        <Image x:Name="image1" HorizontalAlignment="Left" Height="99" Margin="45,552,0,0" VerticalAlignment="Top" Width="272" Source="UCCS Signature.png"/>
+        <Image x:Name="image_Copy" HorizontalAlignment="Left" Height="84" Margin="45,612,0,0" VerticalAlignment="Top" Width="276" Source="GCILogo.jpg" RenderTransformOrigin="0.61,0.535"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="120" Margin="83,444,0,0" VerticalAlignment="Top" Width="198" Source="enginereedAgressionLogo.PNG"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="389" Margin="83,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="228"><Run FontSize="16" Text="This application was developed by the University of Colorado at Colorado Springs senior design team Engineered Aggression in collaboration with Global Circuit Innovations."/><LineBreak/><LineBreak/><Run FontSize="16" Text="Engineered Aggression consists of Kommon Ousley, Seth Pearce, Karl Farhat, Hayden Thomas and Osvaldo Parra. Class of 2017!"/><LineBreak/><Run FontSize="16"/><LineBreak/><Run FontSize="16" Text="Special thanks to Tim Barry V.P of Engineering at GCI for all the help and advice throughout the semseter and Dr. Kalkur as our faculty advisor."/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
+
+    </Grid>
+</Window>

@@ -93,7 +93,7 @@ namespace GCITester
             }
         }
 
-        public static void ChangePinMap(int TestBoardID, int PartID, byte DUTPin, byte GCITesterPin)
+        public static void ChangePinMap(int TestBoardID, int PartID, int DUTPin, int GCITesterPin)
         {
             string formatForMySql = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             //UPDATE `gci`.`testboard` SET `GCITesterPIN`='15', `LastEditDate`='2012-10-23 13:04:21' WHERE `TestBoardEntryID`='68';
@@ -130,7 +130,7 @@ namespace GCITester
             }
         }
 
-        public static void AddProductionTestData(string BatchName, int ProductionTestID, int PartID, int LimitID, byte DUTPinNumber, int MeasurementNumber, double MeasuredVoltage, double AverageVoltage, double StdDevVoltage, bool Result, DateTime UploadTime)
+        public static void AddProductionTestData(string BatchName, int ProductionTestID, int PartID, int LimitID, int DUTPinNumber, int MeasurementNumber, double MeasuredVoltage, double AverageVoltage, double StdDevVoltage, bool Result, DateTime UploadTime)
         {
             string formatForMySql = UploadTime.ToString("yyyy-MM-dd HH:mm:ss");
             string ResultBit = "0";
@@ -348,7 +348,7 @@ namespace GCITester
             }
         }
 
-        public static bool AddProductionLimit(int ProductionLimitID, byte PinID, double UCL, double LCL, double AverageVoltage, double StdDevVoltage)
+        public static bool AddProductionLimit(int ProductionLimitID, int PinID, double UCL, double LCL, double AverageVoltage, double StdDevVoltage)
         {
             string formatForMySql = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             string query = "INSERT INTO GCI.ProductionLimits (ProductionLimitID, DUTPinNumber,LowerControlLimit,UpperControlLimit,CreationDate,AverageVoltage,StdDevVoltage) VALUES('" + ProductionLimitID + "','" + PinID + "','" + LCL + "','" + UCL + "','" + formatForMySql + "','" + AverageVoltage + "','" + StdDevVoltage + "')";

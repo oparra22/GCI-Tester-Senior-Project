@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GCITester"
         mc:Ignorable="d"
-        Title="MainWindow" Height="526.942" Width="331.749">
+        Title="MainWindow" Height="583.192" Width="333.249">
     <Grid Margin="0,0,-5,3.5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -13,10 +13,11 @@
         </Grid.ColumnDefinitions>
         <Image x:Name="image" HorizontalAlignment="Left" Height="84" Margin="26,10,0,0" VerticalAlignment="Top" Width="276" Source="GCILogo.jpg" RenderTransformOrigin="0.61,0.535"/>
         <Button x:Name="openPort" Content="Open Port" HorizontalAlignment="Left" Margin="50,99,0,0" VerticalAlignment="Top" Width="222" Height="48" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="openPort_Click" BorderBrush="#FF15315F"/>
-        <Button x:Name="settingsButton" Content="Settings" HorizontalAlignment="Left" Margin="50,321,0,0" VerticalAlignment="Top" Width="222" Height="48" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="settingsButton_Click" BorderBrush="#FF15315F"/>
+        <Button x:Name="settingsButton" Content="Settings" HorizontalAlignment="Left" Margin="50,398,0,0" VerticalAlignment="Top" Width="222" Height="48" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="settingsButton_Click" BorderBrush="#FF15315F"/>
         <Button x:Name="testsButton" Content="Tests" HorizontalAlignment="Left" Margin="50,173,0,0" VerticalAlignment="Top" Width="222" Height="48" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="testsButton_Click" IsEnabled="False" BorderBrush="#FF15315F"/>
-        <Button x:Name="reportsButton" Content="Reports" HorizontalAlignment="Left" Margin="50,247,0,0" VerticalAlignment="Top" Width="222" Height="48" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="reportsButton_Click" BorderBrush="#FF15315F"/>
-        <Button x:Name="aboutButton" Content="About" HorizontalAlignment="Left" Margin="50,394,0,0" VerticalAlignment="Top" Width="222" Height="48" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="aboutButton_Click" BorderBrush="#FF15315F"/>
+        <Button x:Name="reportsButton" Content="Reports" HorizontalAlignment="Left" Margin="50,321,0,0" VerticalAlignment="Top" Width="222" Height="48" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="reportsButton_Click" BorderBrush="#FF15315F"/>
+        <Button x:Name="aboutButton" Content="About" HorizontalAlignment="Left" Margin="50,473,0,0" VerticalAlignment="Top" Width="222" Height="48" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="aboutButton_Click" BorderBrush="#FF15315F"/>
+        <Button x:Name="editorButton" Content="Editor" HorizontalAlignment="Left" Margin="50,247,0,0" VerticalAlignment="Top" Width="222" Height="48" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="reportsButton_Click" BorderBrush="#FF15315F"/>
 
     </Grid>
 </Window>

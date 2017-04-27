@@ -5,15 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GCITester"
         mc:Ignorable="d"
-        Title="productionTest" Height="772.427" Width="537.088">
+        Title="Production Test" Height="797.177" Width="538.588" Icon="GCIAlternateLogo.jpg" Loaded="productionTest_Load">
     <Grid>
-        <ComboBox x:Name="partNumberBox" HorizontalAlignment="Left" Margin="300,46,0,0" VerticalAlignment="Top" Width="185" Height="40" BorderThickness="5" BorderBrush="#FF15315F"/>
-        <ComboBox x:Name="testboardBox" HorizontalAlignment="Left" Margin="300,109,0,0" VerticalAlignment="Top" Width="185" Height="39" BorderThickness="5" BorderBrush="#FF15315F"/>
-        <TextBlock x:Name="partText" HorizontalAlignment="Left" Margin="34,46,0,0" TextWrapping="Wrap" Text="Part Number" VerticalAlignment="Top" Height="58" Width="127" FontSize="20" FontFamily="Microsoft JhengHei UI" FontWeight="Bold"/>
-        <TextBlock x:Name="testText" HorizontalAlignment="Left" Margin="34,109,0,0" TextWrapping="Wrap" Text="Test Board" VerticalAlignment="Top" Height="58" Width="127" FontSize="20" FontFamily="Microsoft JhengHei UI" FontWeight="Bold"/>
-        <TextBlock x:Name="testNumText" HorizontalAlignment="Left" Margin="29,173,0,0" TextWrapping="Wrap" Text="Number of Tests per Pin" VerticalAlignment="Top" Height="37" Width="261" FontSize="20" FontFamily="Microsoft JhengHei UI" FontWeight="Bold"/>
-        <TextBlock x:Name="testNumText_Copy" HorizontalAlignment="Left" Margin="34,241,0,0" TextWrapping="Wrap" Text="Batch Name" VerticalAlignment="Top" Height="37" Width="261" FontSize="20" FontFamily="Microsoft JhengHei UI" FontWeight="Bold"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="37" Margin="300,235,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="185" BorderThickness="5" FontSize="20" BorderBrush="#FF15315F"/>
-        <local:numericUpDown x:Name="testPerPinCount" HorizontalAlignment="Left" Margin="300,166,0,0" VerticalAlignment="Top" Width="147" Height="44"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="285*"/>
+            <ColumnDefinition Width="227*"/>
+        </Grid.ColumnDefinitions>
+        <ComboBox x:Name="comboPartName" HorizontalAlignment="Left" Margin="280.002,46,0,0" VerticalAlignment="Top" Width="185" Height="40" BorderThickness="5" BorderBrush="#FF15315F" SelectionChanged="comboPartName_SelectedIndexChanged" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <ComboBox x:Name="comboTestBoard" HorizontalAlignment="Left" Margin="280.002,109,0,0" VerticalAlignment="Top" Width="185" Height="39" BorderThickness="5" BorderBrush="#FF15315F" Grid.ColumnSpan="2" Grid.Column="1" SelectionChanged="comboTestBoard_SelectedIndexChanged"/>
+        <TextBlock x:Name="partText" HorizontalAlignment="Left" Margin="14.002,46,0,0" TextWrapping="Wrap" Text="Part Number" VerticalAlignment="Top" Height="58" Width="127" FontSize="20" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.Column="1"/>
+        <TextBlock x:Name="testText" HorizontalAlignment="Left" Margin="14.002,109,0,0" TextWrapping="Wrap" Text="Test Board" VerticalAlignment="Top" Height="58" Width="127" FontSize="20" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.Column="1"/>
+        <TextBlock x:Name="testNumText" HorizontalAlignment="Left" Margin="9.002,173,0,0" TextWrapping="Wrap" Text="Number of Tests per Pin" VerticalAlignment="Top" Height="37" Width="261" FontSize="20" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.Column="1"/>
+        <TextBlock x:Name="testNumText_Copy" HorizontalAlignment="Left" Margin="14.002,241,0,0" TextWrapping="Wrap" Text="Batch Name" VerticalAlignment="Top" Height="37" Width="261" FontSize="20" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.Column="1"/>
+        <TextBox x:Name="textBatchName" HorizontalAlignment="Left" Height="37" Margin="280.002,235,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="185" BorderThickness="5" FontSize="20" BorderBrush="#FF15315F" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <local:numericUpDown x:Name="numericIterations" HorizontalAlignment="Left" Margin="280.002,166,0,0" VerticalAlignment="Top" Width="147" Height="44" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <ListBox x:Name="listLog" HorizontalAlignment="Left" Height="219" Margin="10,526,0,0" VerticalAlignment="Top" Width="480" BorderThickness="5" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <local:listProductionInfo x:Name="listProductionInfo1" HorizontalAlignment="Left" Margin="21,336,0,0" VerticalAlignment="Top" Height="175" Width="468" Grid.ColumnSpan="2" Grid.Column="1" Loaded="listProductionInfo1_Loaded"/>
+        <Label x:Name="labelProgress" Content="Progress: " HorizontalAlignment="Left" Margin="14.002,293,0,0" VerticalAlignment="Top" Height="38" Width="114" FontFamily="Microsoft JhengHei UI" FontSize="20" FontWeight="Bold" Grid.Column="1"/>
+        <Button x:Name="buttonStart" Content="Start" HorizontalAlignment="Left" Margin="10,277,0,0" VerticalAlignment="Top" Width="159" Height="48" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="buttonStart_Click" BorderBrush="#FF15315F" Grid.Column="2" IsEnabled="False"/>
     </Grid>
 </Window>

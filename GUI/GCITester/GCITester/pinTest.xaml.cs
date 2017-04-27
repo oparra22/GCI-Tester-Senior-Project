@@ -62,26 +62,13 @@ namespace GCITester
             //Kommon Added Code
             //int PinIn = Convert.ToInt32(pinCount.Content);
             int currentPin = pinCount.pinValue();
-            int PinIn = Convert.ToInt32(currentPin);
-
-
+            int PinIn = currentPin;
             //Had to change pinCount.Text to pinCount.Content, need to double check if it works
-            Byte Pin1;
-            Byte Pin2;
-            if (PinIn > 254)
-            {
-                Pin1 = (Byte)254;
-                Pin2 = (Byte)(PinIn - 254);
-            }
-            else
-            {
-                Pin1 = (Byte)PinIn;
-                Pin2 = (Byte)0;
-            }
+           
             //For debugging, comment out of final
-            Console.WriteLine($"Information sent to Communication.cs from testPinButton_Click:\tPin to test = {PinIn}, Byte1 = {Pin1} Byte2 = {Pin2}");
+          //  Console.WriteLine($"Information sent to Communication.cs from testPinButton_Click:\tPin to test = {PinIn}, Byte1 = {Pin1} Byte2 = {Pin2}");
 
-            Communication.TestPin(Pin1, Pin2);
+            Communication.TestPin(PinIn);
         }
 
 

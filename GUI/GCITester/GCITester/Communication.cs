@@ -37,6 +37,7 @@ namespace GCITester
 
         private static bool ReadingResult = false;
         private static int StartLoc = 0;
+       // public static int PinID = 0;
         public static int PinID1 = 0;
         public static int PinID2 = 0;
         public static int PinID3 = 0;
@@ -264,8 +265,20 @@ namespace GCITester
         }
 
         //Function for testing a pin, used in manually test a pin screen
-        public static void TestPin(Byte PinID1, Byte PinID2)
+        public static void TestPin(int PinID)
         {
+            Byte PinID1;
+            Byte PinID2;
+            if (PinID > 254)
+            {
+                PinID1 = 254;
+                PinID2 = (Byte)(PinID - 254);
+            }
+            else
+            {
+                PinID1 = (Byte)PinID;
+                PinID2 = (Byte)0;
+            }
             Console.WriteLine("Continuity Test Ran");
 
             if (!(comPort.IsOpen == true))

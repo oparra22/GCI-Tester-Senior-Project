@@ -67,6 +67,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Controls.Ribbon" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -86,9 +87,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="about.xaml.cs">
+      <DependentUpon>about.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Communication.cs" />
     <Compile Include="ExportToExcel.cs" />
     <Compile Include="GCIDB.cs" />
+    <Compile Include="itemProductionInfo.xaml.cs">
+      <DependentUpon>itemProductionInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LearnControl.cs" />
     <Compile Include="LearnResult.cs" />
     <Compile Include="LifetimeLimitEntity.cs" />
@@ -101,6 +108,9 @@
       <DependentUpon>lifetimeTest.xaml</DependentUpon>
     </Compile>
     <Compile Include="LimitEntity.cs" />
+    <Compile Include="listProductionInfo.xaml.cs">
+      <DependentUpon>listProductionInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="numericUpDown.xaml.cs">
       <DependentUpon>numericUpDown.xaml</DependentUpon>
     </Compile>
@@ -136,10 +146,19 @@
     <Compile Include="ShortTestControl.xaml.cs">
       <DependentUpon>ShortTestControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TestPart.cs" />
     <Compile Include="TestPinEntity.cs" />
     <Compile Include="tests.xaml.cs">
       <DependentUpon>tests.xaml</DependentUpon>
     </Compile>
+    <Page Include="about.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="itemProductionInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="lifetimeReport.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -147,6 +166,10 @@
     <Page Include="lifetimeTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="listProductionInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -254,6 +277,14 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UCCS Signature.png" />
+    <Resource Include="UCCSLionLogo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="enginereedAgressionLogo.PNG" />
+    <Resource Include="GCIAlternateLogo.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
