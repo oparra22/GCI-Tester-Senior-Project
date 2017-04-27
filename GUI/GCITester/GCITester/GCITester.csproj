@@ -90,7 +90,13 @@
     <Compile Include="about.xaml.cs">
       <DependentUpon>about.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddPartName.xaml.cs">
+      <DependentUpon>AddPartName.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Communication.cs" />
+    <Compile Include="EditorMenu.xaml.cs">
+      <DependentUpon>EditorMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ExportToExcel.cs" />
     <Compile Include="GCIDB.cs" />
     <Compile Include="itemProductionInfo.xaml.cs">
@@ -113,6 +119,9 @@
     </Compile>
     <Compile Include="numericUpDown.xaml.cs">
       <DependentUpon>numericUpDown.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PartEditor.xaml.cs">
+      <DependentUpon>PartEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="pinTest.xaml.cs">
       <DependentUpon>pinTest.xaml</DependentUpon>
@@ -155,6 +164,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="AddPartName.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditorMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="itemProductionInfo.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -184,6 +201,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="numericUpDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PartEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

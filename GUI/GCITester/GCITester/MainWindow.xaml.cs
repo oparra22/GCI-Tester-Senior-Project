@@ -25,7 +25,7 @@ namespace GCITester
 
             InitializeComponent();
 
-            
+
         }
 
         private void openPort_Click(object sender, RoutedEventArgs e)
@@ -60,5 +60,11 @@ namespace GCITester
 
         }
 
+        private void editorButton_Click(object sender, RoutedEventArgs e)
+        {
+            EditorMenu window = new EditorMenu();
+            window.Show();
+            this.Close();
+        }
     }
 }
