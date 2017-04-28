@@ -8,7 +8,7 @@ namespace GCITester
     public class LearnControl
     {
         public int TotalIterations;
-        public List<Byte> PinsToTest;
+        public List<int> PinsToTest;
 
         public int CurrentIteration;
         public int CurrentPinNumber;
@@ -16,7 +16,7 @@ namespace GCITester
         public LearnControl()
         {
             TotalIterations = 0;
-            PinsToTest = new List<Byte>();
+            PinsToTest = new List<int>();
             CurrentIteration = 0;
             CurrentPinNumber = 0;
         }
@@ -24,7 +24,7 @@ namespace GCITester
         public LearnControl(int TotalIterations)
         {
             this.TotalIterations = TotalIterations;
-            PinsToTest = new List<Byte>();
+            PinsToTest = new List<int>();
             CurrentIteration = 0;
             CurrentPinNumber = 0;
         }
@@ -35,11 +35,11 @@ namespace GCITester
             CurrentPinNumber = 0;
         }
 
-        public Byte GetNextPin()
+        public int GetNextPin()
         {
             if (CurrentIteration < TotalIterations)
             {
-                Byte Result = PinsToTest[CurrentPinNumber];
+                int Result = PinsToTest[CurrentPinNumber];
                 if (CurrentPinNumber < PinsToTest.Count - 1)
                 {
                     CurrentPinNumber++;

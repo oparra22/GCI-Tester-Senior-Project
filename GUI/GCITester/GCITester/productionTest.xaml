@@ -5,24 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GCITester"
         mc:Ignorable="d"
-        Title="Production Test" Height="797.177" Width="538.588" Icon="GCIAlternateLogo.jpg" Loaded="productionTest_Load">
+        Title="Production Test" Height="837.677" Width="549.088" Icon="GCIAlternateLogo.jpg" Loaded="productionTest_Load">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20*"/>
             <ColumnDefinition Width="285*"/>
             <ColumnDefinition Width="227*"/>
         </Grid.ColumnDefinitions>
-        <ComboBox x:Name="comboPartName" HorizontalAlignment="Left" Margin="280.002,46,0,0" VerticalAlignment="Top" Width="185" Height="40" BorderThickness="5" BorderBrush="#FF15315F" SelectionChanged="comboPartName_SelectedIndexChanged" Grid.ColumnSpan="2" Grid.Column="1"/>
-        <ComboBox x:Name="comboTestBoard" HorizontalAlignment="Left" Margin="280.002,109,0,0" VerticalAlignment="Top" Width="185" Height="39" BorderThickness="5" BorderBrush="#FF15315F" Grid.ColumnSpan="2" Grid.Column="1" SelectionChanged="comboTestBoard_SelectedIndexChanged"/>
+        <ComboBox x:Name="comboPartName" HorizontalAlignment="Left" Margin="280.002,46,0,0" VerticalAlignment="Top" Width="185" Height="40" BorderThickness="5" BorderBrush="#FF15315F" SelectionChanged="comboPartName_SelectedIndexChanged" Grid.ColumnSpan="2" Grid.Column="1" FontSize="18" FontFamily="Microsoft JhengHei UI"/>
+        <ComboBox x:Name="comboTestBoard" HorizontalAlignment="Left" Margin="280.002,109,0,0" VerticalAlignment="Top" Width="185" Height="39" BorderThickness="5" BorderBrush="#FF15315F" Grid.ColumnSpan="2" Grid.Column="1" SelectionChanged="comboTestBoard_SelectedIndexChanged" FontSize="18" FontFamily="Microsoft JhengHei UI"/>
         <TextBlock x:Name="partText" HorizontalAlignment="Left" Margin="14.002,46,0,0" TextWrapping="Wrap" Text="Part Number" VerticalAlignment="Top" Height="58" Width="127" FontSize="20" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.Column="1"/>
         <TextBlock x:Name="testText" HorizontalAlignment="Left" Margin="14.002,109,0,0" TextWrapping="Wrap" Text="Test Board" VerticalAlignment="Top" Height="58" Width="127" FontSize="20" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.Column="1"/>
         <TextBlock x:Name="testNumText" HorizontalAlignment="Left" Margin="9.002,173,0,0" TextWrapping="Wrap" Text="Number of Tests per Pin" VerticalAlignment="Top" Height="37" Width="261" FontSize="20" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.Column="1"/>
-        <TextBlock x:Name="testNumText_Copy" HorizontalAlignment="Left" Margin="14.002,241,0,0" TextWrapping="Wrap" Text="Batch Name" VerticalAlignment="Top" Height="37" Width="261" FontSize="20" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.Column="1"/>
+        <TextBlock x:Name="testNumText_Copy" HorizontalAlignment="Left" Margin="9.5,241,0,0" TextWrapping="Wrap" Text="Batch Name" VerticalAlignment="Top" Height="37" Width="260" FontSize="20" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.Column="1"/>
         <TextBox x:Name="textBatchName" HorizontalAlignment="Left" Height="37" Margin="280.002,235,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="185" BorderThickness="5" FontSize="20" BorderBrush="#FF15315F" Grid.ColumnSpan="2" Grid.Column="1"/>
         <local:numericUpDown x:Name="numericIterations" HorizontalAlignment="Left" Margin="280.002,166,0,0" VerticalAlignment="Top" Width="147" Height="44" Grid.ColumnSpan="2" Grid.Column="1"/>
-        <ListBox x:Name="listLog" HorizontalAlignment="Left" Height="219" Margin="10,526,0,0" VerticalAlignment="Top" Width="480" BorderThickness="5" Grid.ColumnSpan="2" Grid.Column="1"/>
-        <local:listProductionInfo x:Name="listProductionInfo1" HorizontalAlignment="Left" Margin="21,336,0,0" VerticalAlignment="Top" Height="175" Width="468" Grid.ColumnSpan="2" Grid.Column="1" Loaded="listProductionInfo1_Loaded"/>
-        <Label x:Name="labelProgress" Content="Progress: " HorizontalAlignment="Left" Margin="14.002,293,0,0" VerticalAlignment="Top" Height="38" Width="114" FontFamily="Microsoft JhengHei UI" FontSize="20" FontWeight="Bold" Grid.Column="1"/>
-        <Button x:Name="buttonStart" Content="Start" HorizontalAlignment="Left" Margin="10,277,0,0" VerticalAlignment="Top" Width="159" Height="48" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="buttonStart_Click" BorderBrush="#FF15315F" Grid.Column="2" IsEnabled="False"/>
+        <ListBox x:Name="listLog" HorizontalAlignment="Left" Height="219" Margin="9.5,581,0,0" VerticalAlignment="Top" Width="480" BorderThickness="5" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <local:listProductionInfo x:Name="listProductionInfo1" HorizontalAlignment="Left" Margin="14.5,378,0,0" VerticalAlignment="Top" Height="177" Width="475" Grid.ColumnSpan="2" Grid.Column="1" Loaded="listProductionInfo1_Loaded"/>
+        <Label x:Name="labelProgress" Content="Progress: " HorizontalAlignment="Left" Margin="9.5,314,0,0" VerticalAlignment="Top" Height="38" Width="114" FontFamily="Microsoft JhengHei UI" FontSize="20" FontWeight="Bold" Grid.Column="1"/>
+        <Button x:Name="buttonStart" Content="Start" HorizontalAlignment="Left" Margin="39,308,0,0" VerticalAlignment="Top" Width="159" Height="48" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="buttonStart_Click" BorderBrush="#FF15315F" Grid.Column="2" IsEnabled="False"/>
     </Grid>
 </Window>

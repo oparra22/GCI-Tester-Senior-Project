@@ -112,7 +112,7 @@ namespace GCITester
             }
         }
 
-        public static void AddTestPinMap(int TestBoardID, string BoardName, int PartID, int SocketIndex,String SocketName, byte DUTPin, byte GCITesterPin,DateTime UploadTime)
+        public static void AddTestPinMap(int TestBoardID, string BoardName, int PartID, int SocketIndex,String SocketName, int DUTPin, int GCITesterPin,DateTime UploadTime)
         {
             string formatForMySql = UploadTime.ToString("yyyy-MM-dd HH:mm:ss");
             string query = "INSERT INTO GCI.TestBoard (TestBoardID,BoardName,PartID,SocketIndex,SocketName,DUTPin,GCITesterPin,CreationDate,LastEditDate) VALUES('" + TestBoardID + "','" + BoardName + "','" + PartID + "','" + SocketIndex + "','" + SocketName + "','" + DUTPin + "','" + GCITesterPin + "','" + formatForMySql + "','" + formatForMySql + "')";
@@ -184,7 +184,7 @@ namespace GCITester
                         MostRecentDate = CreationDate;
                         MostRecentLifetimeTestID = LifetimeTestID;
                     }
-                    /*Byte DUTPinNumber = Convert.ToByte(dataReader["DUTPinNumber"]);
+                    /*int DUTPinNumber = Convert.Toint(dataReader["DUTPinNumber"]);
                     double AverageVoltage = Convert.ToDouble(dataReader["AverageVoltage"]);
                     if (Results.ContainsKey(DUTPinNumber) == false)
                     {
@@ -201,9 +201,9 @@ namespace GCITester
             return MostRecentLifetimeTestID;
         }
 
-        public static Dictionary<Byte, Double> GetLifetimeBaselineData(int LifeTimeTestID)
+        public static Dictionary<int, Double> GetLifetimeBaselineData(int LifeTimeTestID)
         {
-            Dictionary<Byte, Double> Results = new Dictionary<byte, double>();
+            Dictionary<int, Double> Results = new Dictionary<int, double>();
 
             //string query = @"SELECT LifetimeTestID,DUTPinNumber,AverageVoltage FROM GCI.LifetimeData
             //                WHERE PartID = " + PartID + " AND TestHour=0 AND MeasurementNumber=0 AND SerialNumber='" + SerialNumber + "'";
@@ -218,7 +218,7 @@ namespace GCITester
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
-                    Byte DUTPinNumber = Convert.ToByte(dataReader["DUTPinNumber"]);
+                    int DUTPinNumber = Convert.ToInt32(dataReader["DUTPinNumber"]);
                     double AverageVoltage = Convert.ToDouble(dataReader["AverageVoltage"]);
                     if (Results.ContainsKey(DUTPinNumber) == false)
                     {
@@ -263,7 +263,7 @@ namespace GCITester
                 //dataGrid.DataContext = dtResult;
                 /*while (dataReader.Read())
                 {
-                    Byte DUTPinNumber = Convert.ToByte(dataReader["DUTPinNumber"]);
+                    int DUTPinNumber = Convert.Toint(dataReader["DUTPinNumber"]);
                     double AverageVoltage = Convert.ToDouble(dataReader["AverageVoltage"]);
                     if (Results.ContainsKey(DUTPinNumber) == false)
                     {
@@ -312,7 +312,7 @@ namespace GCITester
 
                 /*while (dataReader.Read())
                 {
-                    Byte DUTPinNumber = Convert.ToByte(dataReader["DUTPinNumber"]);
+                    int DUTPinNumber = Convert.Toint(dataReader["DUTPinNumber"]);
                     double AverageVoltage = Convert.ToDouble(dataReader["AverageVoltage"]);
                     if (Results.ContainsKey(DUTPinNumber) == false)
                     {
@@ -330,7 +330,7 @@ namespace GCITester
             return dtResult;
         }
 
-        public static void AddLifetimeTestData(int LifetimeTestID, string SerialNumber, string BatchName, int PartID, int TestHour, int LifetimeLimitID, double Temperature, byte DUTPinNumber, int MeasurementNumber, double MeasuredVoltage, double AverageVoltage, double StdDevVoltage, DateTime UploadTime)
+        public static void AddLifetimeTestData(int LifetimeTestID, string SerialNumber, string BatchName, int PartID, int TestHour, int LifetimeLimitID, double Temperature, int DUTPinNumber, int MeasurementNumber, double MeasuredVoltage, double AverageVoltage, double StdDevVoltage, DateTime UploadTime)
         {
             string formatForMySql = UploadTime.ToString("yyyy-MM-dd HH:mm:ss");
             string query = "INSERT INTO GCI.LifetimeData (LifetimeTestID,SerialNumber,BatchName,PartID,TestHour,LifetimeLimitID,Temperature,DUTPinNumber,MeasurementNumber,MeasuredVoltage,AverageVoltage,StdDevVoltage,CreationDate) VALUES('" + LifetimeTestID + "','" + SerialNumber + "','" + BatchName + "','" + PartID +"','" + TestHour + "','" + LifetimeLimitID + "','" + Temperature +  "','" + DUTPinNumber + "','" + MeasurementNumber + "','" + MeasuredVoltage + "','" + AverageVoltage + "','" + StdDevVoltage + "','"  + formatForMySql + "')";
@@ -805,9 +805,9 @@ namespace GCITester
             return Result;
         }
 
-        public static Dictionary<Byte,Byte> GetPinMap(string PartName, string BoardName, string SocketName)
+        public static Dictionary<int,int> GetPinMap(string PartName, string BoardName, string SocketName)
         {
-            Dictionary<Byte, Byte> Result = new Dictionary<Byte, Byte>();
+            Dictionary<int, int> Result = new Dictionary<int, int>();
             int PartID = GetPartID(PartName);
 
             if (PartID != 0)
@@ -823,8 +823,8 @@ namespace GCITester
                     //Read the data and store them in the list
                     while (dataReader.Read())
                     {
-                        Byte DUTPin = Convert.ToByte(dataReader["DUTPin"]);
-                        Byte GCITesterPin = Convert.ToByte(dataReader["GCITesterPin"]);
+                        int DUTPin = Convert.ToInt32(dataReader["DUTPin"]);
+                        int GCITesterPin = Convert.ToInt32(dataReader["GCITesterPin"]);
                         if (Result.ContainsKey(GCITesterPin) == false)
                         {
                             Result.Add(GCITesterPin,DUTPin);
@@ -1133,8 +1133,8 @@ namespace GCITester
                         {
                             int SocketIndex = Convert.ToInt16(dataReader["SocketIndex"]);
                             string SocketName = Convert.ToString(dataReader["SocketName"]);
-                            byte DUTPin = Convert.ToByte(dataReader["DUTPin"]);
-                            byte GCIPin = Convert.ToByte(dataReader["GCITesterPin"]);
+                            int DUTPin = Convert.ToInt32(dataReader["DUTPin"]);
+                            int GCIPin = Convert.ToInt32(dataReader["GCITesterPin"]);
                             int TestBoardID = Convert.ToInt16(dataReader["TestBoardID"]);
                             Results.Add(new TestPinEntity(TestBoardID, BoardName, PartID, SocketIndex,SocketName, DUTPin, GCIPin));
                         }
@@ -1148,9 +1148,9 @@ namespace GCITester
             return Results;
         }
 
-        public static List<Byte> GetDUTPins(string PartName)
+        public static List<int> GetDUTPins(string PartName)
         {
-            List<Byte> Results = new List<Byte>();
+            List<int> Results = new List<int>();
             int PartID = GetPartID(PartName);
 
             if (PartID != 0)
@@ -1171,7 +1171,7 @@ namespace GCITester
                         //Read the data and store them in the list
                         while (dataReader.Read())
                         {
-                            byte PinID = Convert.ToByte(dataReader["DUTPinNumber"]);
+                            int PinID = Convert.ToInt32(dataReader["DUTPinNumber"]);
                             Results.Add(PinID);
                         }
                         dataReader.Close();
@@ -1206,7 +1206,7 @@ namespace GCITester
                         //Read the data and store them in the list
                         while (dataReader.Read())
                         {
-                            byte PinID = Convert.ToByte(dataReader["DUTPinNumber"]);
+                            int PinID = Convert.ToInt32(dataReader["DUTPinNumber"]);
                             double LCL = Convert.ToDouble(dataReader["LowerControlLimit"]);
                             double UCL = Convert.ToDouble(dataReader["UpperControlLimit"]);
                             double Average = Convert.ToDouble(dataReader["AverageVoltage"]);

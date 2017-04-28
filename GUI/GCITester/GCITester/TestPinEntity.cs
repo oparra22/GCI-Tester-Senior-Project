@@ -12,8 +12,8 @@ namespace GCITester
         public int PartID = 0;
         public int SocketIndex = 0;
         public String SocketName = String.Empty;
-        public Byte DUTPin = 0;
-        public Byte GCIPin = 0;
+        public int DUTPin = 0;
+        public int GCIPin = 0;
 
         public TestPinEntity()
         {
@@ -25,7 +25,7 @@ namespace GCITester
             GCIPin = 0;
         }
 
-        public TestPinEntity(int TestBoardID, String BoardName, int PartID, int SocketIndex, String SocketName, Byte DUTPin, Byte GCIPin)
+        public TestPinEntity(int TestBoardID, String BoardName, int PartID, int SocketIndex, String SocketName, int DUTPin, int GCIPin)
         {
             this.TestBoardID = TestBoardID;
             this.BoardName = BoardName;

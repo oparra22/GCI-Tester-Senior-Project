@@ -11,7 +11,7 @@ namespace GCITester
         public int ProductionLimitID;
         public double UCL;
         public double LCL;
-        public byte PinID;
+        public int PinID;
         public double AverageVoltage;
         public double StdDevVoltage;
 
@@ -26,7 +26,7 @@ namespace GCITester
             StdDevVoltage = 0;
         }
 
-        public LimitEntity(int PartID, int LimitID, double UCL, double LCL, byte PinID, double AverageVoltage, double StdDevVoltage)
+        public LimitEntity(int PartID, int LimitID, double UCL, double LCL, int PinID, double AverageVoltage, double StdDevVoltage)
         {
             this.PartID = PartID;
             this.ProductionLimitID = LimitID;

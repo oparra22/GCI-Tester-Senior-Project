@@ -26,8 +26,8 @@ namespace GCITester
         String SelectedBoardName = String.Empty;
         string SelectedSocketName = string.Empty;
 
-        Dictionary<Byte, Byte> GCIToDUTMap = new Dictionary<byte, byte>();
-        Dictionary<Byte, LearnResult> LearnResults;
+        Dictionary<int, int> GCIToDUTMap = new Dictionary<int, int>();
+        Dictionary<int, LearnResult> LearnResults;
         List<LearnControl> LearnControl;
         int CurrentDeviceNumber = 0;
         int TotalDevices = 0;
@@ -35,11 +35,6 @@ namespace GCITester
         {
             InitializeComponent();
         }
-
-
-
-
-
 
         private void updownTest_Loaded(object sender, RoutedEventArgs e)
         {
@@ -49,9 +44,9 @@ namespace GCITester
         //Button start copied and complete
         private void start_Click(object sender, RoutedEventArgs e)
         {
-            LearnResults = new Dictionary<byte, LearnResult>();
+            LearnResults = new Dictionary<int, LearnResult>();
             LearnControl = new List<LearnControl>();
-            List<Byte> PinsToTest = GCIToDUTMap.Keys.ToList<Byte>();
+            List<int> PinsToTest = GCIToDUTMap.Keys.ToList<int>();
             CurrentDeviceNumber = 0;
             TotalDevices = (int)numPartsTestCount.pinValue();//Number is called pin value, will need to be adjusted to just value
             int TotalIterations = (int)numIterPartCount.pinValue();
@@ -64,12 +59,12 @@ namespace GCITester
                 LearnControl.Add(ControlSetup);
             }
 
-            Byte NextPin = LearnControl[CurrentDeviceNumber].GetNextPin();
+            int NextPin = LearnControl[CurrentDeviceNumber].GetNextPin();
 
             SetButtonState(false);
             //This file is commented out but need to be uncommented in order to test the pin
-            //if (NextPin != 0)
-                //Communication.TestPin(NextPin);
+            if (NextPin != 0)
+                Communication.TestPin(NextPin);
 
         }
 
@@ -146,7 +141,7 @@ namespace GCITester
         void Communication_OnResultComplete()
         {
             Double VoltageRef = Properties.Settings.Default.VoltageReference;
-            Byte TestedPin = (Byte)Communication.PinID1;  //Was PinID
+            int TestedPin = (int)Communication.PinID1;  //Was PinID
             Double Voltage = (Communication.PinValue * VoltageRef) / 1023.0;
 
             if (LearnResults.ContainsKey(TestedPin))
@@ -161,7 +156,7 @@ namespace GCITester
 
             if (CurrentDeviceNumber < LearnControl.Count)
             {
-                Byte NextPin = LearnControl[CurrentDeviceNumber].GetNextPin();
+                int NextPin = LearnControl[CurrentDeviceNumber].GetNextPin();
                 UpdateCurrentIteration(true);
                 if (NextPin != 0)
                 {
@@ -169,7 +164,7 @@ namespace GCITester
                     //UpdateCurrentIteration(true); 
 
 
-                    //Communication.TestPin(NextPin); this line needs to be uncommented
+                    Communication.TestPin(NextPin); 
                 }
                 else
                 {
@@ -215,7 +210,7 @@ namespace GCITester
                 Root.Header = SelectedPartName;
                 treeResults.Items.Add(Root);
 
-                foreach (Byte PinID in LearnResults.Keys)
+                foreach (int PinID in LearnResults.Keys)
                 {
                     TreeViewItem Name = new TreeViewItem();
                     Name.Header = "Pin " + GCIToDUTMap[PinID].ToString();
@@ -273,9 +268,9 @@ namespace GCITester
                 {
                     GCIDB.AddProductionLimit(LimitID, entry.PinID, entry.UCL, entry.LCL);
                 }*/
-                foreach (Byte PinID in LearnResults.Keys)
+                foreach (int PinID in LearnResults.Keys)
                 {
-                    Byte DutPinID = GCIToDUTMap[PinID];
+                    int DutPinID = GCIToDUTMap[PinID];
 
                     Double Average = LearnResults[PinID].GetVoltageAverage();
                     Double StdDev = LearnResults[PinID].GetStandardDeviation();
