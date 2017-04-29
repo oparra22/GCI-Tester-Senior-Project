@@ -87,8 +87,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="about.xaml.cs">
-      <DependentUpon>about.xaml</DependentUpon>
+    <Compile Include="About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddPartName.xaml.cs">
       <DependentUpon>AddPartName.xaml</DependentUpon>
@@ -99,21 +99,27 @@
     </Compile>
     <Compile Include="ExportToExcel.cs" />
     <Compile Include="GCIDB.cs" />
-    <Compile Include="itemProductionInfo.xaml.cs">
-      <DependentUpon>itemProductionInfo.xaml</DependentUpon>
+    <Compile Include="ItemLifetimeInfo.xaml.cs">
+      <DependentUpon>ItemLifetimeInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ItemProductionInfo.xaml.cs">
+      <DependentUpon>ItemProductionInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="LearnControl.cs" />
     <Compile Include="LearnResult.cs" />
     <Compile Include="LifetimeLimitEntity.cs" />
-    <Compile Include="lifetimeReport.xaml.cs">
-      <DependentUpon>lifetimeReport.xaml</DependentUpon>
+    <Compile Include="LifetimeReport.xaml.cs">
+      <DependentUpon>LifetimeReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="LifeTimeReportData.cs" />
     <Compile Include="LifeTimeResult.cs" />
-    <Compile Include="lifetimeTest.xaml.cs">
-      <DependentUpon>lifetimeTest.xaml</DependentUpon>
+    <Compile Include="LifetimeTest.xaml.cs">
+      <DependentUpon>LifetimeTest.xaml</DependentUpon>
     </Compile>
     <Compile Include="LimitEntity.cs" />
+    <Compile Include="ListLifetimeInfo.xaml.cs">
+      <DependentUpon>ListLifetimeInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ListProductionInfo.xaml.cs">
       <DependentUpon>ListProductionInfo.xaml</DependentUpon>
     </Compile>
@@ -123,21 +129,21 @@
     <Compile Include="PartEditor.xaml.cs">
       <DependentUpon>PartEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pinTest.xaml.cs">
-      <DependentUpon>pinTest.xaml</DependentUpon>
+    <Compile Include="PinTest.xaml.cs">
+      <DependentUpon>PinTest.xaml</DependentUpon>
     </Compile>
-    <Compile Include="productionLimits.xaml.cs">
-      <DependentUpon>productionLimits.xaml</DependentUpon>
+    <Compile Include="ProductionLimits.xaml.cs">
+      <DependentUpon>ProductionLimits.xaml</DependentUpon>
     </Compile>
-    <Compile Include="productionReport.xaml.cs">
-      <DependentUpon>productionReport.xaml</DependentUpon>
+    <Compile Include="ProductionReport.xaml.cs">
+      <DependentUpon>ProductionReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProductionReportData.cs" />
-    <Compile Include="productionTest.xaml.cs">
-      <DependentUpon>productionTest.xaml</DependentUpon>
+    <Compile Include="ProductionTest.xaml.cs">
+      <DependentUpon>ProductionTest.xaml</DependentUpon>
     </Compile>
-    <Compile Include="reports.xaml.cs">
-      <DependentUpon>reports.xaml</DependentUpon>
+    <Compile Include="Reports.xaml.cs">
+      <DependentUpon>Reports.xaml</DependentUpon>
     </Compile>
     <Compile Include="SerialPortSettings.cs">
       <SubType>UserControl</SubType>
@@ -146,21 +152,21 @@
       <DependentUpon>SerialPortSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
-    <Compile Include="settings.xaml.cs">
-      <DependentUpon>settings.xaml</DependentUpon>
+    <Compile Include="Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="shortTest.xaml.cs">
-      <DependentUpon>shortTest.xaml</DependentUpon>
+    <Compile Include="ShortTest.xaml.cs">
+      <DependentUpon>ShortTest.xaml</DependentUpon>
     </Compile>
     <Compile Include="ShortTestControl.xaml.cs">
       <DependentUpon>ShortTestControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="TestPart.cs" />
     <Compile Include="TestPinEntity.cs" />
-    <Compile Include="tests.xaml.cs">
-      <DependentUpon>tests.xaml</DependentUpon>
+    <Compile Include="Tests.xaml.cs">
+      <DependentUpon>Tests.xaml</DependentUpon>
     </Compile>
-    <Page Include="about.xaml">
+    <Page Include="About.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -172,15 +178,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="itemProductionInfo.xaml">
+    <Page Include="ItemLifetimeInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ItemProductionInfo.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="lifetimeReport.xaml">
+    <Page Include="LifetimeReport.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="lifetimeTest.xaml">
+    <Page Include="LifetimeTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ListLifetimeInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -208,31 +222,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="pinTest.xaml">
+    <Page Include="PinTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="productionLimits.xaml">
+    <Page Include="ProductionLimits.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="productionReport.xaml">
+    <Page Include="ProductionReport.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="productionTest.xaml">
+    <Page Include="ProductionTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="reports.xaml">
+    <Page Include="Reports.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="settings.xaml">
+    <Page Include="Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="shortTest.xaml">
+    <Page Include="ShortTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -240,7 +254,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="tests.xaml">
+    <Page Include="Tests.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
