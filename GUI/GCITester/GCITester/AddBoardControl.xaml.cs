@@ -15,27 +15,21 @@ using System.Windows.Shapes;
 namespace GCITester
 {
     /// <summary>
-    /// Interaction logic for AddBoard.xaml
+    /// Interaction logic for AddBoardControl.xaml
     /// </summary>
-    public partial class AddBoard : Window
+    public partial class AddBoardControl : Window
     {
-        public List<BoardNameItem> BoardNameItems = new List<BoardNameItem>();
-        String PartName = String.Empty;
-        public String BoardName = String.Empty;
-        public bool BestGuessPinMap = true;
         int pinNum;
         int lowerLimit = 0;
         string pinString;
+        public List<BoardNameItem> BoardNameItems = new List<BoardNameItem>();
 
 
-        public AddBoard()
+        public AddBoardControl()
         {
             InitializeComponent();
-            //device_ListGrid.Children
-            //this.PartName = PartName;
-            partName_textBox.Text = PartName;
-            UpdateBoardNameList(1);
         }
+
         //sets the lower limit 
         public void setLimit(int l)
         {
@@ -85,45 +79,5 @@ namespace GCITester
             }
             // device_ListGrid.AutoScrollMinSize = new Size(217, NumberOfDevices * 27);
         }
-
-        public List<String> GetNameList()
-        {
-            List<String> Result = new List<string>();
-            foreach (BoardNameItem Item in BoardNameItems)
-            {
-                Result.Add(Item.DeviceName);
-            }
-            return Result;
-        }
-            
-
-        private void ok_button_Click(object sender, RoutedEventArgs e)
-        {
-            //buttonOK.DialogResult = DialogResult.OK;
-            // this.DialogResult = DialogResult.OK;
-            MessageBox.Show("Board Added");
-            this.Close();
-        }
-
-        private void cancel_button_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Add Board Canceled!");
-            this.Close();
-        }
-
-        private void bestGuess_checkBox_Checked(object sender, RoutedEventArgs e)
-        {
-            if (bestGuess_checkBox.IsChecked == true)
-                BestGuessPinMap = true;
-            else
-                BestGuessPinMap = false;
-        }
-
-        private void textBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            BoardName = textBox.Text;
-        }
-
-        
     }
 }

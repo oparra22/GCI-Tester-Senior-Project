@@ -93,6 +93,9 @@
     <Compile Include="AddBoard.xaml.cs">
       <DependentUpon>AddBoard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddBoardControl.xaml.cs">
+      <DependentUpon>AddBoardControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddPartName.xaml.cs">
       <DependentUpon>AddPartName.xaml</DependentUpon>
     </Compile>
@@ -186,6 +189,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="AddBoard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddBoardControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

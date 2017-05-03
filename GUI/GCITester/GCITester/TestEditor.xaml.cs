@@ -140,6 +140,8 @@ namespace GCITester
         {
             AddBoard window = new AddBoard();
             window.ShowDialog();
+            //AddBoardControl window = new AddBoardControl();
+            //window.ShowDialog();
         }
     }
 
