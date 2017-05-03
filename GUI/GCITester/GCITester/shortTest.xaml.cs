@@ -196,7 +196,10 @@ namespace GCITester
             manualShortTestResults.Items.Clear();
         }
 
+        private void shortTestControl_Loaded(object sender, RoutedEventArgs e)
+        {
 
+        }
     }
 
 }
