@@ -286,8 +286,8 @@ namespace GCITester
                 MessageBox.Show("Limits saved to the database", "Success", MessageBoxButton.OK);
             }
 
-            this.DialogResult = this.ShowDialog();
-            this.Close();
+          //  this.DialogResult = this.ShowDialog();
+       //     this.Close();
         }
 
         private void productionLimits_Load(object sender, RoutedEventArgs e)

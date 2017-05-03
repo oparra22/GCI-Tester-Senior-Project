@@ -108,6 +108,9 @@
     <Compile Include="LearnControl.cs" />
     <Compile Include="LearnResult.cs" />
     <Compile Include="LifetimeLimitEntity.cs" />
+    <Compile Include="LifetimeLimits.xaml.cs">
+      <DependentUpon>LifetimeLimits.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LifetimeReport.xaml.cs">
       <DependentUpon>LifetimeReport.xaml</DependentUpon>
     </Compile>
@@ -117,11 +120,20 @@
       <DependentUpon>LifetimeTest.xaml</DependentUpon>
     </Compile>
     <Compile Include="LimitEntity.cs" />
+    <Compile Include="LimitList.xaml.cs">
+      <DependentUpon>LimitList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Limits.xaml.cs">
+      <DependentUpon>Limits.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ListLifetimeInfo.xaml.cs">
       <DependentUpon>ListLifetimeInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="ListProductionInfo.xaml.cs">
       <DependentUpon>ListProductionInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoubleNumericUpDown.xaml.cs">
+      <DependentUpon>DoubleNumericUpDown.xaml</DependentUpon>
     </Compile>
     <Compile Include="NumericUpDown.xaml.cs">
       <DependentUpon>NumericUpDown.xaml</DependentUpon>
@@ -186,11 +198,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="LifetimeLimits.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LifetimeReport.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="LifetimeTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LimitList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Limits.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -214,6 +238,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="DoubleNumericUpDown.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="NumericUpDown.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

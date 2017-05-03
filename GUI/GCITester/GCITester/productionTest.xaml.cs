@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+//using System.Windows.Mess
 
 
 namespace GCITester
@@ -174,7 +175,7 @@ namespace GCITester
                 SetDisplayStates(true);
                 UpdateCurrentIteration(false);
                 listProductionInfo1.DisplaAll(true);
-               // MessageBox.Show("Test Complete", "Part Finished", MessageBoxButtons.OK, MessageBoxIcon.Information);
+             //  MessageBox.Show("Test Complete", "Part Finished", MessageBoxButton.OK, MessageBox.Information);
             }
 
 

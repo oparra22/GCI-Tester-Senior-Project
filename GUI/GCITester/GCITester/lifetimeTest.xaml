@@ -10,8 +10,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ComboBox x:Name="comboPartName" HorizontalAlignment="Left" Margin="192,30,0,0" VerticalAlignment="Top" Width="151" Height="39" BorderThickness="5" BorderBrush="#FF15315F" SelectionChanged="comboPartName_SelectedIndexChanged"/>
-        <ComboBox x:Name="comboTestBoard" HorizontalAlignment="Left" Margin="192,92,0,0" VerticalAlignment="Top" Width="151" Height="39" BorderThickness="5" BorderBrush="#FF15315F" SelectionChanged="comboTestBoard_SelectedIndexChanged"/>
+        <ComboBox x:Name="comboPartName" HorizontalAlignment="Left" Margin="192,30,0,0" VerticalAlignment="Top" Width="151" Height="39" BorderThickness="5" BorderBrush="#FF15315F" SelectionChanged="comboPartName_SelectedIndexChanged" FontFamily="Microsoft JhengHei UI" FontSize="18"/>
+        <ComboBox x:Name="comboTestBoard" HorizontalAlignment="Left" Margin="192,92,0,0" VerticalAlignment="Top" Width="151" Height="39" BorderThickness="5" BorderBrush="#FF15315F" SelectionChanged="comboTestBoard_SelectedIndexChanged" FontFamily="Microsoft JhengHei UI" FontSize="18"/>
         <TextBlock x:Name="partText" HorizontalAlignment="Left" Margin="34,43,0,0" TextWrapping="Wrap" Text="Part Number" VerticalAlignment="Top" Height="58" Width="127" FontSize="16" FontFamily="Microsoft JhengHei UI" FontWeight="Bold"/>
         <TextBlock x:Name="testText" HorizontalAlignment="Left" Margin="34,106,0,0" TextWrapping="Wrap" Text="Test Board" VerticalAlignment="Top" Height="58" Width="127" FontSize="16" FontFamily="Microsoft JhengHei UI" FontWeight="Bold"/>
         <TextBlock x:Name="iterationsText" HorizontalAlignment="Left" Margin="34,169,0,0" TextWrapping="Wrap" Text="Iterations per Pin" VerticalAlignment="Top" Height="41" Width="204" FontSize="16" FontFamily="Microsoft JhengHei UI" FontWeight="Bold"/>
@@ -22,7 +22,7 @@
         <local:numericUpDown x:Name="numericTestHour" HorizontalAlignment="Left" Margin="547,92,0,0" VerticalAlignment="Top" Height="43" Width="109"/>
         <TextBox x:Name="textBatchName" HorizontalAlignment="Left" Height="35" Margin="547,159,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="162" BorderThickness="5" FontSize="20" BorderBrush="#FF15315F"/>
         <TreeView x:Name="treeReport" HorizontalAlignment="Left" Height="339" Margin="34,215,0,0" VerticalAlignment="Top" Width="438" BorderThickness="5" BorderBrush="#FF15315F"/>
-        <local:ListLifetimeInfo x:Name="listLifetimeInfo1" HorizontalAlignment="Left" Margin="523,215,0,0" VerticalAlignment="Top" Height="339" Width="517"/>
+        <local:ListLifetimeInfo x:Name="listLifetimeInfo1" HorizontalAlignment="Left" Margin="547,215,0,0" VerticalAlignment="Top" Height="339" Width="493"/>
         <Button x:Name="buttonStart" Content="Run" HorizontalAlignment="Left" Margin="894,159,0,0" VerticalAlignment="Top" Width="146" Height="35" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="buttonStart_Click" BorderBrush="#FF15315F" IsEnabled="False"/>
         <local:numericUpDown x:Name="numericIterations" HorizontalAlignment="Left" Margin="192,151,0,0" VerticalAlignment="Top" Height="43" Width="109"/>
 

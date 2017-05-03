@@ -19,14 +19,28 @@ namespace GCITester
     /// </summary>
     public partial class AddPartName : Window
     {
+        public String PartName = string.Empty;
+
         public AddPartName()
         {
             InitializeComponent();
         }
 
-        private void okButton_Click(object sender, RoutedEventArgs e)
+        private void buttonOk_Click(object sender, EventArgs e)
         {
+            PartName = textPartName.Text;
+          //  buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+           // this.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Close();
         }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+          //  buttonOk.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+          //  this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.Close();
+        }
+
+       
     }
 }

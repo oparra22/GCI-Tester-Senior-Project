@@ -16,17 +16,17 @@ using System.Windows.Shapes;
 namespace GCITester
 {
     /// <summary>
-    /// Interaction logic for numericUpDown.xaml
+    /// doubleeraction logic for numericUpDown.xaml
     /// </summary>
-    public partial class numericUpDown : UserControl
+    public partial class DoubleNumericUpDown : UserControl
     {
 
-        int pinNum;
-        int lowerLimit = 0;
+        double pinNum;
+        double lowerLimit = 0;
         string pinString;
-        //int clicked = 0;
+        //double clicked = 0;
         //sets default value of numeric up and down
-        public void setValue(int v)
+        public void setValue(double v)
         {
             pinNum = v;
             pinString = pinNum.ToString();
@@ -34,12 +34,12 @@ namespace GCITester
         }
 
         //sets the lower limit 
-        public void setLimit(int l)
+        public void setLimit(double l)
         {
             lowerLimit = l;
         }
 
-        public numericUpDown()
+        public DoubleNumericUpDown()
         {
             InitializeComponent();
         }
@@ -61,7 +61,7 @@ namespace GCITester
             counterBox.Text = pinString;
         }
 
-        public int pinValue()
+        public double pinValue()
         {
             return pinNum;
         }

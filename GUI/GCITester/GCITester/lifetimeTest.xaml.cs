@@ -249,13 +249,13 @@ namespace GCITester
                             PinResult = false;
 
                             listLifetimeInfo1.SetResult(Socket, false);
-                            //AddLog("Socket " + Socket + " DUT Pin [" + TestedDUTPin + "] Average Voltage: " + AverageVoltage + " FAILED");
+                          //  AddLog("Socket " + Socket + " DUT Pin [" + TestedDUTPin + "] Average Voltage: " + AverageVoltage + " FAILED");
                         }
                         else
                         {
                             PinResult = true;
 
-                            //AddLog("Socket " + Socket + " DUT Pin [" + TestedDUTPin + "] Average Voltage: " + AverageVoltage + " PASSED");
+                           // AddLog("Socket " + Socket + " DUT Pin [" + TestedDUTPin + "] Average Voltage: " + AverageVoltage + " PASSED");
                         }
 
                         string strPin = string.Empty;
@@ -396,6 +396,7 @@ namespace GCITester
                         return;
                     SelectedBoardName = comboTestBoard.SelectedItem.ToString();
                     LoadTestInformation();
+                    //buttonStart.IsEnabled = true;
 
                 }
             }
@@ -464,6 +465,7 @@ namespace GCITester
                     List<int> GCIPinsToTest = GetGCITestPinsFromIndex(Index);
                     listLifetimeInfo1.AddLifetimeTestSlot(Slot, Index, LoadedTestBoardID, GCIPinsToTest, ExistingSerialNumbers);
                 }
+                buttonStart.IsEnabled = true;
             }
             catch (Exception ex)
             {

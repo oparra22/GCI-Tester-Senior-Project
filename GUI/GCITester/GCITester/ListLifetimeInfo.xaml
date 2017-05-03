@@ -4,6 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GCITester"
-             mc:Ignorable="d" Height="174.46" Width="471.512" Background="#FFFEFEFE" BorderBrush="#FF15315F" BorderThickness="5">
-    <UniformGrid x:Name="listGrid" Rows="3" Columns="1"/>
+             mc:Ignorable="d" Height="211.358" Width="483.22" Background="#FFFEFEFE" BorderBrush="#FF15315F" BorderThickness="5">
+    <UniformGrid x:Name="listGrid" Rows="3" Columns="1" Margin="0,0,0,0.5"/>
 </UserControl>
