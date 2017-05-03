@@ -10,38 +10,35 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace GCITester
 {
     /// <summary>
-    /// Interaction logic for numericUpDown.xaml
+    /// Interaction logic for AddBoardControl.xaml
     /// </summary>
-    public partial class numericUpDown : UserControl
+    public partial class AddBoardControl : Window
     {
-
         int pinNum;
-        int lowerLimit = 0;
+        int lowerLimit = 1;
         string pinString;
-        //int clicked = 0;
-        //sets default value of numeric up and down
+        public List<BoardNameItem> BoardNameItems = new List<BoardNameItem>();
+
+
+        public AddBoardControl()
+        {
+            InitializeComponent();
+        }
         public void setValue(int v)
         {
             pinNum = v;
             pinString = pinNum.ToString();
             counterBox.Text = pinString;
         }
-
         //sets the lower limit 
         public void setLimit(int l)
         {
             lowerLimit = l;
-        }
-
-        public numericUpDown()
-        {
-            InitializeComponent();
         }
 
         private void upPinButton_Click(object sender, RoutedEventArgs e)
@@ -49,8 +46,9 @@ namespace GCITester
             pinNum++;
             pinString = pinNum.ToString();
             counterBox.Text = pinString;
-           
+            UpdateBoardNameList(pinNum);
         }
+
         //decrement pin number
         private void downPinButton_Click(object sender, RoutedEventArgs e)
         {
@@ -60,6 +58,7 @@ namespace GCITester
             }
             pinString = pinNum.ToString();
             counterBox.Text = pinString;
+            UpdateBoardNameList(pinNum);
         }
 
         public int pinValue()
@@ -67,6 +66,23 @@ namespace GCITester
             return pinNum;
         }
 
-       
+        void UpdateBoardNameList(int NumberOfDevices)
+        {
+            //device_scrollviewer.Content = null;
+            device_ListGrid.Children.Clear();
+            MessageBox.Show(NumberOfDevices.ToString());
+            //device_ListGrid.
+            BoardNameItems = new List<BoardNameItem>();
+            for (int i = 0; i < NumberOfDevices; i++)
+            {
+                BoardNameItem Item = new BoardNameItem(i + 1, "Device" + (i + 1).ToString());
+                Item.DeviceName = "Device" + (i + 1);
+                //Item.Top = (i * 27) + 5;
+
+                device_ListGrid.Children.Add(Item);
+                BoardNameItems.Add(Item);
+            }
+            // device_ListGrid.AutoScrollMinSize = new Size(217, NumberOfDevices * 27);
+        }
     }
 }

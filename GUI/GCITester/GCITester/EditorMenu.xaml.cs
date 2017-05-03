@@ -38,5 +38,11 @@ namespace GCITester
             window.Show();
             this.Close();
         }
+
+        private void boarEditor_Click(object sender, RoutedEventArgs e)
+        {
+            TestEditor window = new TestEditor();
+            window.ShowDialog();
+        }
     }
 }
