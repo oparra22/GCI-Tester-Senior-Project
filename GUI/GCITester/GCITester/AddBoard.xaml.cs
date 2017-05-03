@@ -23,25 +23,30 @@ namespace GCITester
         String PartName = String.Empty;
         public String BoardName = String.Empty;
         public bool BestGuessPinMap = true;
-        int pinNum;
+        int pinNum = 0;
         int lowerLimit = 0;
         string pinString;
+        public bool boolVal;
 
 
         public AddBoard()
         {
             InitializeComponent();
-            //device_ListGrid.Children
-            //this.PartName = PartName;
-            partName_textBox.Text = PartName;
-            UpdateBoardNameList(1);
+            TestEditor testEditor = new TestEditor();
+
+            //partName_textBox.Text = testEditor.selectBoard_listBox.SelectedItem.ToString();
         }
         //sets the lower limit 
         public void setLimit(int l)
         {
             lowerLimit = l;
         }
-
+        public void setValue(int v)
+        {
+            pinNum = v;
+            pinString = pinNum.ToString();
+            counterBox.Text = pinString;
+        }
         private void upPinButton_Click(object sender, RoutedEventArgs e)
         {
             pinNum++;
@@ -69,10 +74,9 @@ namespace GCITester
 
         void UpdateBoardNameList(int NumberOfDevices)
         {
-            //device_scrollviewer.Content = null;
+            
             device_ListGrid.Children.Clear();
-            MessageBox.Show(NumberOfDevices.ToString());
-            //device_ListGrid.
+            
             BoardNameItems = new List<BoardNameItem>();
             for (int i = 0; i < NumberOfDevices; i++)
             {
@@ -99,10 +103,14 @@ namespace GCITester
 
         private void ok_button_Click(object sender, RoutedEventArgs e)
         {
-            //buttonOK.DialogResult = DialogResult.OK;
-            // this.DialogResult = DialogResult.OK;
-            MessageBox.Show("Board Added");
+            
+            MessageBoxResult result = MessageBox.Show("Add This Baord?", "Add Board", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                boolVal = true;
+            }
             this.Close();
+
         }
 
         private void cancel_button_Click(object sender, RoutedEventArgs e)

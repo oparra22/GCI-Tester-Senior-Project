@@ -83,6 +83,7 @@ namespace GCITester
             }
             else
             {
+
                 //pull batch names from the DB, then render the view for filtering
                 SelectedPartName = part_listBox.SelectedItem.ToString();
                 GCIDB.Initialize();
@@ -91,9 +92,7 @@ namespace GCITester
                 SelectedBoardName = string.Empty;
                 testBoardList1.ClearPins();
                 selectBoard_listBox.ItemsSource = boardNames;
-                
-
-                
+                 
             }
         }
 
@@ -140,8 +139,61 @@ namespace GCITester
         {
             AddBoard window = new AddBoard();
             window.ShowDialog();
-            //AddBoardControl window = new AddBoardControl();
-            //window.ShowDialog();
+            //AddBoard addBoard = new AddBoard();
+            //List<String> DeviceNames = window.GetNameList();
+
+           
+
+            if (window.boolVal == true)
+            {
+
+
+                List<int> DUTPins = GCIDB.GetDUTPins(SelectedPartName);
+                List<String> DeviceNames = window.GetNameList();
+                Byte CurrentGCIPin = 1;
+                int SocketIndex = 0;
+
+
+                int TestBoardID = GCIDB.GetNextTestBoardID();
+                int PartID = GCIDB.GetPartID(SelectedPartName);
+
+                testBoardList1.ClearPins();
+                foreach (String Device in DeviceNames)
+                {
+                    foreach (byte Pin in DUTPins)
+                    {
+
+                        if (CurrentGCIPin == 48)
+                            CurrentGCIPin += 4;
+                        GCIDB.AddTestPinMap(TestBoardID, window.BoardName, PartID, SocketIndex, Device, Pin, CurrentGCIPin, DateTime.Now);
+                        CurrentGCIPin++;
+                        //testBoardList1.AddPinMap(PartID, TestBoardID, Device, Pin, CurrentGCIPin++);
+                    }
+                    testBoardList1.ExtraSpace += 20;
+                    SocketIndex++;
+                }
+                //AddBoardControl window = new AddBoardControl();
+                //window.ShowDialog();
+            }
+            List<string> boardNames = GCIDB.GetTestBoardList(SelectedPartName);
+            //SelectedBoardName = string.Empty;
+            selectBoard_listBox.ItemsSource = boardNames;
+
+        }
+
+        private void saveChanges_button_Click(object sender, RoutedEventArgs e)
+        {
+            List<TestPinMap> TestPins = testBoardList1.CurrentPinMap;
+
+            foreach (TestPinMap Pin in TestPins)
+            {
+                if (Pin.Edited == true)
+                {
+                    GCIDB.ChangePinMap(Pin.TestBoardID, Pin.PartID, Pin.DUTPin, Pin.GCIPin);
+                }
+            }
+            testBoardList1.ClearAllEdits();
+            MessageBox.Show("All changes saved!");
         }
     }
 

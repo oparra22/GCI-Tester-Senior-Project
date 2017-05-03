@@ -20,7 +20,7 @@ namespace GCITester
     public partial class AddBoardControl : Window
     {
         int pinNum;
-        int lowerLimit = 0;
+        int lowerLimit = 1;
         string pinString;
         public List<BoardNameItem> BoardNameItems = new List<BoardNameItem>();
 
@@ -29,7 +29,12 @@ namespace GCITester
         {
             InitializeComponent();
         }
-
+        public void setValue(int v)
+        {
+            pinNum = v;
+            pinString = pinNum.ToString();
+            counterBox.Text = pinString;
+        }
         //sets the lower limit 
         public void setLimit(int l)
         {

@@ -7,20 +7,20 @@
         mc:Ignorable="d"
         Title="AddBoard" Height="412" Width="329">
     <Grid Margin="0,0,0,-6">
-        <Label x:Name="partname_label" Content="Part Name " HorizontalAlignment="Left" Height="30" Margin="10,10,0,0" VerticalAlignment="Top" Width="90"/>
+        <Label x:Name="partname_label" Content="Part Name " HorizontalAlignment="Left" Height="30" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" FontWeight="Bold"/>
         <TextBox x:Name="partName_textBox" HorizontalAlignment="Left" Height="25" Margin="120,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="boardName_label" Content="Board Name" HorizontalAlignment="Left" Height="25" Margin="10,45,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="boardName_label" Content="Board Name" HorizontalAlignment="Left" Height="25" Margin="10,45,0,0" VerticalAlignment="Top" Width="90" FontWeight="Bold"/>
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="25" Margin="120,45,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="textBox_TextChanged"/>
-        <Label x:Name="label" Content="Number of Devices" HorizontalAlignment="Left" Height="25" Margin="10,100,0,0" VerticalAlignment="Top" Width="115"/>
-        <CheckBox x:Name="bestGuess_checkBox" Content="Make Best Guess at Pin Mapping" HorizontalAlignment="Left" Height="15" Margin="10,155,0,0" VerticalAlignment="Top" Width="215" Checked="bestGuess_checkBox_Checked"/>
-        <Button x:Name="cancel_button" Content="Cancel" HorizontalAlignment="Left" Height="25" Margin="10,340,0,0" VerticalAlignment="Top" Width="75" Click="cancel_button_Click"/>
-        <Button x:Name="ok_button" Content="OK" HorizontalAlignment="Left" Height="25" Margin="215,340,0,0" VerticalAlignment="Top" Width="75" Click="ok_button_Click"/>
-        <TextBox x:Name="counterBox" Height="43" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderBrush="#FF15315F" BorderThickness="5" FontSize="20" TextAlignment="Center" Margin="132,100,96,0"/>
-        <ScrollViewer x:Name="device_scrollviewer" HorizontalAlignment="Left" Height="150" Margin="10,185,0,0" VerticalAlignment="Top" Width="280">
-            <UniformGrid x:Name="device_ListGrid" Rows="5" Columns="1"   />
+        <Label x:Name="label" Content="Number of Devices" HorizontalAlignment="Left" Height="25" Margin="10,106,0,0" VerticalAlignment="Top" Width="136" FontSize="14" FontWeight="Bold"/>
+        <CheckBox x:Name="bestGuess_checkBox" Content="Make Best Guess at Pin Mapping" HorizontalAlignment="Left" Height="15" Margin="10,155,0,0" VerticalAlignment="Top" Width="215" Checked="bestGuess_checkBox_Checked" FontWeight="Bold"/>
+        <Button x:Name="cancel_button" Content="Cancel" HorizontalAlignment="Left" Height="25" Margin="10,340,0,0" VerticalAlignment="Top" Width="75"  Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="14" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="cancel_button_Click"/>
+        <Button x:Name="ok_button" Content="OK" HorizontalAlignment="Left" Height="25" Margin="215,340,0,0" VerticalAlignment="Top" Width="75"  Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="14" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="ok_button_Click"/>
+        <TextBox x:Name="counterBox" Height="43" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderBrush="#FF15315F" BorderThickness="5" FontSize="20" TextAlignment="Center" Margin="151,100,77,0"/>
+        <ScrollViewer x:Name="device_scrollviewer" HorizontalAlignment="Left" Height="150" Margin="10,185,0,0" VerticalAlignment="Top" Width="280" VerticalScrollBarVisibility="Visible" BorderBrush="#FF15315F" BorderThickness="5">
+            <UniformGrid x:Name="device_ListGrid" Rows="0" Columns="1"   />
         </ScrollViewer>
-        <Button x:Name="upPinButton_Copy" Content="^" HorizontalAlignment="Left" Margin="230,100,0,267" Width="26" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="upPinButton_Click" BorderBrush="#FF15315F" RenderTransformOrigin="0.558,2.8"/>
-        <Button x:Name="downPinButton_Copy" Content="^" HorizontalAlignment="Left" Margin="230,122,0,245" Width="26" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="downPinButton_Click" BorderBrush="#FF15315F" RenderTransformOrigin="0.5,0.5">
+        <Button x:Name="upPinButton_Copy" Content="^" HorizontalAlignment="Left" Margin="249,100,0,267" Width="26" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="upPinButton_Click" BorderBrush="#FF15315F" RenderTransformOrigin="0.558,2.8"/>
+        <Button x:Name="downPinButton_Copy" Content="^" HorizontalAlignment="Left" Margin="250,125,0,242" Width="26" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="downPinButton_Click" BorderBrush="#FF15315F" RenderTransformOrigin="0.5,0.5">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="-1" ScaleX="1"/>

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GCITester"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300" BorderBrush="#FF15315F" BorderThickness="5">
     <ScrollViewer  Background="#FFF5F3F3" VerticalScrollBarVisibility="Visible">
         <UniformGrid x:Name="TestBoardListGrid" Rows="50" Columns="1"   ></UniformGrid>
     </ScrollViewer>

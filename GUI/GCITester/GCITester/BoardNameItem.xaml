@@ -4,9 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GCITester"
-             mc:Ignorable="d" Height="18" Width="155">
-    <Grid Background="Gray" Margin="0,0,-25,-10">
-        <Label x:Name="boardName_label" Content="Device 1" HorizontalAlignment="Left" Height="25" Margin="10,0,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox x:Name="deviceName_textBox" HorizontalAlignment="Left" Height="23" Margin="85,2,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="90"/>
+             mc:Ignorable="d" Height="40" Width="205" BorderBrush="#FF15315F" BorderThickness="5">
+    <Grid Background="#FFFEFEFE">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="boardName_label" Content="Device 1" HorizontalAlignment="Left" Height="25" Margin="15,0,0,0" VerticalAlignment="Top" Width="75" FontWeight="Bold" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="deviceName_textBox" HorizontalAlignment="Left" Height="20" Margin="95,5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="90" Grid.ColumnSpan="2"/>
     </Grid>
 </UserControl>
