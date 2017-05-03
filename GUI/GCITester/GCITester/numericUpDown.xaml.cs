@@ -49,6 +49,7 @@ namespace GCITester
             pinNum++;
             pinString = pinNum.ToString();
             counterBox.Text = pinString;
+           
         }
         //decrement pin number
         private void downPinButton_Click(object sender, RoutedEventArgs e)

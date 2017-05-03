@@ -90,8 +90,14 @@
     <Compile Include="About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddBoard.xaml.cs">
+      <DependentUpon>AddBoard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddPartName.xaml.cs">
       <DependentUpon>AddPartName.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BoardNameItem.xaml.cs">
+      <DependentUpon>BoardNameItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Communication.cs" />
     <Compile Include="EditorMenu.xaml.cs">
@@ -161,8 +167,17 @@
     <Compile Include="ShortTestControl.xaml.cs">
       <DependentUpon>ShortTestControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TestBoardList.xaml.cs">
+      <DependentUpon>TestBoardList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestEditor.xaml.cs">
+      <DependentUpon>TestEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TestPart.cs" />
     <Compile Include="TestPinEntity.cs" />
+    <Compile Include="TestPinMap.xaml.cs">
+      <DependentUpon>TestPinMap.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tests.xaml.cs">
       <DependentUpon>Tests.xaml</DependentUpon>
     </Compile>
@@ -170,7 +185,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="AddBoard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddPartName.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BoardNameItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -253,6 +276,18 @@
     <Page Include="ShortTestControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestBoardList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TestEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TestPinMap.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Tests.xaml">
       <SubType>Designer</SubType>

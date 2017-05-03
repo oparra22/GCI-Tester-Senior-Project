@@ -8,7 +8,7 @@
         Title="Editors" Height="526.942" Width="331.749">
     <Grid>
         <Image x:Name="image" HorizontalAlignment="Left" Height="84" Margin="26,10,0,0" VerticalAlignment="Top" Width="276" Source="GCILogo.jpg" RenderTransformOrigin="0.61,0.535"/>
-        <Button x:Name="boarEditor" Content="Board Editor" HorizontalAlignment="Left" Margin="50,113,0,0" VerticalAlignment="Top" Width="222" Height="48" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" />
+        <Button x:Name="boarEditor" Content="Board Editor" HorizontalAlignment="Left" Margin="50,113,0,0" VerticalAlignment="Top" Width="222" Height="48" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="boarEditor_Click" />
         <Button x:Name="partEditor" Content="Part Editor" HorizontalAlignment="Left" Margin="50,190,0,0" VerticalAlignment="Top" Width="222" Height="48" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="partEditor_Click" />
         <Button x:Name="backToMain" Content="Back to Main Menu" HorizontalAlignment="Left" Margin="50,268,0,0" VerticalAlignment="Top" Width="222" Height="48" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="backToMain_Click" />
 
