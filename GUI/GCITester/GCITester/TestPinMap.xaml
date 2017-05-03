@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="GCITester.TestPinMap"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GCITester"
+             mc:Ignorable="d" Height="40" Width="535">
+    <Grid Background="#FFD3CDCD" Height="45" VerticalAlignment="Top" Margin="0,10,0,-15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="57*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="29*"/>
+            <RowDefinition/>
+            <RowDefinition Height="0*"/>
+        </Grid.RowDefinitions>
+        <ComboBox x:Name="comboGCITesterPin" HorizontalAlignment="Left" Height="28" Margin="165,10,0,-8" VerticalAlignment="Top" Width="110" Grid.Column="1" Grid.RowSpan="3"/>
+        <Label x:Name="labelSocketName" Content="SocketName" HorizontalAlignment="Left" Height="28" Margin="15,12,0,-10" VerticalAlignment="Top" Width="125" FontFamily="Arial" FontWeight="Bold" FontSize="14" Grid.RowSpan="3"/>
+        <Label x:Name="labelDUTPin" Content="DUT PIN 0" HorizontalAlignment="Left" Height="28" Margin="140,12,0,-10" VerticalAlignment="Top" Width="105" FontFamily="Arial" FontWeight="Bold" Grid.RowSpan="3"/>
+        <Label x:Name="label" Content="Maps to GCI Tester Pin" HorizontalAlignment="Left" Height="28" Margin="20,10,0,-8" VerticalAlignment="Top" Width="140" Grid.Column="1" Grid.RowSpan="3"/>
+    </Grid>
+</UserControl>
