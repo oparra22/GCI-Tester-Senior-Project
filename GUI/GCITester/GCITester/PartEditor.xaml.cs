@@ -12,18 +12,28 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-
+using System.IO;
+using System.Diagnostics;
+using MySql.Data.MySqlClient;
+using System.Data;
 namespace GCITester
 {
 
     public partial class PartEditor : Window
     {
+        public List<String> partNames;
+        string SelectedPartName = string.Empty;
+        DataTable dt;
 
         public PartEditor()
         {
             InitializeComponent();
+
+            //pull parts list from the database
+            GCIDB.Initialize();
+            GCIDB.OpenConnection();
+            partNames = GCIDB.GetPartList();
+            PartsList.ItemsSource = partNames;
         }
 
         private void addButtonPartButton_Click(object sender, RoutedEventArgs e)
@@ -46,6 +56,8 @@ namespace GCITester
         {
            
         }
+
+
     }
 
 }
