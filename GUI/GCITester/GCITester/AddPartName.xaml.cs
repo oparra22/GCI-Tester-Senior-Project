@@ -20,7 +20,7 @@ namespace GCITester
     public partial class AddPartName : Window
     {
         public String PartName = string.Empty;
-
+        public bool closed = false;
         public AddPartName()
         {
             InitializeComponent();
@@ -41,6 +41,9 @@ namespace GCITester
             this.Close();
         }
 
-       
+        private void AddPartName_Closed(object sender, EventArgs e)
+        {
+            closed = true;
+        }
     }
 }

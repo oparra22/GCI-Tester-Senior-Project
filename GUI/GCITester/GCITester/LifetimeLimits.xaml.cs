@@ -39,8 +39,8 @@ namespace GCITester
 
         public void SetEnabled(bool Enable)
         {
-            //numericUCL.Enabled = Enable;
-            //numericLCL.Enabled = Enable;
+            numericUCL.IsEnabled = Enable;
+            numericLCL.IsEnabled = Enable;
         }
 
         public double UCL
