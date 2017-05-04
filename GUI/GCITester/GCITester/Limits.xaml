@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GCITester"
-             mc:Ignorable="d" Height="176.786" Width="513.69" BorderThickness="5" BorderBrush="#FF15315F" Background="#FFFFFEFE" Loaded="Limit_Loaded">
+             mc:Ignorable="d" Height="176.786" Width="513.69" BorderThickness="5" BorderBrush="#FF15315F" Background="#FFFFFEFE">
     <Grid>
         <Label x:Name="labelPin" Content="DUT Pin 0" HorizontalAlignment="Left" Margin="28,10,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LCL_label" Content="Production LCL [V]" HorizontalAlignment="Left" Margin="144,10,0,0" VerticalAlignment="Top"/>
