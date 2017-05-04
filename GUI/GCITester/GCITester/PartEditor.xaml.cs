@@ -64,7 +64,7 @@ namespace GCITester
             PinsEdited = false;
             limitList1.ClearAllEdits();
             lifetimeLimits1.Edited = false;
-           // buttonSaveChanges.Enabled = false;
+            buttonSaveChanges.IsEnabled = false;
 
             if (listParts.Items.Count > 0)
             {
@@ -102,42 +102,42 @@ namespace GCITester
                 {
                     limitList1.AddLimit(Limit);
                 }
-               // buttonEditTestPins.Enabled = true;
-                //buttonSaveChanges.Enabled = true;
+               buttonEditTestPins.IsEnabled = true;
+               buttonSaveChanges.IsEnabled = true;
             }
 
         }
 
         //private void buttonEditTestPins_Click(object sender, EventArgs e)
         //{
-        //    List<Byte> CurrentPins = limitList1.GetCurrentDUTPins();
+        //    List<int> CurrentPins = limitList1.GetCurrentDUTPins();
 
-        //    frmSelectDUTPins DutPinSelect = new frmSelectDUTPins(CurrentPins);
+        //    SelectDUTPins DutPinSelect = new SelectDUTPins(CurrentPins);
         //    if (DutPinSelect.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
         //    {
-        //        buttonSaveChanges.Enabled = true;
+        //        buttonSaveChanges.IsEnabled = true;
         //        PinsEdited = true;
-        //        List<byte> DUTPinResults = DutPinSelect.SelectedPins;
-        //        List<byte> ExistingPins = limitList1.GetCurrentDUTPins();
+        //        List<int> DUTPinResults = DutPinSelect.SelectedPins;
+        //        List<int> ExistingPins = limitList1.GetCurrentDUTPins();
 
-        //        List<byte> MergedPins = new List<byte>();
-
-        //        foreach (Byte Pin in DUTPinResults)
+        //        List<int> MergedPins = new List<int>();
+                
+        //        foreach (int Pin in DUTPinResults)
         //        {
         //            if (MergedPins.Contains(Pin) == false)
         //                MergedPins.Add(Pin);
         //        }
 
-        //        foreach (Byte Pin in ExistingPins)
+        //        foreach (int Pin in ExistingPins)
         //        {
         //            if (MergedPins.Contains(Pin) == false)
         //                MergedPins.Add(Pin);
         //        }
 
 
-        //        Dictionary<byte, LimitEntity> CurrentLimitDict = limitList1.BuildLimitEntityDictionary();
+        //        Dictionary<int, LimitEntity> CurrentLimitDict = limitList1.BuildLimitEntityDictionary();
 
-        //        foreach (Byte Pin in MergedPins)
+        //        foreach (int Pin in MergedPins)
         //        {
         //            if (CurrentLimitDict.ContainsKey(Pin) == false)
         //            {
@@ -148,7 +148,7 @@ namespace GCITester
         //        limitList1.ClearLimits();
 
 
-        //        foreach (byte Pin in CurrentLimitDict.Keys)
+        //        foreach (int Pin in CurrentLimitDict.Keys)
         //        {
         //            if (DUTPinResults.Contains(Pin))
         //                limitList1.AddLimit(CurrentLimitDict[Pin]);
@@ -226,22 +226,24 @@ namespace GCITester
           //  }
         }
 
-        //private void limitList1_LimitsEdited(object sender, EventArgs e)
-        //{
-        //    buttonSaveChanges.Enabled = true;
-        //}
+        private void limitList1_LimitsEdited(object sender, EventArgs e)
+        {
+            buttonSaveChanges.IsEnabled = true;
+        }
 
-        //private void lifetimeLimits1_LimitsEdited(object sender, EventArgs e)
-        //{
-        //    buttonSaveChanges.Enabled = true;
-        //}
+        private void lifetimeLimits1_LimitsEdited(object sender, EventArgs e)
+        {
+            buttonSaveChanges.IsEnabled = true;
+        }
 
         private void lifetimeLimits1_Load(object sender, RoutedEventArgs e)
         {
 
         }
 
-      
+     
+
+
 
 
 

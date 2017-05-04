@@ -25,8 +25,8 @@
         <Label x:Name="sigma" Content="σ to each pin" HorizontalAlignment="Left" Height="26" Margin="383.5,24,0,0" VerticalAlignment="Top" Width="93" FontSize="13" FontFamily="Microsoft JhengHei UI"  Grid.Column="2"/>
         <local:numericUpDown x:Name="numericSigma" HorizontalAlignment="Left" VerticalAlignment="Top" Height="44" Margin="257.5,20,0,0" Width="109" Grid.Column="2"/>
         <Button x:Name="buttonSigmaApply" Content="Apply" HorizontalAlignment="Left" Margin="519.5,20,0,0" VerticalAlignment="Top" Width="90" Height="44" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="16" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" BorderBrush="#FF15315F" RenderTransformOrigin="0.48,1.139" Grid.Column="2" Grid.ColumnSpan="2"/>
-        <local:LifetimeLimits x:Name="lifetimeLimits1" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Left" Margin="55,78,0,0" VerticalAlignment="Top" Height="67" Width="715" Loaded="lifetimeLimits1_Load"/>
-        <local:LimitList x:Name="limitList1" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Left" Margin="55,159,0,0" VerticalAlignment="Top" Height="384" Width="715"/>
+        <local:LifetimeLimits x:Name="lifetimeLimits1" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Left" Margin="55,78,0,0" VerticalAlignment="Top" Height="67" Width="715" Loaded="lifetimeLimits1_Load" LimitsEdited="lifetimeLimits1_LimitsEdited"/>
+        <local:LimitList x:Name="limitList1" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Left" Margin="55,159,0,0" VerticalAlignment="Top" Height="384" Width="715" LimitsEdited="lifetimeLimits1_LimitsEdited"/>
 
     </Grid>
 </Window>
