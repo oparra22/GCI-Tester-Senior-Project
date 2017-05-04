@@ -108,53 +108,53 @@ namespace GCITester
 
         }
 
-        private void buttonEditTestPins_Click(object sender, EventArgs e)
-        {
-            List<int> CurrentPins = limitList1.GetCurrentDUTPins();
+        //private void buttonEditTestPins_Click(object sender, EventArgs e)
+        //{
+        //    List<int> CurrentPins = limitList1.GetCurrentDUTPins();
 
-            SelectDUTPins DutPinSelect = new SelectDUTPins(CurrentPins);
-            if (DutPinSelect.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-            {
-                buttonSaveChanges.IsEnabled = true;
-                PinsEdited = true;
-                List<int> DUTPinResults = DutPinSelect.SelectedPins;
-                List<int> ExistingPins = limitList1.GetCurrentDUTPins();
+        //    SelectDUTPins DutPinSelect = new SelectDUTPins(CurrentPins);
+        //    if (DutPinSelect.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+        //    {
+        //        buttonSaveChanges.IsEnabled = true;
+        //        PinsEdited = true;
+        //        List<int> DUTPinResults = DutPinSelect.SelectedPins;
+        //        List<int> ExistingPins = limitList1.GetCurrentDUTPins();
 
-                List<int> MergedPins = new List<int>();
+        //        List<int> MergedPins = new List<int>();
                 
-                foreach (int Pin in DUTPinResults)
-                {
-                    if (MergedPins.Contains(Pin) == false)
-                        MergedPins.Add(Pin);
-                }
+        //        foreach (int Pin in DUTPinResults)
+        //        {
+        //            if (MergedPins.Contains(Pin) == false)
+        //                MergedPins.Add(Pin);
+        //        }
 
-                foreach (int Pin in ExistingPins)
-                {
-                    if (MergedPins.Contains(Pin) == false)
-                        MergedPins.Add(Pin);
-                }
-
-
-                Dictionary<int, LimitEntity> CurrentLimitDict = limitList1.BuildLimitEntityDictionary();
-
-                foreach (int Pin in MergedPins)
-                {
-                    if (CurrentLimitDict.ContainsKey(Pin) == false)
-                    {
-                        CurrentLimitDict.Add(Pin, new LimitEntity(SelectedPartID, SelectedProductionLimitID, 0, 0, Pin, 0, 0));
-                    }
-                }
-
-                limitList1.ClearLimits();
+        //        foreach (int Pin in ExistingPins)
+        //        {
+        //            if (MergedPins.Contains(Pin) == false)
+        //                MergedPins.Add(Pin);
+        //        }
 
 
-                foreach (int Pin in CurrentLimitDict.Keys)
-                {
-                    if (DUTPinResults.Contains(Pin))
-                        limitList1.AddLimit(CurrentLimitDict[Pin]);
-                }
-            }
-        }
+        //        Dictionary<int, LimitEntity> CurrentLimitDict = limitList1.BuildLimitEntityDictionary();
+
+        //        foreach (int Pin in MergedPins)
+        //        {
+        //            if (CurrentLimitDict.ContainsKey(Pin) == false)
+        //            {
+        //                CurrentLimitDict.Add(Pin, new LimitEntity(SelectedPartID, SelectedProductionLimitID, 0, 0, Pin, 0, 0));
+        //            }
+        //        }
+
+        //        limitList1.ClearLimits();
+
+
+        //        foreach (int Pin in CurrentLimitDict.Keys)
+        //        {
+        //            if (DUTPinResults.Contains(Pin))
+        //                limitList1.AddLimit(CurrentLimitDict[Pin]);
+        //        }
+        //    }
+        //}
 
         private void buttonAddNewPart_Click(object sender, EventArgs e)
         {
@@ -241,7 +241,9 @@ namespace GCITester
 
         }
 
-      
+     
+
+
 
 
 

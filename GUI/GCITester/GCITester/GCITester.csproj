@@ -166,6 +166,9 @@
     <Compile Include="Reports.xaml.cs">
       <DependentUpon>Reports.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SelectDUTPins.xaml.cs">
+      <DependentUpon>SelectDUTPins.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SerialPortSettings.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -297,6 +300,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Reports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectDUTPins.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
