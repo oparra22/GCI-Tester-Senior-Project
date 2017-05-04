@@ -35,6 +35,10 @@ namespace GCITester
         public productionLimits()
         {
             InitializeComponent();
+            numPartsTestCount.setValue(1);
+            numPartsTestCount.setLimit(1);
+            numIterPartCount.setValue(1);
+            numIterPartCount.setLimit(1);
         }
 
         private void updownTest_Loaded(object sender, RoutedEventArgs e)
