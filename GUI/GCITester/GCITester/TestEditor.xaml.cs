@@ -163,8 +163,8 @@ namespace GCITester
                     foreach (byte Pin in DUTPins)
                     {
 
-                        if (CurrentGCIPin == 48)
-                            CurrentGCIPin += 4;
+                        //if (CurrentGCIPin == 48)
+                        //    CurrentGCIPin += 4;
                         GCIDB.AddTestPinMap(TestBoardID, window.BoardName, PartID, SocketIndex, Device, Pin, CurrentGCIPin, DateTime.Now);
                         CurrentGCIPin++;
                         //testBoardList1.AddPinMap(PartID, TestBoardID, Device, Pin, CurrentGCIPin++);
