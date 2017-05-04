@@ -67,6 +67,10 @@ namespace GCITester
             return pinNum;
         }
 
-       
+        private void numericUpDown_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox t = (TextBox)sender;
+            pinNum = Convert.ToInt32(t.Text);
+        }
     }
 }
