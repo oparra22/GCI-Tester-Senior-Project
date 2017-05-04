@@ -63,7 +63,5 @@ namespace GCITester
             window.Show();
             this.Close();
         }
-
-        
     }
 }

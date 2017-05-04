@@ -309,39 +309,47 @@ namespace GCITester
 
         private void BuildReport()
         {
-            Dispatcher.BeginInvoke(new Action(delegate ()
+            if (SelectedTestType == "Continuity")
             {
-                treeResults.Items.Clear();//Changed treeResults.Nodes to treeResults.Nodes
-                TreeViewItem Root = new TreeViewItem(); //TreeNode is now TreeViewItem
-                //added line
-                Root.Header = SelectedPartName;
-                treeResults.Items.Add(Root);
 
-                foreach (int PinID in LearnResults.Keys)
+                Dispatcher.BeginInvoke(new Action(delegate ()
                 {
-                    TreeViewItem Name = new TreeViewItem();
-                    Name.Header = "Pin " + GCIToDUTMap[PinID].ToString();
+                    treeResults.Items.Clear();//Changed treeResults.Nodes to treeResults.Nodes
+                TreeViewItem Root = new TreeViewItem(); //TreeNode is now TreeViewItem
+                                                        //added line
+                Root.Header = SelectedPartName;
+                    treeResults.Items.Add(Root);
 
-                    TreeViewItem Average = new TreeViewItem();
-                    Average.Header = "Average: " + LearnResults[PinID].GetVoltageAverage() + " V";
-
-                    TreeViewItem StdDev = new TreeViewItem();
-                    StdDev.Header = "StdDev: " + LearnResults[PinID].GetStandardDeviation() + " V";
-
-                    TreeViewItem MeasuredValues = new TreeViewItem();
-                    MeasuredValues.Header = LearnResults[PinID].VoltageReadings.Count.ToString() + " Measured Voltages";
-                    for (int i = 0; i < LearnResults[PinID].VoltageReadings.Count; i++)
+                    foreach (int PinID in LearnResults.Keys)
                     {
-                        TreeViewItem Value = new TreeViewItem();
-                        Value.Header = "Iteration " + (i + 1).ToString() + ") " + LearnResults[PinID].VoltageReadings[i].ToString();
-                        MeasuredValues.Items.Add(Value);
+                        TreeViewItem Name = new TreeViewItem();
+                        Name.Header = "Pin " + GCIToDUTMap[PinID].ToString();
+
+                        TreeViewItem Average = new TreeViewItem();
+                        Average.Header = "Average: " + LearnResults[PinID].GetVoltageAverage() + " V";
+
+                        TreeViewItem StdDev = new TreeViewItem();
+                        StdDev.Header = "StdDev: " + LearnResults[PinID].GetStandardDeviation() + " V";
+
+                        TreeViewItem MeasuredValues = new TreeViewItem();
+                        MeasuredValues.Header = LearnResults[PinID].VoltageReadings.Count.ToString() + " Measured Voltages";
+                        for (int i = 0; i < LearnResults[PinID].VoltageReadings.Count; i++)
+                        {
+                            TreeViewItem Value = new TreeViewItem();
+                            Value.Header = "Iteration " + (i + 1).ToString() + ") " + LearnResults[PinID].VoltageReadings[i].ToString();
+                            MeasuredValues.Items.Add(Value);
+                        }
+                        Name.Items.Add(Average);
+                        Name.Items.Add(StdDev);
+                        Name.Items.Add(MeasuredValues);
+                        Root.Items.Add(Name);
                     }
-                    Name.Items.Add(Average);
-                    Name.Items.Add(StdDev);
-                    Name.Items.Add(MeasuredValues);
-                    Root.Items.Add(Name);
-                }
-            }));
+                }));
+            }
+            else
+            {
+                Console.WriteLine("build short Report");
+            }
         }
 
         private void UpdateCurrentIteration(bool Visible)
