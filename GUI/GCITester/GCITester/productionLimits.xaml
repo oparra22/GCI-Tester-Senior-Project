@@ -5,30 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GCITester"
         mc:Ignorable="d"
-        Title="productionLimits" Height="872.073" Width="519.525" Closing="productionLimits_OnClosing" Loaded="productionLimits_Load">
+        Title="productionLimits" Height="918.298" Width="519.525" Closing="productionLimits_OnClosing" Loaded="productionLimits_Load">
     <Grid Margin="0,0,4.5,7.5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="428*"/>
         </Grid.ColumnDefinitions>
-        <ComboBox x:Name="partNumberBox" HorizontalAlignment="Left" Margin="316,30,0,0" VerticalAlignment="Top" Width="151" Height="39" BorderThickness="5" BorderBrush="#FF15315F" SelectionChanged="partNumberBox_SelectionChanged" Grid.Column="1"/>
-        <TextBlock x:Name="partText" HorizontalAlignment="Left" Margin="33,43,0,0" TextWrapping="Wrap" Text="Part Number" VerticalAlignment="Top" Height="26" Width="127" FontSize="16" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.Column="1"/>
-        <TextBlock x:Name="testBoard" HorizontalAlignment="Left" Margin="33,87,0,0" TextWrapping="Wrap" Text="Test Board" VerticalAlignment="Top" Height="34" Width="127" FontSize="16" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.Column="1"/>
-        <ComboBox x:Name="testBoardBox" HorizontalAlignment="Left" Margin="316,82,0,0" VerticalAlignment="Top" Width="151" Height="39" BorderThickness="5" BorderBrush="#FF15315F" Grid.Column="1" SelectionChanged="testBoardBox_SelectionChanged"/>
-        <TextBlock x:Name="numPartsTest" HorizontalAlignment="Left" Margin="33,197,0,0" TextWrapping="Wrap" Text="Number of parts to test" VerticalAlignment="Top" Height="39" Width="198" FontSize="16" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.Column="1"/>
-        <TextBlock x:Name="numIterPart" HorizontalAlignment="Left" Margin="33,254,0,0" TextWrapping="Wrap" Text="Number of iterations per part" VerticalAlignment="Top" Height="36" Width="250" FontSize="16" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.Column="1"/>
-        <TreeView x:Name="treeResults" Grid.Column="1" HorizontalAlignment="Left" Height="305" Margin="17,371,0,0" VerticalAlignment="Top" Width="446" BorderThickness="5" BorderBrush="#FF15315F"/>
-        <Button x:Name="startButton" Content="Start" HorizontalAlignment="Left" Margin="316,318,0,0" VerticalAlignment="Top" Width="159" Height="48" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="start_Click" BorderBrush="#FF15315F" Grid.Column="1"/>
-        <local:numericUpDown x:Name="numPartsTestCount" Grid.Column="1" HorizontalAlignment="Left" Margin="316,193,0,0" VerticalAlignment="Top" Width="147" Height="43"/>
-        <local:numericUpDown x:Name="numIterPartCount" Grid.Column="1" HorizontalAlignment="Left" Margin="316,246,0,0" VerticalAlignment="Top" Width="147" Height="44"/>
-        <TextBlock x:Name="socketOnBoardLab" HorizontalAlignment="Left" Margin="33,142,0,0" TextWrapping="Wrap" Text="Socket On Board" VerticalAlignment="Top" Height="36" Width="250" FontSize="16" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.Column="1"/>
-        <ComboBox x:Name="socketOnBoardCombobox" HorizontalAlignment="Left" Margin="316,139,0,0" VerticalAlignment="Top" Width="151" Height="39" BorderThickness="5" BorderBrush="#FF15315F" Grid.Column="1" SelectionChanged="socketOnBoardCombobox_SelectionChanged"/>
-        <Button x:Name="cancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="33,758,0,0" VerticalAlignment="Top" Width="159" Height="48" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="cancel_click" BorderBrush="#FF15315F" Grid.Column="1"/>
-        <Button x:Name="saveButton" Content="Save" HorizontalAlignment="Left" Margin="308,758,0,0" VerticalAlignment="Top" Width="159" Height="48" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="saveButton_Click" BorderBrush="#FF15315F" Grid.Column="1"/>
-        <Label x:Name="labelProgress" HorizontalAlignment="Left" Margin="33,318,0,0"  Content="Progress:" VerticalAlignment="Top" Height="36" Width="250" FontSize="16" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.Column="1"/>
-        <local:numericUpDown x:Name="numericSigma" Grid.Column="1" HorizontalAlignment="Left" Margin="66,681,0,0" VerticalAlignment="Top" Width="147" Height="44"/>
-        <Label x:Name="sigLabel1" HorizontalAlignment="Left" Margin="10,689,0,0"  Content="Use ± " VerticalAlignment="Top" Height="36" Width="74" FontSize="16" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.Column="1"/>
-        <TextBlock x:Name="sigLabel1_Copy" HorizontalAlignment="Left" Margin="179,681,0,0"  Text="σ for initial limits - Can be altered in Part Editor" VerticalAlignment="Top" Height="72" Width="296" FontSize="16" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.Column="1" TextWrapping="Wrap" />
+        <ComboBox x:Name="partNumberBox" HorizontalAlignment="Left" Margin="312,63,0,0" VerticalAlignment="Top" Width="151" Height="39" BorderThickness="5" BorderBrush="#FF15315F" SelectionChanged="partNumberBox_SelectionChanged" Grid.Column="1"/>
+        <TextBlock x:Name="partText" HorizontalAlignment="Left" Margin="29,63,0,0" TextWrapping="Wrap" Text="Part Number" VerticalAlignment="Top" Height="26" Width="127" FontSize="16" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.Column="1"/>
+        <TextBlock x:Name="testBoard" HorizontalAlignment="Left" Margin="29,107,0,0" TextWrapping="Wrap" Text="Test Board" VerticalAlignment="Top" Height="34" Width="127" FontSize="16" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.Column="1"/>
+        <ComboBox x:Name="testBoardBox" HorizontalAlignment="Left" Margin="312,107,0,0" VerticalAlignment="Top" Width="151" Height="39" BorderThickness="5" BorderBrush="#FF15315F" Grid.Column="1" SelectionChanged="testBoardBox_SelectionChanged"/>
+        <TextBlock x:Name="numPartsTest" HorizontalAlignment="Left" Margin="29,209,0,0" TextWrapping="Wrap" Text="Number of parts to test" VerticalAlignment="Top" Height="39" Width="198" FontSize="16" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.Column="1"/>
+        <TextBlock x:Name="numIterPart" HorizontalAlignment="Left" Margin="29,266,0,0" TextWrapping="Wrap" Text="Number of iterations per part" VerticalAlignment="Top" Height="36" Width="250" FontSize="16" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.Column="1"/>
+        <TreeView x:Name="treeResults" Grid.Column="1" HorizontalAlignment="Left" Height="305" Margin="33,407,0,0" VerticalAlignment="Top" Width="446" BorderThickness="5" BorderBrush="#FF15315F"/>
+        <Button x:Name="startButton" Content="Start" HorizontalAlignment="Left" Margin="312,330,0,0" VerticalAlignment="Top" Width="159" Height="48" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="start_Click" BorderBrush="#FF15315F" Grid.Column="1"/>
+        <local:numericUpDown x:Name="numPartsTestCount" Grid.Column="1" HorizontalAlignment="Left" Margin="312,205,0,0" VerticalAlignment="Top" Width="147" Height="43"/>
+        <local:numericUpDown x:Name="numIterPartCount" Grid.Column="1" HorizontalAlignment="Left" Margin="312,258,0,0" VerticalAlignment="Top" Width="147" Height="44"/>
+        <TextBlock x:Name="socketOnBoardLab" HorizontalAlignment="Left" Margin="29,151,0,0" TextWrapping="Wrap" Text="Socket On Board" VerticalAlignment="Top" Height="36" Width="250" FontSize="16" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.Column="1"/>
+        <ComboBox x:Name="socketOnBoardCombobox" HorizontalAlignment="Left" Margin="312,151,0,0" VerticalAlignment="Top" Width="151" Height="39" BorderThickness="5" BorderBrush="#FF15315F" Grid.Column="1" SelectionChanged="socketOnBoardCombobox_SelectionChanged"/>
+        <Button x:Name="cancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="17,795,0,0" VerticalAlignment="Top" Width="158" Height="48" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="cancel_click" BorderBrush="#FF15315F" Grid.Column="1"/>
+        <Button x:Name="saveButton" Content="Save" HorizontalAlignment="Left" Margin="303,795,0,0" VerticalAlignment="Top" Width="160" Height="48" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="saveButton_Click" BorderBrush="#FF15315F" Grid.Column="1"/>
+        <Label x:Name="labelProgress" HorizontalAlignment="Left" Margin="29,330,0,0"  Content="Progress:" VerticalAlignment="Top" Height="36" Width="250" FontSize="16" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.Column="1"/>
+        <local:numericUpDown x:Name="numericSigma" Grid.Column="1" HorizontalAlignment="Left" Margin="75,717,0,0" VerticalAlignment="Top" Width="146" Height="44"/>
+        <Label x:Name="sigLabel1" HorizontalAlignment="Left" Margin="17,725,0,0"  Content="Use ± " VerticalAlignment="Top" Height="36" Width="74" FontSize="16" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.Column="1"/>
+        <TextBlock x:Name="sigLabel1_Copy" HorizontalAlignment="Left" Margin="201,717,0,0"  Text="σ for initial limits - Can be altered in Part Editor" VerticalAlignment="Top" Height="72" Width="296" FontSize="16" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.Column="1" TextWrapping="Wrap" />
+        <TextBlock x:Name="testText" HorizontalAlignment="Left" Margin="29,24,0,0" TextWrapping="Wrap" Text="Test Type" VerticalAlignment="Top" Height="26" Width="127" FontSize="16" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.Column="1"/>
+        <ComboBox x:Name="testType_ComboBox" HorizontalAlignment="Left" Margin="312,19,0,0" VerticalAlignment="Top" Width="151" Height="39" BorderThickness="5" BorderBrush="#FF15315F" SelectionChanged="testType_ComboBox_SelectionChanged" Grid.Column="1" Loaded="testType_Loaded"/>
 
     </Grid>
 </Window>

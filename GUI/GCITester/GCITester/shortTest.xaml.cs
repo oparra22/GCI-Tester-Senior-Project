@@ -79,7 +79,7 @@ namespace GCITester
                 Pin2_1 = (Byte)pin2;
                 Pin2_2 = (Byte)0;
             }
-            Communication.TestPinShort(Pin1_1, Pin1_2, Pin2_1, Pin2_2);
+            //Communication.TestPinShort(Pin1_1, Pin1_2, Pin2_1, Pin2_2);
         }
 
         private void PossiblePins_SelectionChanged(object sender, SelectionChangedEventArgs e)

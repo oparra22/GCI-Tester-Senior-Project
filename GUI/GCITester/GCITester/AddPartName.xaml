@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GCITester"
         mc:Ignorable="d"
-        Title="AddPartName" Height="176.629" Width="479.01">
+        Title="AddPartName" Height="176.629" Width="479.01" Closed="AddPartName_Closed">
     <Grid Margin="0,0,-71,138">
         <Label Content="Enter new part name" HorizontalAlignment="Left" Height="34" Margin="11,18,0,-52" VerticalAlignment="Top" Width="209" FontSize="20" FontFamily="Microsoft JhengHei UI"/>
         <TextBox x:Name="textPartName" HorizontalAlignment="Left" Height="34" Margin="225,18,0,-52" TextWrapping="Wrap"  VerticalAlignment="Top" Width="216" BorderThickness="2" BorderBrush="#FF15315F" FontSize="18"/>
