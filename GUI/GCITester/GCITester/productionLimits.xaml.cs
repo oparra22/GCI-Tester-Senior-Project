@@ -349,6 +349,13 @@ namespace GCITester
             else
             {
                 Console.WriteLine("build short Report");
+                Dispatcher.BeginInvoke(new Action(delegate ()
+                {
+                    treeResults.Items.Clear();
+                    TreeViewItem Root = new TreeViewItem();
+                    Root.Header = SelectedPartName;
+                    treeResults.Items.Add(Root);
+                }));
             }
         }
 
