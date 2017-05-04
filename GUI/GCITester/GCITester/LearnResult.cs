@@ -8,6 +8,7 @@ namespace GCITester
     class LearnResult
     {
         public int PinID;
+        public int PinID2;
         public List<Double> VoltageReadings;
 
         public LearnResult()
@@ -25,6 +26,13 @@ namespace GCITester
         public LearnResult(int PinID, double Voltage)
         {
             this.PinID = PinID;
+            VoltageReadings = new List<double>();
+            VoltageReadings.Add(Voltage);
+        }
+        public LearnResult(int PinID,int PinID2, double Voltage)
+        {
+            this.PinID = PinID;
+            this.PinID2 = PinID2;
             VoltageReadings = new List<double>();
             VoltageReadings.Add(Voltage);
         }

@@ -332,14 +332,37 @@ namespace GCITester
                 {
                     if (numericTestHour.pinValue() > 0)
                     {
-                       
-                        CompareToLimits();   
-                     
+
+                        if (this.Dispatcher.CheckAccess() == true)
+                        {
+                            //this.Invoke(new MethodInvoker(delegate
+                            //{
+                            //    CompareToLimits();
+                            //}));
+                            Dispatcher.BeginInvoke(new Action(delegate ()
+                            {
+                                CompareToLimits();
+                            }));
+                        }
+                        else
+                            CompareToLimits();
                         listLifetimeInfo1.DisplaAll(true);
                     }
                     else
                     {
-                       
+                        if (this.Dispatcher.CheckAccess() == true)
+                        {
+                            //this.Invoke(new MethodInvoker(delegate
+                            //{
+                            //    DisplayTime0Data();
+                            //}));
+                            Dispatcher.BeginInvoke(new Action(delegate ()
+                            {
+                                DisplayTime0Data();
+                            }));
+
+                        }
+                        else
                             DisplayTime0Data();
 
                     }
@@ -473,58 +496,64 @@ namespace GCITester
             }
         }
 
-        //private void SafeLockUI(bool State)
-        //{
-        //    if (this.InvokeRequired == true)
-        //    {
-        //        this.Invoke(new MethodInvoker(delegate
-        //        {
-        //            LockUI(State);
-        //        }));
-        //    }
-        //    else
-        //    {
-        //        LockUI(State);
-        //    }
-        //}
+        private void SafeLockUI(bool State)
+        {
+            if (this.CheckAccess() == true)
+            {
+                //this.Invoke(new MethodInvoker(delegate
+                //{
+                //    LockUI(State);
+                //}));
+                Dispatcher.BeginInvoke(new Action(delegate ()
+                {
+                    LockUI(State);
+                }));
+            }
+            else
+            {
+                LockUI(State);
+            }
+        }
 
-        //private void LockUI(bool State)
-        //{
-        //    if (State == true)
-        //    {
-        //        comboPartName.Enabled = false;
-        //        comboTestBoard.Enabled = false;
-        //        numericIterations.Enabled = false;
-        //        numericTemperature.Enabled = false;
-        //        numericTestHour.Enabled = false;
-        //        textBatchName.Enabled = false;
-        //        buttonStart.Enabled = false;
-        //    }
-        //    else
-        //    {
-        //        comboPartName.Enabled = true;
-        //        comboTestBoard.Enabled = true;
-        //        numericIterations.Enabled = true;
-        //        numericTemperature.Enabled = true;
-        //        numericTestHour.Enabled = true;
-        //        textBatchName.Enabled = true;
-        //        buttonStart.Enabled = true;
-        //    }
-        //}
+        private void LockUI(bool State)
+        {
+            if (State == true)
+            {
+                comboPartName.IsEnabled = false;
+                comboTestBoard.IsEnabled = false;
+                numericIterations.IsEnabled = false;
+                numericTemperature.IsEnabled = false;
+                numericTestHour.IsEnabled = false;
+                textBatchName.IsEnabled = false;
+                buttonStart.IsEnabled = false;
+            }
+            else
+            {
+                comboPartName.IsEnabled = true;
+                comboTestBoard.IsEnabled = true;
+                numericIterations.IsEnabled = true;
+                numericTemperature.IsEnabled = true;
+                numericTestHour.IsEnabled = true;
+                textBatchName.IsEnabled = true;
+                buttonStart.IsEnabled = true;
+            }
+        }
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            //if (listLifetimeInfo1.CheckForDuplicateSerialNumber() == true)
-            //{
-            //    MessageBox.Show("Duplicate serial numbers detected, please fix.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return;
-            //}
+            if (listLifetimeInfo1.CheckForDuplicateSerialNumber() == true)
+            {
+                //MessageBox.Show("Duplicate serial numbers detected, please fix.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Duplicate serial numbers detected, please fix.", "Error");
+                return;
+            }
 
-            //if (textBatchName.Text.Trim().Length == 0)
-            //{
-            //    MessageBox.Show("Please enter a batch name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return;
-            //}
+            if (textBatchName.Text.Trim().Length == 0)
+            {
+                //MessageBox.Show("Please enter a batch name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Duplicate serial numbers detected, please fix.", "Error");
+                return;
+            }
 
             PinsToTest = listLifetimeInfo1.GetAllPinsToTest();
             int PinTotal = PinsToTest.Count;
@@ -545,9 +574,9 @@ namespace GCITester
 
 
         //UPDATE THIS OSVALDO
-        //private void frmLifetimeTest_FormClosing(object sender, EventArgs e)
-        //{
-        //    Communication.OnResultComplete -= new Communication.ResultComplete(Communication_OnResultComplete);
-        //}
+        private void frmLifetimeTest_Closing(object sender, EventArgs e)
+        {
+            Communication.OnResultComplete -= new Communication.ResultComplete(Communication_OnResultComplete);
+        }
     }
 }
