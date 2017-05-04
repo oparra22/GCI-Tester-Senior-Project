@@ -24,12 +24,8 @@ namespace GCITester
         double pinNum;
         double lowerLimit = 0;
         string pinString;
-        // public bool changed = false;
-        public event EventHandler ValueChanged;
-        //public EventHandler ValueChanged;
         //double clicked = 0;
         //sets default value of numeric up and down
-
         public void setValue(double v)
         {
             pinNum = v;
@@ -71,12 +67,6 @@ namespace GCITester
         }
 
 
-        public void DoubleNumericUpDown_Changed(object sender, TextChangedEventArgs e)
-        {
-            if(this.ValueChanged != null)
-                this.ValueChanged(sender, e);
-        }
-
-    
+       
     }
 }

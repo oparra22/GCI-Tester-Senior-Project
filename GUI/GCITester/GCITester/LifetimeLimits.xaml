@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GCITester"
-             mc:Ignorable="d" Height="66.743" Width="695.567" BorderThickness="5" Background="#FFFFFCFC" Foreground="{x:Null}" BorderBrush="#FF15315F" Loaded="LifetimeLimits_Loaded">
+             mc:Ignorable="d" Height="66.743" Width="695.567" BorderThickness="5" Background="#FFFFFCFC" Foreground="{x:Null}" BorderBrush="#FF15315F">
     <Grid>
         <Label x:Name="lifetimeLimits" Content="Lifetime limits" HorizontalAlignment="Left" Height="38" Margin="0,11,0,0" VerticalAlignment="Top" Width="147" FontSize="20" FontFamily="Microsoft JhengHei UI" FontWeight="Bold"/>
         <Label x:Name="LCL_label" Content="LCL [mV shift]" HorizontalAlignment="Left" Height="25" Margin="171,18,0,0" VerticalAlignment="Top" Width="92" FontSize="13" FontFamily="Microsoft JhengHei UI"/>
