@@ -141,11 +141,12 @@ namespace GCITester
             //open connection
             if (OpenConnection() == true)
             {
+               
                 //create command and assign the query and connection from the constructor
                 MySqlCommand cmd = new MySqlCommand(query, connection);
-
+                OpenConnection();
                 //Execute command
-                cmd.ExecuteNonQuery();
+                cmd.ExecuteReader();
 
                 //close connection
                 CloseConnection();
@@ -362,7 +363,7 @@ namespace GCITester
                 MySqlCommand cmd = new MySqlCommand(query, connection);
 
                 //Execute command
-                cmd.ExecuteNonQuery();
+                cmd.ExecuteReader();
 
                 //close connection
                 CloseConnection();

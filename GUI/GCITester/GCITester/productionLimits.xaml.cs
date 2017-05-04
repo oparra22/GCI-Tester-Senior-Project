@@ -249,7 +249,8 @@ namespace GCITester
                     labelProgress.Visibility = Visibility.Hidden;
                     return;
                 }
-                labelProgress.Content = "Progress (" + (CurrentDeviceNumber + 1).ToString() + " / " + TotalDevices.ToString() + ")  Pin (" + (LearnControl[CurrentDeviceNumber].CurrentPinNumber + 1).ToString() + "/" + LearnControl[CurrentDeviceNumber].PinsToTest.Count.ToString() + ")";
+                labelProgress.Content = "Progress (" + (CurrentDeviceNumber + 1).ToString() + " / " + TotalDevices.ToString() + ")  Pin (" + (LearnControl[CurrentDeviceNumber].CurrentPinNumber + 1).ToString()
+                + "/" + LearnControl[CurrentDeviceNumber].PinsToTest.Count.ToString() + ")";
             }));
         }
 
