@@ -49,27 +49,30 @@ namespace GCITester
 
         public void SetBackColor()
         {
-
-            /*if (SkipTest == true)
+            Dispatcher.BeginInvoke(new Action(delegate ()
             {
-                this.BackColor = Color.LightGray;
-            }*/
+                /*if (SkipTest == true)
+             {
+                 this.BackColor = Color.LightGray;
+             }*/
 
-            if (labelResult.Visibility == Visibility.Visible)
-            {
-                if (_Result == true)
+                if (labelResult.Visibility == Visibility.Visible)
                 {
-                    this.Background = Brushes.Green;
+                    if (_Result == true)
+                    {
+                        this.Background = Brushes.Green;
+                    }
+                    else
+                    {
+                        this.Background = Brushes.Red;
+                    }
                 }
                 else
                 {
-                    this.Background = Brushes.Red;
+                    this.Background = Brushes.LightGray;
                 }
-            }
-            else
-            {
-                this.Background = Brushes.LightGray;
-            }
+            }));
+            
 
         }
 
@@ -81,14 +84,21 @@ namespace GCITester
                 _Result = value;
                 if (_Result == true)
                 {
-
-                    labelResult.Content = "PASS";
+                    Dispatcher.BeginInvoke(new Action(delegate ()
+                    {
+                        labelResult.Content = "PASS";
+                    }));
+                    
 
                 }
                 else
                 {
 
-                    labelResult.Content = "FAIL";
+                    Dispatcher.BeginInvoke(new Action(delegate ()
+                    {
+                        labelResult.Content = "FAIL";
+                    }));
+                    
 
                 }
             }
@@ -96,21 +106,25 @@ namespace GCITester
 
         public void DisplayResult(bool Display)
         {
-
-            if (SkipTest == false)
+            Dispatcher.BeginInvoke(new Action(delegate ()
             {
-                if (Display)
+                if (SkipTest == false)
                 {
-                    labelResult.Visibility = Visibility.Visible;
-                    SetBackColor();
+                    if (Display)
+                    {
+                        labelResult.Visibility = Visibility.Visible;
+                        SetBackColor();
+
+                    }
+                    else labelResult.Visibility = Visibility.Hidden;
 
                 }
-                else labelResult.Visibility = Visibility.Hidden;
+                //This was used for debug
+                //this.Background = Brushes.Red;
+            }));
+
 
             }
-            //This was used for debug
-            //this.Background = Brushes.Red;
-        }
 
         public void ResetTest()
         {

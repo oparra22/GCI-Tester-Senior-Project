@@ -60,35 +60,48 @@ namespace GCITester
         private void SetDisplayStates(bool State)
         {
 
-            buttonStart.IsEnabled = State;
+            //this.Invoke(new MethodInvoker(delegate
+            //{
+            //    buttonStart.Enabled = State;
+            //}));
+            Dispatcher.BeginInvoke(new Action(delegate ()
+            {
+                buttonStart.IsEnabled = State;
+            }));
+            
 
         }
 
         private void UpdateCurrentIteration(bool Visible)
         {
-            if (labelProgress.IsLoaded== true)
+            if (labelProgress.Dispatcher.CheckAccess() == true)
             {
-                if (Visible == true)
-                    labelProgress.Visibility = Visibility.Visible;
-                else
+                Dispatcher.BeginInvoke(new Action(delegate ()
                 {
-                    labelProgress.Visibility = Visibility.Hidden;
-                    return;
-                }
-                labelProgress.Content = "Iteration (" + (ProductionTest.CurrentIteration + 1).ToString() + "/" + ProductionTest.TotalIterations.ToString() + ") Pin (" + (ProductionTest.CurrentPinNumber + 1).ToString() + "/" + PinTotal.ToString() + ")";
-
+                    if (Visible == true)
+                        labelProgress.Visibility = Visibility.Visible;
+                    else
+                    {
+                        labelProgress.Visibility = Visibility.Hidden;
+                        return;
+                    }
+                    labelProgress.Content = "Iteration (" + (ProductionTest.CurrentIteration + 1).ToString() + "/" + ProductionTest.TotalIterations.ToString() + ") Pin (" + (ProductionTest.CurrentPinNumber + 1).ToString() + "/" + PinTotal.ToString() + ")";
+                }));
             }
             else
             {
-                if (Visible == true)
-                    labelProgress.Visibility = Visibility.Visible;
-                else
+                Dispatcher.BeginInvoke(new Action(delegate ()
                 {
-                    labelProgress.Visibility = Visibility.Hidden;
-                    return;
-                }
-                labelProgress.Content = "Iteration (" + (ProductionTest.CurrentIteration + 1).ToString() + "/" + ProductionTest.TotalIterations.ToString() + ") Pin (" + (ProductionTest.CurrentPinNumber + 1).ToString() + "/" + PinTotal.ToString() + ")";
-            }
+                    if (Visible == true)
+                        labelProgress.Visibility = Visibility.Visible;
+                    else
+                    {
+                        labelProgress.Visibility = Visibility.Hidden;
+                        return;
+                    }
+                    labelProgress.Content = "Iteration (" + (ProductionTest.CurrentIteration + 1).ToString() + "/" + ProductionTest.TotalIterations.ToString() + ") Pin (" + (ProductionTest.CurrentPinNumber + 1).ToString() + "/" + PinTotal.ToString() + ")";
+                }));
+               }
         }
 
         private void PopulatePartList()
@@ -168,8 +181,12 @@ namespace GCITester
                         for (int j = 0; j < ProductionTest.TestResults[Socket][TestedDUTPin].VoltageReadings.Count; j++)
                         {
                             double MeasuredVoltage = ProductionTest.TestResults[Socket][TestedDUTPin].VoltageReadings[j];
-                            GCIDB.AddProductionTestData(textBatchName.Text, ProductionTestID, LoadedPartID, LoadedProductionLimitID, TestedDUTPin, j, MeasuredVoltage, AverageVoltage, StdDev, PinResult, DateTime.Now);
-                        }
+                            Dispatcher.BeginInvoke(new Action(delegate ()
+                            {  
+                                GCIDB.AddProductionTestData(textBatchName.Text, ProductionTestID, LoadedPartID, LoadedProductionLimitID, TestedDUTPin, j, MeasuredVoltage, AverageVoltage, StdDev, PinResult, DateTime.Now);
+                                
+                            }));
+                            }
                     }
                 }
                 SetDisplayStates(true);
@@ -183,14 +200,21 @@ namespace GCITester
 
         private void AddLog(string Text)
         {
-            listLog.Items.Add(Text);
+            Dispatcher.BeginInvoke(new Action(delegate ()
+            {
+                listLog.Items.Add(Text);
+            }));
+            
 
         }
 
         private void ClearLog()
         {
-
-            listLog.Items.Clear();
+            Dispatcher.BeginInvoke(new Action(delegate ()
+            {
+                listLog.Items.Clear();
+            }));
+            
 
         }
 

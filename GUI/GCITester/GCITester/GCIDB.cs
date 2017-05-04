@@ -132,6 +132,7 @@ namespace GCITester
 
         public static void AddProductionTestData(string BatchName, int ProductionTestID, int PartID, int LimitID, int DUTPinNumber, int MeasurementNumber, double MeasuredVoltage, double AverageVoltage, double StdDevVoltage, bool Result, DateTime UploadTime)
         {
+            Console.WriteLine($"AddProduction Test data entered {BatchName} {ProductionTestID}{PartID} {LimitID} {DUTPinNumber}{MeasurementNumber} {MeasuredVoltage} {AverageVoltage} {StdDevVoltage} {Result} {UploadTime}");
             string formatForMySql = UploadTime.ToString("yyyy-MM-dd HH:mm:ss");
             string ResultBit = "0";
             if (Result == true)
@@ -149,6 +150,7 @@ namespace GCITester
                 //close connection
                 CloseConnection();
             }
+            Console.WriteLine($"AddProduction Test data finished(GCIDB) ");
         }
 
         public static int GetMostRecentLifetimeTestID_BaseLine(int PartID, String SerialNumber, String BatchName)

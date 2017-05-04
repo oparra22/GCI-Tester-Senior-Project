@@ -34,9 +34,18 @@ namespace GCITester
 
         public void Clear()
         {
-         
+            //this.Invoke(new MethodInvoker(delegate
+            //{
+            //    CurrentProductionInfo = new List<ItemProductionInfo>();
+            //    this.Controls.Clear();
+            //}));
+
+            Dispatcher.BeginInvoke(new Action(delegate ()
+            {
                 CurrentProductionInfo = new List<itemProductionInfo>();
                 listGrid.Children.Clear();
+            }));
+            
          
         }
 
@@ -86,13 +95,16 @@ namespace GCITester
 
         public void AddProductionTestSlot(String SocketName, int SocketIndex, int TestBoardID, List<int> PinsToTest)
         {
-            
-            
+
+            Dispatcher.BeginInvoke(new Action(delegate ()
+            {
                 itemProductionInfo SlotToAdd = new itemProductionInfo(SocketName, SocketIndex, TestBoardID, PinsToTest);
-               // SlotToAdd.Top = (Total * 50) + 5;
-               // this.AutoScrollMinSize = new Size(339, Total * 50);
+                // SlotToAdd.Top = (Total * 50) + 5;
+                // this.AutoScrollMinSize = new Size(339, Total * 50);
                 CurrentProductionInfo.Add(SlotToAdd);
                 listGrid.Children.Add(SlotToAdd);
+            }));
+            
            
         }
 
