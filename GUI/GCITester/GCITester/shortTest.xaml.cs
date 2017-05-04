@@ -108,7 +108,7 @@ namespace GCITester
             // CollectionViewSource.GetDefaultView(PossiblePins.ItemsSource).Refresh();
             //PossiblePins.Items.Clear();
             //PossiblePins_Loaded(sender, e);
-            Console.WriteLine("Fuck Seth the whore");
+            //Console.WriteLine("Fuck Seth the whore");
         }
 
         private void form1_load(object sender, RoutedEventArgs e)
