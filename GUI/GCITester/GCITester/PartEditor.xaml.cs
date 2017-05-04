@@ -103,76 +103,83 @@ namespace GCITester
                     limitList1.AddLimit(Limit);
                 }
                buttonEditTestPins.IsEnabled = true;
-               buttonSaveChanges.IsEnabled = true;
+               //buttonSaveChanges.IsEnabled = true;
             }
 
         }
 
-        //private void buttonEditTestPins_Click(object sender, EventArgs e)
-        //{
-        //    List<int> CurrentPins = limitList1.GetCurrentDUTPins();
+        private void buttonEditTestPins_Click(object sender, EventArgs e)
+        {
+            List<int> CurrentPins = limitList1.GetCurrentDUTPins();
 
-        //    SelectDUTPins DutPinSelect = new SelectDUTPins(CurrentPins);
-        //    if (DutPinSelect.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-        //    {
-        //        buttonSaveChanges.IsEnabled = true;
-        //        PinsEdited = true;
-        //        List<int> DUTPinResults = DutPinSelect.SelectedPins;
-        //        List<int> ExistingPins = limitList1.GetCurrentDUTPins();
+            SelectDUTPins DutPinSelect = new SelectDUTPins(CurrentPins);
+            DutPinSelect.ShowDialog();
+            if (DutPinSelect.closed)
+            {
+                buttonSaveChanges.IsEnabled = true;
+                PinsEdited = true;
+                List<int> DUTPinResults = DutPinSelect.SelectedPins;
+                List<int> ExistingPins = limitList1.GetCurrentDUTPins();
 
-        //        List<int> MergedPins = new List<int>();
-                
-        //        foreach (int Pin in DUTPinResults)
-        //        {
-        //            if (MergedPins.Contains(Pin) == false)
-        //                MergedPins.Add(Pin);
-        //        }
+                List<int> MergedPins = new List<int>();
 
-        //        foreach (int Pin in ExistingPins)
-        //        {
-        //            if (MergedPins.Contains(Pin) == false)
-        //                MergedPins.Add(Pin);
-        //        }
+                foreach (int Pin in DUTPinResults)
+                {
+                    if (MergedPins.Contains(Pin) == false)
+                        MergedPins.Add(Pin);
+                }
 
-
-        //        Dictionary<int, LimitEntity> CurrentLimitDict = limitList1.BuildLimitEntityDictionary();
-
-        //        foreach (int Pin in MergedPins)
-        //        {
-        //            if (CurrentLimitDict.ContainsKey(Pin) == false)
-        //            {
-        //                CurrentLimitDict.Add(Pin, new LimitEntity(SelectedPartID, SelectedProductionLimitID, 0, 0, Pin, 0, 0));
-        //            }
-        //        }
-
-        //        limitList1.ClearLimits();
+                foreach (int Pin in ExistingPins)
+                {
+                    if (MergedPins.Contains(Pin) == false)
+                        MergedPins.Add(Pin);
+                }
 
 
-        //        foreach (int Pin in CurrentLimitDict.Keys)
-        //        {
-        //            if (DUTPinResults.Contains(Pin))
-        //                limitList1.AddLimit(CurrentLimitDict[Pin]);
-        //        }
-        //    }
-        //}
+                Dictionary<int, LimitEntity> CurrentLimitDict = limitList1.BuildLimitEntityDictionary();
+
+                foreach (int Pin in MergedPins)
+                {
+                    if (CurrentLimitDict.ContainsKey(Pin) == false)
+                    {
+                        CurrentLimitDict.Add(Pin, new LimitEntity(SelectedPartID, SelectedProductionLimitID, 0, 0, Pin, 0, 0));
+                    }
+                }
+
+                limitList1.ClearLimits();
+
+
+                foreach (int Pin in CurrentLimitDict.Keys)
+                {
+                    if (DUTPinResults.Contains(Pin))
+                        limitList1.AddLimit(CurrentLimitDict[Pin]);
+                }
+            }
+        }
 
         private void buttonAddNewPart_Click(object sender, EventArgs e)
         {
+            
             AddPartName AddPart = new AddPartName();
-           // if (AddPart.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-           // {
+            //AddPart partWindow = new AddPart();
+           AddPart.ShowDialog();
+
+           if (AddPart.closed)
+            {
                 int PartId = GCIDB.GetPartID(AddPart.PartName);
                 if (PartId == 0)
                 {
                     GCIDB.AddPartID(AddPart.PartName);
+                    
                     int LifetimeLimitID = GCIDB.AddNewLifetimeLimit(AddPart.PartName, Properties.Settings.Default.LifetimeLimit_DefaultLowerRange, Properties.Settings.Default.LifetimeLimit_DefaultUpperRange);
                     GCIDB.SetLifetimeLimit(AddPart.PartName, LifetimeLimitID);
                     PopulatePartList();
                 }
                // else
                     //MessageBox.Show("Error partname already exists in database.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-       }
+            }
+            //Console.Write(AddPart.PartName);
+        }
 
         private void SaveChanges()
         {
@@ -186,7 +193,7 @@ namespace GCITester
                 }
                 PinsEdited = false;
                 limitList1.ClearAllEdits();
-            //    buttonSaveChanges.Enabled = false;
+                buttonSaveChanges.IsEnabled = false;
             }
 
             if (lifetimeLimits1.Edited == true)
@@ -195,16 +202,15 @@ namespace GCITester
                 SelectedLifetimeLimitID = LifetimeLimitID;
                 GCIDB.SetLifetimeLimit(SelectedPartName, SelectedLifetimeLimitID);
                 lifetimeLimits1.Edited = false;
-               // buttonSaveChanges.Enabled = false;
+                buttonSaveChanges.IsEnabled = false;
             }
             MessageBox.Show("All changes saved!");
         }
 
-        private void buttonSaveChanges_Click(object sender, EventArgs e)
+        private void buttonSaveChanges_Click(object sender, RoutedEventArgs e)
         {
             SaveChanges();
         }
-
         private void buttonSigmaApply_Click(object sender, EventArgs e)
         {
             limitList1.ChangeLimitsBySigmaAmount((int)numericSigma.pinValue());
@@ -241,19 +247,7 @@ namespace GCITester
 
         }
 
-     
-
-
-
-
-
-
-
-
-
-
-
-
+      
         //private void frmPartEditor_FormClosing(object sender, FormClosingEventArgs e)
         //{
         //    if (PinsEdited == true || limitList1.HasEdits() == true || lifetimeLimits1.Edited == true)

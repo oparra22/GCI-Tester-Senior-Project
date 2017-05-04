@@ -26,23 +26,23 @@ namespace GCITester
 
         private void partEditor_Click(object sender, RoutedEventArgs e)
         {
-            PartEditor window = new PartEditor();
-            window.Show();
-            this.Close();
+            PartEditor PartEdit = new PartEditor();
+            PartEdit.ShowDialog();
+
         }
 
         private void backToMain_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow window = new MainWindow();
-            window.testsButton.IsEnabled = true;
-            window.Show();
-            this.Close();
+            MainWindow Main = new MainWindow();
+            Main.testsButton.IsEnabled = true;
+            Main.ShowDialog();
+           
         }
 
         private void boarEditor_Click(object sender, RoutedEventArgs e)
         {
-            TestEditor window = new TestEditor();
-            window.ShowDialog();
+            TestEditor TestEdit = new TestEditor();
+            TestEdit.ShowDialog();
         }
     }
 }

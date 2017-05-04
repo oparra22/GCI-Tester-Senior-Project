@@ -80,7 +80,8 @@ namespace GCITester
             Console.WriteLine($"Byte Pin1 = {Communication.PinID1} Byte Pin2 = {Communication.PinID2}");
             Double Voltage = Math.Round((Communication.PinValue * VoltageRef) / 1023.0, 3);
             Console.WriteLine("Onresultecomplete before AddLog");
-            AddLog("Pin " + TestedPin.ToString() + " Measured: " + Voltage.ToString() + "V  [0x" + Communication.PinValue.ToString("X4") + "]" + "\t Voltage Drop: " + (double)(VoltageRef - Voltage) + "Testedpin 2 = " + TestedPin2);
+            //AddLog("Pin " + TestedPin.ToString() + " Measured: " + Voltage.ToString() + "V  [0x" + Communication.PinValue.ToString("X4") + "]" + "\t Voltage Drop: " + (double)(VoltageRef - Voltage) + "Testedpin 2 = " + TestedPin2);
+            AddLog($"Pin1:{TestedPin.ToString()} Pin2: {TestedPin2} Measured: {Voltage.ToString()}V Drop: {(double)(VoltageRef - Voltage)} ");
             flag = 1;
         }
 

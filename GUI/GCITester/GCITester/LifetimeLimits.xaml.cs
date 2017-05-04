@@ -39,8 +39,8 @@ namespace GCITester
 
         public void SetEnabled(bool Enable)
         {
-            //numericUCL.Enabled = Enable;
-            //numericLCL.Enabled = Enable;
+            numericUCL.IsEnabled = Enable;
+            numericLCL.IsEnabled = Enable;
         }
 
         public double UCL
@@ -68,6 +68,13 @@ namespace GCITester
             InitializeComponent();
         }
 
+        private void LifetimeLimits_Loaded(object sender, RoutedEventArgs e)
+        {
+            numericLCL.ValueChanged += new EventHandler(numericLCL_ValueChanged);
+            numericUCL.ValueChanged += new EventHandler(numericUCL_ValueChanged);
+        }
+
+
         private void numericLCL_ValueChanged(object sender, EventArgs e)
         {
             _LCL = (double)numericLCL.pinValue();
@@ -91,5 +98,6 @@ namespace GCITester
             UCLInitialized = true;
 
         }
+
     }
 }
