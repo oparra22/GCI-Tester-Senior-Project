@@ -17,6 +17,6 @@
                 </TransformGroup>
             </Button.RenderTransform>
         </Button>
-        <TextBox x:Name="counterBox" Height="43" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderBrush="#FF15315F" BorderThickness="5" FontSize="20" TextAlignment="Center" Margin="-39,-50,-41,0"/>
+        <TextBox x:Name="counterBox" Height="43" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" BorderBrush="#FF15315F" BorderThickness="5" FontSize="20" TextAlignment="Center" Margin="-39,-50,-41,0" TextChanged="DoubleNumericUpDown_Changed"/>
     </Grid>
 </UserControl>

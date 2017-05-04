@@ -131,7 +131,7 @@ namespace GCITester
                 if (LCLInitialized == true)
                 {
                     Limits_Edited(null, null);
-                    //Edited = true;
+                    Edited = true;
                 }
                 LCLInitialized = true;
             }
@@ -153,7 +153,7 @@ namespace GCITester
                 if (UCLInitialized == true)
                 {
                     Limits_Edited(null, null);
-                    //Edited = true;
+                    Edited = true;
                 }
                 UCLInitialized = true;
             }
@@ -164,7 +164,11 @@ namespace GCITester
             InitializeComponent();
         }
 
-
+        private void Limit_Loaded(object sender, EventArgs e)
+        {
+            numericLCL.ValueChanged += new EventHandler(numericLCL_ValueChanged);
+            numericUCL.ValueChanged += new EventHandler(numericUCL_ValueChanged);
+        }
 
         private void numericLCL_ValueChanged(object sender, EventArgs e)
         {
@@ -185,5 +189,7 @@ namespace GCITester
             }
             UCLInitialized = true;
         }
+
+
     }
 }

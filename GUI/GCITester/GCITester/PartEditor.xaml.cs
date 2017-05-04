@@ -207,11 +207,10 @@ namespace GCITester
             MessageBox.Show("All changes saved!");
         }
 
-        private void buttonSaveChanges_Click(object sender, EventArgs e)
+        private void buttonSaveChanges_Click(object sender, RoutedEventArgs e)
         {
             SaveChanges();
         }
-
         private void buttonSigmaApply_Click(object sender, EventArgs e)
         {
             limitList1.ChangeLimitsBySigmaAmount((int)numericSigma.pinValue());
@@ -248,8 +247,7 @@ namespace GCITester
 
         }
 
-     
-
+      
         //private void frmPartEditor_FormClosing(object sender, FormClosingEventArgs e)
         //{
         //    if (PinsEdited == true || limitList1.HasEdits() == true || lifetimeLimits1.Edited == true)
