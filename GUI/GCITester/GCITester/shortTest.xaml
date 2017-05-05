@@ -5,22 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GCITester"
         mc:Ignorable="d"
-        Title="shortTest" Height="734.427" Width="586.088">
+        Title="shortTest" Height="732.927" Width="586.088">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="76*"/>
-            <ColumnDefinition Width="24*"/>
-            <ColumnDefinition Width="429*"/>
+            <ColumnDefinition Width="23*"/>
+            <ColumnDefinition Width="21*"/>
+            <ColumnDefinition Width="39*"/>
+            <ColumnDefinition Width="26*"/>
+            <ColumnDefinition Width="469*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock x:Name="testNumText" HorizontalAlignment="Left" Margin="38,114,0,0" TextWrapping="Wrap" Text="Select pins to test" VerticalAlignment="Top" Height="36" Width="260" FontSize="20" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.ColumnSpan="3"/>
-        <TextBlock x:Name="iterations" HorizontalAlignment="Left" Margin="38,184,0,0" TextWrapping="Wrap" Text="Iterations" VerticalAlignment="Top" Height="36" Width="260" FontSize="20" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.ColumnSpan="3"/>
-        <Button x:Name="testButton" Content="Test Pins" HorizontalAlignment="Left" Margin="295,183,0,0" VerticalAlignment="Top" Width="127" Height="43" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="testButton_Click" BorderBrush="#FF15315F" Grid.Column="2"/>
-        <Button x:Name="testAllButton" Content="Test All Pins" HorizontalAlignment="Left" Margin="38,23,0,0" VerticalAlignment="Top" Width="136" Height="52" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" BorderBrush="#FF15315F" Grid.ColumnSpan="3" Click="testAllButton_Click"/>
-        <local:ShortTestControl HorizontalAlignment="Left" Margin="159,113,0,0" VerticalAlignment="Top" Height="299" x:Name="shortTestControl" Loaded="shortTestControl_Loaded" Grid.Column="2"/>
-        <ListBox x:Name="manualShortTestResults" HorizontalAlignment="Left" Height="370" Margin="38,308,0,0" VerticalAlignment="Top" Width="493" Loaded="manualShortTestResults_Loaded" BorderThickness="5" BorderBrush="#FF15315F" Grid.ColumnSpan="3" FontSize="13" />
-        <Button x:Name="clearButton" Content="Clear" HorizontalAlignment="Left" Margin="322,267,0,0" VerticalAlignment="Top" Width="100" Height="36" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" BorderBrush="#FF15315F" Click="clearButton_Click" Grid.Column="2"/>
-        <Label x:Name="label" Content="Results" HorizontalAlignment="Left" Height="36" Margin="38,267,0,0" VerticalAlignment="Top" Width="105" FontSize="20" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.ColumnSpan="3"/>
-        <local:numericUpDown x:Name="iterCount2" HorizontalAlignment="Left" Margin="159,183,0,0" VerticalAlignment="Top" Height="43" Width="109" Grid.Column="2"/>
+        <TextBlock x:Name="testNumText" HorizontalAlignment="Left" Margin="0,148,0,0" TextWrapping="Wrap" Text="Select pins to test" VerticalAlignment="Top" Height="36" Width="260" FontSize="20" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.ColumnSpan="3" Grid.Column="2"/>
+        <TextBlock x:Name="iterations" HorizontalAlignment="Left" Margin="0,211,0,0" TextWrapping="Wrap" Text="Iterations" VerticalAlignment="Top" Height="36" Width="260" FontSize="20" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.ColumnSpan="3" Grid.Column="2"/>
+        <Button x:Name="testButton" Content="Test Pins" HorizontalAlignment="Left" Margin="295,204,0,0" VerticalAlignment="Top" Width="127" Height="43" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" Click="testButton_Click" BorderBrush="#FF15315F" Grid.Column="4"/>
+        <local:ShortTestControl HorizontalAlignment="Left" Margin="159,147,0,0" VerticalAlignment="Top" Height="299" x:Name="shortTestControl" Loaded="shortTestControl_Loaded" Grid.Column="4"/>
+        <ListBox x:Name="manualShortTestResults" HorizontalAlignment="Left" Height="370" Margin="15,322,0,0" VerticalAlignment="Top" Width="493" Loaded="manualShortTestResults_Loaded" BorderThickness="5" BorderBrush="#FF15315F" Grid.ColumnSpan="4" FontSize="13" Grid.Column="1" />
+        <Button x:Name="clearButton" Content="Clear" HorizontalAlignment="Left" Margin="322,281,0,0" VerticalAlignment="Top" Width="100" Height="36" Background="#FF15315F" Foreground="#FFFDFDFD" FontSize="20" FontWeight="Bold" FontFamily="Microsoft JhengHei UI" BorderBrush="#FF15315F" Click="clearButton_Click" Grid.Column="4"/>
+        <Label x:Name="label" Content="Results" HorizontalAlignment="Left" Height="36" Margin="15,281,0,0" VerticalAlignment="Top" Width="105" FontSize="20" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.ColumnSpan="4" Grid.Column="1"/>
+        <local:numericUpDown x:Name="iterCount2" HorizontalAlignment="Left" Margin="159,204,0,0" VerticalAlignment="Top" Height="43" Width="109" Grid.Column="4"/>
+        <CheckBox x:Name="allChecked" Content="All" Grid.Column="4" HorizontalAlignment="Left" Height="22" Margin="377,148,0,0" VerticalAlignment="Top" Width="82" FontSize="13" Checked="allPins_checked" FontWeight="Bold" BorderThickness="2"/>
+        <TextBlock x:Name="Partnum" HorizontalAlignment="Left" Margin="0,42,0,0" TextWrapping="Wrap" Text="Select Part" VerticalAlignment="Top" Height="36" Width="234" FontSize="21" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.ColumnSpan="3" Grid.Column="2"/>
+        <ComboBox x:Name="comboPartName" HorizontalAlignment="Left" Margin="237,38,0,0" VerticalAlignment="Top" Width="185" Height="40" BorderThickness="5" BorderBrush="#FF15315F" SelectionChanged="comboPartName_SelectedIndexChanged" Grid.Column="4" FontSize="18" FontFamily="Microsoft JhengHei UI"/>
     </Grid>
 </Window>

@@ -29,6 +29,17 @@ namespace GCITester
         public List<int> listPins = new List<int>();
         private int resultsIndex = 0;
         int flag;
+        public bool allPins = false;
+        String SelectedPartName = String.Empty;
+        String SelectedBoardName = String.Empty;
+        int LoadedTestBoardID = 0;
+        int LoadedPartID = 0;
+        int LoadedProductionLimitID = 0;
+        List<TestPinEntity> LoadedTestInfo = new List<TestPinEntity>();
+        List<LimitEntity> ProductionPartLimits = new List<LimitEntity>();
+        Dictionary<int, int> GCItoDUTMap = new Dictionary<int, int>();
+        Dictionary<int, int> GCItoDeviceIndex = new Dictionary<int, int>();
+        Dictionary<int, LimitEntity> DUTPintoLimit = new Dictionary<int, LimitEntity>();
 
 
 
@@ -37,6 +48,8 @@ namespace GCITester
 
             InitializeComponent();
             iterCount2.setValue(1);
+            GCIDB.Initialize();
+            PopulatePartList();
             // List<int> listPins = new List<int>();
             //   PossiblePins.ItemsSource = listPins;
             //  ICollectionView view = CollectionViewSource.GetDefaultView(PossiblePins.ItemsSource);
@@ -48,27 +61,57 @@ namespace GCITester
         //when test pins is clicked
         private void testButton_Click(object sender, RoutedEventArgs e)
         {
-            //get number of iterations
-            int iter = iterCount2.pinValue();
-            //int PinIn = Convert.ToInt32(pinIn.pinValue());
-            int pin1 = Convert.ToInt32(shortTestControl.pinValue());
-            int pin2 = Convert.ToInt32(shortTestControl.PossiblePins.SelectedItem);
-            Console.WriteLine("Second pin selected from dropdown menu = " + pin2);
-
-            //run the tests based on number of iterations
-            for (int i = 0; i < iter; i++)
+            //check if checkbox if unchecked to test with selected pins
+            if (allPins == false)
             {
-                flag = 0;
-                Communication.TestPinShort(pin1, pin2);
-                while (true)
+                //get number of iterations
+                int iter = iterCount2.pinValue();
+                //int PinIn = Convert.ToInt32(pinIn.pinValue());
+                int pin1 = Convert.ToInt32(shortTestControl.pinValue());
+                int pin2 = Convert.ToInt32(shortTestControl.PossiblePins.SelectedItem);
+                Console.WriteLine("Second pin selected from dropdown menu = " + pin2);
+
+                //run the tests based on number of iterations
+                for (int i = 0; i < iter; i++)
                 {
-                    if (flag == 1)
+                    flag = 0;
+                    Communication.TestPinShort(pin1, pin2);
+                    while (true)
                     {
-                        break;
+                        if (flag == 1)
+                        {
+                            break;
+                        }
                     }
                 }
             }
-
+            else if (allPins == true)
+            {
+                //get number of iterations
+                int iter = iterCount2.pinValue();
+                //int PinIn = Convert.ToInt32(pinIn.pinValue());
+                int pin1 = Convert.ToInt32(shortTestControl.pinValue());
+                //run the tests based on number of iterations
+                for (int i = 0; i < iter; i++)
+                {
+                    flag = 0;
+                    //go through all pins
+                    List<int> pin2 = GetPossibleValues(pin1);
+                    for (int s = 0; s < pin2.Count(); s++)
+                    {
+                        Communication.TestPinShort(pin1, pin2[s]);
+                        while (true)
+                        {
+                            if (flag == 1)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+                allPins = false;
+                allChecked.IsChecked = false;         
+            }
 
         }
 
@@ -81,7 +124,6 @@ namespace GCITester
             // CollectionViewSource.GetDefaultView(PossiblePins.ItemsSource).Refresh();
             //PossiblePins.Items.Clear();
             //PossiblePins_Loaded(sender, e);
-      
         }
 
         private void form1_load(object sender, RoutedEventArgs e)
@@ -158,7 +200,6 @@ namespace GCITester
         private void manualShortTestResults_Loaded(object sender, RoutedEventArgs e)
         {
             Communication.OnResultComplete += new Communication.ResultComplete(Communication_OnResultComplete);
-         
         }
 
         private void clearButton_Click(object sender, RoutedEventArgs e)
@@ -171,31 +212,7 @@ namespace GCITester
 
         }
 
-        private void testAllButton_Click(object sender, RoutedEventArgs e)
-        {
-            //get number of iterations
-            int iter = iterCount2.pinValue();
-            //get list of possible pins
-            List<int> listPins = new List<int>();
-            //get pin 
-            for (int pin = 1; pin < 10; pin++)
-            {
-                listPins = GetPossibleValues(pin);
-                // Console.WriteLine("Test");
-
-                for (int s = 0; s < listPins.Count(); s++)
-                {
-
-                    Communication.TestPinShort(pin, listPins[s]);
-                 
-                    Console.WriteLine(listPins[s]);
-
-                }
-
-            }
-
-            //List<int> PinsToTest = GCIToDUTMap.Keys.ToList<int>();
-        }
+       
 
         private List<int> GetPossibleValues(int PinIn)
         {
@@ -209,7 +226,7 @@ namespace GCITester
             Console.WriteLine(odd);
             if (odd == 1)
             {
-                
+                //Console.WriteLine("Fuck Baldy");
                 for (int i = channelPins; i < channelPins + 32; i++)
                 {
                     even1 = i % 2;
@@ -218,7 +235,7 @@ namespace GCITester
                     {
                         returnList.Add(i);
 
-                        
+                        // Console.WriteLine("Fuck seth");
                         //PossiblePins.Items.Add(i);
                     }
                 }
@@ -233,7 +250,7 @@ namespace GCITester
                     {
 
                         returnList.Add(i);
-                        
+                        //Console.WriteLine("Fuck Bob");
                         //PossiblePins.Items.Add(i);
 
                     }
@@ -241,6 +258,52 @@ namespace GCITester
             }
             return returnList;
         }
+
+        private void allPins_checked(object sender, RoutedEventArgs e)
+        {
+            if (allChecked.IsChecked == true)
+                allPins = true;
+            else
+                allPins = false;
+
+        }
+
+          private void comboPartName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboPartName.Items.Count > 0)
+            {
+                if (comboPartName.SelectedItem == null)
+                    return;
+                SelectedPartName = comboPartName.SelectedItem.ToString();
+                ProductionPartLimits = GCIDB.GetProductionLimits(SelectedPartName);
+                if (ProductionPartLimits.Count > 0)
+                {
+                    LoadedPartID = ProductionPartLimits[0].PartID;
+                    LoadedProductionLimitID = ProductionPartLimits[0].ProductionLimitID;
+                    DUTPintoLimit = new Dictionary<int, LimitEntity>();
+
+                    foreach (LimitEntity Limit in ProductionPartLimits)
+                    {
+                        if (DUTPintoLimit.ContainsKey(Limit.PinID) == false)
+                        {
+                            DUTPintoLimit.Add(Limit.PinID, Limit);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void PopulatePartList()
+        {
+            comboPartName.Items.Clear();
+            List<string> PartNames = GCIDB.GetPartList();
+            foreach (string part in PartNames)
+            {
+                comboPartName.Items.Add(part);
+            }
+        }
+
+
     }
 
 }
