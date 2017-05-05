@@ -70,7 +70,7 @@ namespace GCITester
 
         void PopulateGCITesterPins()
         {
-            for (int i = 1; i <= 105; i++)
+            for (int i = 1; i <= 320; i++)
             {
                 comboGCITesterPin.Items.Add(i.ToString());
             }

@@ -180,10 +180,13 @@ namespace GCITester
 
                         for (int j = 0; j < ProductionTest.TestResults[Socket][TestedDUTPin].VoltageReadings.Count; j++)
                         {
+                            
                             double MeasuredVoltage = ProductionTest.TestResults[Socket][TestedDUTPin].VoltageReadings[j];
                             Dispatcher.BeginInvoke(new Action(delegate ()
-                            {  
-                                GCIDB.AddProductionTestData(textBatchName.Text, ProductionTestID, LoadedPartID, LoadedProductionLimitID, TestedDUTPin, j, MeasuredVoltage, AverageVoltage, StdDev, PinResult, DateTime.Now);
+                            {
+                               
+             
+                                GCIDB.AddProductionTestData(textBatchName.Text, ProductionTestID, LoadedPartID, LoadedProductionLimitID, TestedDUTPin, (j-1), MeasuredVoltage, AverageVoltage, StdDev, PinResult, DateTime.Now);
                                 
                             }));
                             }

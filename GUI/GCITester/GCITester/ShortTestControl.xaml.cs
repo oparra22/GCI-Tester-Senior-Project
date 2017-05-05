@@ -94,7 +94,7 @@ namespace GCITester
             Console.WriteLine(odd);
             if (odd == 1)
             {
-                Console.WriteLine("Fuck Baldy");
+                
                 for (int i = channelPins; i < channelPins + 32; i++)
                 {
                     even1 = i % 2;
@@ -103,7 +103,7 @@ namespace GCITester
                     {
                         listPins.Add(i);
 
-                        Console.WriteLine("Fuck seth");
+                       
                         //PossiblePins.Items.Add(i);
                     }
                 }
@@ -118,7 +118,7 @@ namespace GCITester
                     {
 
                         listPins.Add(i);
-                        Console.WriteLine("Fuck Bob");
+                       
                         //PossiblePins.Items.Add(i);
 
                     }

@@ -125,7 +125,7 @@ namespace GCITester
             Console.WriteLine(odd);
             if (odd == 1)
             {
-                Console.WriteLine("Fuck Baldy");
+               
                 for (int i = channelPins; i < channelPins + 32; i++)
                 {
                     even1 = i % 2;
@@ -134,7 +134,7 @@ namespace GCITester
                     {
                         returnList.Add(i);
 
-                        Console.WriteLine("Fuck seth");
+                       
                         //PossiblePins.Items.Add(i);
                     }
                 }
@@ -149,7 +149,7 @@ namespace GCITester
                     {
 
                         returnList.Add(i);
-                        Console.WriteLine("Fuck Bob");
+                        
                         //PossiblePins.Items.Add(i);
 
                     }
@@ -371,14 +371,13 @@ namespace GCITester
                     labelProgress.Visibility = Visibility.Hidden;
                     return;
                 }
-<<<<<<< HEAD
-                labelProgress.Content = "Progress (" + (CurrentDeviceNumber + 1).ToString() + " / " + TotalDevices.ToString() + ")  Pin (" + (LearnControl[CurrentDeviceNumber].CurrentPinNumber + 1).ToString()
-                + "/" + LearnControl[CurrentDeviceNumber].PinsToTest.Count.ToString() + ")";
-=======
+
+                
+
                 try { labelProgress.Content = "Progress (" + (CurrentDeviceNumber + 1).ToString() + " / " + TotalDevices.ToString() + ")  Pin (" + (LearnControl[CurrentDeviceNumber].CurrentPinNumber + 1).ToString() + "/" + LearnControl[CurrentDeviceNumber].PinsToTest.Count.ToString() + ")"; }
                 catch { Console.WriteLine("catch ran after progress test finish"); }
                 
->>>>>>> a7b0d59cec76cd323652b820e8a136c1249dafec
+
             }));
         }
 

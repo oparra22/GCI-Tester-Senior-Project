@@ -254,7 +254,7 @@ namespace GCITester
                     {
                         if (OnResultComplete != null)
                             OnResultComplete();
-                        //Console.WriteLine("FUCK");  
+                        
                     }
                     ResetRecvBuffer();
                     return;

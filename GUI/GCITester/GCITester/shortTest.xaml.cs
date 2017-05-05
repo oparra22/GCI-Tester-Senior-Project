@@ -81,7 +81,7 @@ namespace GCITester
             // CollectionViewSource.GetDefaultView(PossiblePins.ItemsSource).Refresh();
             //PossiblePins.Items.Clear();
             //PossiblePins_Loaded(sender, e);
-            Console.WriteLine("Fuck Seth the whore");
+      
         }
 
         private void form1_load(object sender, RoutedEventArgs e)
@@ -158,10 +158,7 @@ namespace GCITester
         private void manualShortTestResults_Loaded(object sender, RoutedEventArgs e)
         {
             Communication.OnResultComplete += new Communication.ResultComplete(Communication_OnResultComplete);
-            manualShortTestResults.Items.Add("Fuck Seth");
-            manualShortTestResults.Items.Add("Fuck baldy");
-            manualShortTestResults.Items.Add("Fuck Bob");
-            manualShortTestResults.Items.Add("Fuck Robert");
+         
         }
 
         private void clearButton_Click(object sender, RoutedEventArgs e)
@@ -190,7 +187,7 @@ namespace GCITester
                 {
 
                     Communication.TestPinShort(pin, listPins[s]);
-                    Console.WriteLine("Fucks that shit");
+                 
                     Console.WriteLine(listPins[s]);
 
                 }
@@ -212,7 +209,7 @@ namespace GCITester
             Console.WriteLine(odd);
             if (odd == 1)
             {
-                //Console.WriteLine("Fuck Baldy");
+                
                 for (int i = channelPins; i < channelPins + 32; i++)
                 {
                     even1 = i % 2;
@@ -221,7 +218,7 @@ namespace GCITester
                     {
                         returnList.Add(i);
 
-                        // Console.WriteLine("Fuck seth");
+                        
                         //PossiblePins.Items.Add(i);
                     }
                 }
@@ -236,7 +233,7 @@ namespace GCITester
                     {
 
                         returnList.Add(i);
-                        //Console.WriteLine("Fuck Bob");
+                        
                         //PossiblePins.Items.Add(i);
 
                     }

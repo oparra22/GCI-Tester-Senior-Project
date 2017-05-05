@@ -117,8 +117,9 @@ namespace GCITester
 
         public void DisplayResult(bool Display)
         {
-
-            if (SkipTest == false)
+            Dispatcher.BeginInvoke(new Action(delegate ()
+            {
+                if (SkipTest == false)
             {
                 if (Display)
                 {
@@ -127,8 +128,8 @@ namespace GCITester
 
                 }
                 else labelResult.Visibility = Visibility.Hidden;
-
             }
+            }));
             //This was used for debug
             //this.Background = Brushes.Red;
         }
@@ -178,7 +179,8 @@ namespace GCITester
 
         }
 
-        private void comboSerialNumber_TextChanged(object sender, EventArgs e)
+
+        private void comboSerialNumber_TextChanged(object sender, TextCompositionEventArgs e)
         {
             _SerialNumber = comboSerialNumber.Text;
         }

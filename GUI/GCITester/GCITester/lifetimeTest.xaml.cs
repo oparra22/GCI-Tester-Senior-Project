@@ -72,16 +72,22 @@ namespace GCITester
 
         void SaveDataToDatabase()
         {
+            
             try
             {
-
+                string batchName = null;
                 foreach (int Socket in LifetimeTest.TestResults.Keys)
                 {
                     string CurrentSerialNumber = listLifetimeInfo1.GetSerialNumber(Socket);
+                    Dispatcher.BeginInvoke(new Action(delegate ()
+                    {
+                        batchName = textBatchName.Text;
+                    }));
                     if (numericTestHour.pinValue() == 0)
                     {
-                        int BaselineID = GCIDB.GetMostRecentLifetimeTestID_BaseLine(LoadedPartID, CurrentSerialNumber, textBatchName.Text.Trim());
-                        //Look at this later
+                        //this causing prob
+                        int BaselineID = GCIDB.GetMostRecentLifetimeTestID_BaseLine(LoadedPartID, CurrentSerialNumber, batchName);
+                       // Look at this later
                         //if (BaselineID != 0)
                         //{
                         //    if (MessageBox.Show("Baseline data already exists for:\nPart: " + SelectedPartName + "\nSerial Number: " + CurrentSerialNumber + "\n\nDo you want to change the baseline data to these measurements?", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == System.Windows.Forms.DialogResult.Yes)
@@ -93,26 +99,33 @@ namespace GCITester
 
                         //}
                     }
-
+                    
                     int LifetimeTestID = GCIDB.GetNextLifetimeTestID();
 
-                    String Batch = textBatchName.Text;
+                    String Batch = null;
+                    Dispatcher.BeginInvoke(new Action(delegate ()
+                    {
+                        Batch = textBatchName.Text;
+                    }));
+
                     DateTime Time = DateTime.Now;
                     int Hour = (int)numericTestHour.pinValue();
                     double Temperature = (double)numericTemperature.pinValue();
-
+                   
                     foreach (int TestedDUTPin in LifetimeTest.TestResults[Socket].Keys)
                     {
                         double AverageVoltage = LifetimeTest.TestResults[Socket][TestedDUTPin].GetVoltageAverage();
                         double StdDev = LifetimeTest.TestResults[Socket][TestedDUTPin].GetStandardDeviation();
-
+                       
                         for (int j = 0; j < LifetimeTest.TestResults[Socket][TestedDUTPin].VoltageReadings.Count; j++)
                         {
+                            Console.WriteLine(j - 1);
                             double MeasuredVoltage = LifetimeTest.TestResults[Socket][TestedDUTPin].VoltageReadings[j];
                             GCIDB.AddLifetimeTestData(LifetimeTestID, CurrentSerialNumber, Batch, LoadedPartID, Hour, LoadedLifetimeLimitID, Temperature, TestedDUTPin, j, MeasuredVoltage, AverageVoltage, StdDev, Time);
                         }
                     }
                 }
+                
             }
             catch (Exception ex)
             {
@@ -122,9 +135,9 @@ namespace GCITester
 
         void DisplayTime0Data()
         {
-            //this.Invoke(new MethodInvoker(delegate
-            //{
-            try
+            Dispatcher.BeginInvoke(new Action(delegate ()
+            {
+                try
             {
                 TreeViewItem nodeRoot = new TreeViewItem();
                 treeReport.Items.Add(nodeRoot);
@@ -192,7 +205,7 @@ namespace GCITester
             {
                 MessageBox.Show("DisplayTime0Data(): " + ex.ToString());
             }
-            //}));
+            }));
         }
 
         void CompareToLimits()
@@ -200,10 +213,13 @@ namespace GCITester
             try
             {
                 //if (this.InvokeRequired == true)
+                //if(this.BeginInvokeRequired == true) { 
                 //{
                 //    this.Invoke(new MethodInvoker(delegate
                 //    {
-                TreeViewItem nodeRoot = new TreeViewItem();
+                Dispatcher.BeginInvoke(new Action(delegate ()
+                {
+                    TreeViewItem nodeRoot = new TreeViewItem();
                 nodeRoot.Header = SelectedPartName + " - " + textBatchName.Text;
                 treeReport.Items.Add(nodeRoot);
 
@@ -249,7 +265,7 @@ namespace GCITester
                             PinResult = false;
 
                             listLifetimeInfo1.SetResult(Socket, false);
-                          //  AddLog("Socket " + Socket + " DUT Pin [" + TestedDUTPin + "] Average Voltage: " + AverageVoltage + " FAILED");
+                            //AddLog("Socket " + Socket + " DUT Pin [" + TestedDUTPin + "] Average Voltage: " + AverageVoltage + " FAILED");
                         }
                         else
                         {
@@ -302,7 +318,7 @@ namespace GCITester
                    // ItemserialNumber.Expand();
                 }
 
-                //}));
+                }));
                 //}
             }
             catch (Exception ex)
@@ -369,7 +385,7 @@ namespace GCITester
 
                     //if (MessageBox.Show("Would you like to save this data to the database?", "Test Complete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                     //{
-                    //    SaveDataToDatabase();
+                       SaveDataToDatabase();
                     //}
                     //SafeLockUI(false);
                 }
