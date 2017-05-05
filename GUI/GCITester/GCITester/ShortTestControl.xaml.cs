@@ -22,6 +22,7 @@ namespace GCITester
     {
         int pinNum = 1;
         int lowerLimit = 1;
+        int upperLimit = 320;
         string pinString;
 
         public void setValue(int v)
@@ -36,6 +37,11 @@ namespace GCITester
             lowerLimit = l;
         }
 
+        public void setLimitU(int h)
+        {
+            upperLimit = h;
+        }
+
         public ShortTestControl()
         {
             InitializeComponent();
@@ -43,7 +49,10 @@ namespace GCITester
 
         private void upPinButton_Click(object sender, RoutedEventArgs e)
         {
-            pinNum++;
+            if (pinNum != upperLimit)
+            {
+                pinNum++;
+            }
             pinString = pinNum.ToString();
             counterBox_Short.Text = pinString;
             PossiblePins_Loaded(sender, e);

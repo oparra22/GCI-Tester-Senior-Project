@@ -37,7 +37,7 @@ namespace GCITester
 
         private static bool ReadingResult = false;
         private static int StartLoc = 0;
-       // public static int PinID = 0;
+        // public static int PinID = 0;
         public static int PinID1 = 0;
         public static int PinID2 = 0;
         public static int PinID3 = 0;
@@ -297,24 +297,56 @@ namespace GCITester
             //debugging comment out of final
             Console.WriteLine("TestPin Method Finished");
         }
-        public static void TestPinShort(Byte PinID1, Byte PinID2, Byte PinID3, Byte PinID4)
+        public static void TestPinShort(int pin1, int pin2)
         {
             Console.WriteLine("Short Test Ran");
             if (!(comPort.IsOpen == true))
             {
                 OpenPort();
             }
+            //if pin1 is not odd. swap pins
+            if ((pin1 % 2) != 1)
+            {
+                int temp = pin1;
+                pin1 = pin2;
+                pin2 = temp;
+            }
+            Byte Pin1_1;
+            Byte Pin1_2;
+            Byte Pin2_1;
+            Byte Pin2_2;
+
+            if (pin1 > 254)
+            {
+                Pin1_1 = (Byte)254;
+                Pin1_2 = (Byte)(pin1 - 254);
+            }
+            else
+            {
+                Pin1_1 = (Byte)pin1;
+                Pin1_2 = (Byte)0;
+            }
+            if (pin2 > 254)
+            {
+                Pin2_1 = (Byte)254;
+                Pin2_2 = (Byte)(pin2 - 254);
+            }
+            else
+            {
+                Pin2_1 = (Byte)pin2;
+                Pin2_2 = (Byte)0;
+            }
 
             Byte[] Data = new Byte[5];
             Data[0] = (Byte)'S';
-            Data[1] = PinID1;
-            Data[2] = PinID2;
-            Data[3] = PinID3;
-            Data[4] = PinID4;
+            Data[1] = Pin1_1;
+            Data[2] = Pin1_2;
+            Data[3] = Pin2_1;
+            Data[4] = Pin2_2;
 
             comPort.Write(Data, 0, 5); // was 3
             //debugging comment out of final
-            Console.WriteLine("TestPin Method Finished");
+            Console.WriteLine($"TestPin Short Method Finished{pin1} and {pin2}");
         }
 
         public static bool ClosePort()

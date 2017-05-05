@@ -25,6 +25,7 @@ namespace GCITester
         String SelectedPartName = String.Empty;
         String SelectedBoardName = String.Empty;
         string SelectedSocketName = string.Empty;
+        string SelectedTestType = string.Empty;
 
         Dictionary<int, int> GCIToDUTMap = new Dictionary<int, int>();
         Dictionary<int, LearnResult> LearnResults;
@@ -34,6 +35,10 @@ namespace GCITester
         public productionLimits()
         {
             InitializeComponent();
+            numPartsTestCount.setValue(1);
+            numPartsTestCount.setLimit(1);
+            numIterPartCount.setValue(1);
+            numIterPartCount.setLimit(1);
         }
 
         private void updownTest_Loaded(object sender, RoutedEventArgs e)
@@ -44,28 +49,113 @@ namespace GCITester
         //Button start copied and complete
         private void start_Click(object sender, RoutedEventArgs e)
         {
-            LearnResults = new Dictionary<int, LearnResult>();
-            LearnControl = new List<LearnControl>();
-            List<int> PinsToTest = GCIToDUTMap.Keys.ToList<int>();
-            CurrentDeviceNumber = 0;
-            TotalDevices = (int)numPartsTestCount.pinValue();//Number is called pin value, will need to be adjusted to just value
-            int TotalIterations = (int)numIterPartCount.pinValue();
-
-            LearnControl ControlSetup = new LearnControl();
-            ControlSetup.PinsToTest = PinsToTest;
-            ControlSetup.TotalIterations = TotalIterations;
-            for (int i = 0; i < TotalDevices; i++)
+            if(SelectedTestType == "Continuity")
             {
-                LearnControl.Add(ControlSetup);
+                //Selected Test is Continuous
+                LearnResults = new Dictionary<int, LearnResult>();
+                LearnControl = new List<LearnControl>();
+                List<int> PinsToTest = GCIToDUTMap.Keys.ToList<int>();
+                CurrentDeviceNumber = 0;
+                TotalDevices = (int)numPartsTestCount.pinValue();//Number is called pin value, will need to be adjusted to just value
+                int TotalIterations = (int)numIterPartCount.pinValue();
+
+                LearnControl ControlSetup = new LearnControl();
+                ControlSetup.PinsToTest = PinsToTest;
+                ControlSetup.TotalIterations = TotalIterations;
+                for (int i = 0; i < TotalDevices; i++)
+                {
+                    LearnControl.Add(ControlSetup);
+                }
+
+                int NextPin = LearnControl[CurrentDeviceNumber].GetNextPin();
+
+                SetButtonState(false);
+                //This file is commented out but need to be uncommented in order to test the pin
+                if (NextPin != 0)
+                    Communication.TestPin(NextPin);
             }
+            else if(SelectedTestType == "Short")
+            {
+                //Short test selected
+                //Selected Test is Continuous
+                LearnResults = new Dictionary<int, LearnResult>();
+                LearnControl = new List<LearnControl>();
+                List<int> PinsToTest = GCIToDUTMap.Keys.ToList<int>();
 
-            int NextPin = LearnControl[CurrentDeviceNumber].GetNextPin();
+                CurrentDeviceNumber = 0;
 
-            SetButtonState(false);
-            //This file is commented out but need to be uncommented in order to test the pin
-            if (NextPin != 0)
-                Communication.TestPin(NextPin);
+                TotalDevices = (int)numPartsTestCount.pinValue();//Number is called pin value, will need to be adjusted to just value
+                int TotalIterations = (int)numIterPartCount.pinValue();
 
+                LearnControl ControlSetup = new LearnControl();
+                ControlSetup.PinsToTest = PinsToTest;
+                ControlSetup.TotalIterations = TotalIterations;
+                //need to return the pin tested and the pins tested against
+                for (int i = 0; i < TotalDevices; i++)
+                {
+                    LearnControl.Add(ControlSetup);
+                }
+
+                int NextPin = LearnControl[CurrentDeviceNumber].GetNextPin();
+
+                SetButtonState(false);
+                //This file is commented out but need to be uncommented in order to test the pin
+                if (NextPin != 0)
+                {
+                    List<int> listPins = new List<int>();
+                    listPins = GetPossibleValues(NextPin);  //Returns the list of possible pins that pin can test against
+                    for(int s = 0; s < listPins.Count(); s++)
+                    {
+                        Communication.TestPinShort(NextPin, listPins[s]);
+                    }
+                }
+                    
+            }
+        }
+
+        private List<int> GetPossibleValues(int PinIn)
+        {
+            List<int> returnList = new List<int>();
+            int even1;
+            int even2;
+            int pair = (PinIn - 1) / 32;
+            //check if odd or even. and return possible pins to test
+            int odd = PinIn % 2;
+            int channelPins = 32 * pair + 1;
+            Console.WriteLine(odd);
+            if (odd == 1)
+            {
+                Console.WriteLine("Fuck Baldy");
+                for (int i = channelPins; i < channelPins + 32; i++)
+                {
+                    even1 = i % 2;
+                    //if pin is odd, add to list of possible pins
+                    if (even1 == 0)
+                    {
+                        returnList.Add(i);
+
+                        Console.WriteLine("Fuck seth");
+                        //PossiblePins.Items.Add(i);
+                    }
+                }
+            }
+            else if (odd == 0)
+            {
+                for (int i = channelPins; i < channelPins + 32; i++)
+                {
+                    even2 = i % 2;
+                    //if pin is even, add to list possible pins
+                    if (even2 == 1)
+                    {
+
+                        returnList.Add(i);
+                        Console.WriteLine("Fuck Bob");
+                        //PossiblePins.Items.Add(i);
+
+                    }
+                }
+            }
+            return returnList;
         }
 
         private void cancel_click(object sender, RoutedEventArgs e)
@@ -76,11 +166,12 @@ namespace GCITester
         private void PopulatePartList()
         {
             partNumberBox.Items.Clear();
-            List<string> PartNames = GCIDB.GetPartList();
-            foreach (string part in PartNames)
-            {
-                partNumberBox.Items.Add(part);
-            }
+            //Add if statement, if  continous or short
+                List<string> PartNames = GCIDB.GetPartList();
+                foreach (string part in PartNames)
+                {
+                    partNumberBox.Items.Add(part);
+                }
         }
         private void PopulateBoardList()
         {
@@ -141,16 +232,19 @@ namespace GCITester
         void Communication_OnResultComplete()
         {
             Double VoltageRef = Properties.Settings.Default.VoltageReference;
-            int TestedPin = (int)Communication.PinID1;  //Was PinID
-            Double Voltage = (Communication.PinValue * VoltageRef) / 1023.0;
-
+            int TestedPin = Communication.PinID1 + Communication.PinID2;
+            int TestedPin2 = Communication.PinID3 + Communication.PinID4;
+            Double VoltageIn = (Communication.PinValue * VoltageRef) / 1023.0;
+            Double Voltagedrop = (VoltageRef - VoltageIn);
+            Double Current = Voltagedrop / 4700;
+            Double Resistance = VoltageIn / Current;
             if (LearnResults.ContainsKey(TestedPin))
             {
-                LearnResults[TestedPin].VoltageReadings.Add(Voltage);
+                LearnResults[TestedPin].VoltageReadings.Add(VoltageIn);
             }
             else
             {
-                LearnResults.Add(TestedPin, new LearnResult(TestedPin, Voltage));
+                LearnResults.Add(TestedPin, new LearnResult(TestedPin, VoltageIn));
             }
 
 
@@ -162,9 +256,22 @@ namespace GCITester
                 {
                     //this item was already commented out, leave it commented
                     //UpdateCurrentIteration(true); 
+                    //This code has not been tested, continuity works but probably not short.
+                    if (SelectedTestType == "Continuity")
+                    {
+                        Communication.TestPin(NextPin);
+                    }
+                    else if(SelectedTestType == "Short")
+                    {
+                        List<int> listPins = new List<int>();
+                        listPins = GetPossibleValues(NextPin);  //Returns the list of possible pins that pin can test against
+                        for (int s = 0; s < listPins.Count(); s++)
+                        {
+                            Communication.TestPinShort(NextPin, listPins[s]);
+                        }
+                    }
 
-
-                    Communication.TestPin(NextPin); 
+                    
                 }
                 else
                 {
@@ -202,39 +309,54 @@ namespace GCITester
 
         private void BuildReport()
         {
-            Dispatcher.BeginInvoke(new Action(delegate ()
+            if (SelectedTestType == "Continuity")
             {
-                treeResults.Items.Clear();//Changed treeResults.Nodes to treeResults.Nodes
-                TreeViewItem Root = new TreeViewItem(); //TreeNode is now TreeViewItem
-                //added line
-                Root.Header = SelectedPartName;
-                treeResults.Items.Add(Root);
 
-                foreach (int PinID in LearnResults.Keys)
+                Dispatcher.BeginInvoke(new Action(delegate ()
                 {
-                    TreeViewItem Name = new TreeViewItem();
-                    Name.Header = "Pin " + GCIToDUTMap[PinID].ToString();
+                    treeResults.Items.Clear();//Changed treeResults.Nodes to treeResults.Nodes
+                TreeViewItem Root = new TreeViewItem(); //TreeNode is now TreeViewItem
+                                                        //added line
+                Root.Header = SelectedPartName;
+                    treeResults.Items.Add(Root);
 
-                    TreeViewItem Average = new TreeViewItem();
-                    Average.Header = "Average: " + LearnResults[PinID].GetVoltageAverage() + " V";
-
-                    TreeViewItem StdDev = new TreeViewItem();
-                    StdDev.Header = "StdDev: " + LearnResults[PinID].GetStandardDeviation() + " V";
-
-                    TreeViewItem MeasuredValues = new TreeViewItem();
-                    MeasuredValues.Header = LearnResults[PinID].VoltageReadings.Count.ToString() + " Measured Voltages";
-                    for (int i = 0; i < LearnResults[PinID].VoltageReadings.Count; i++)
+                    foreach (int PinID in LearnResults.Keys)
                     {
-                        TreeViewItem Value = new TreeViewItem();
-                        Value.Header = "Iteration " + (i + 1).ToString() + ") " + LearnResults[PinID].VoltageReadings[i].ToString();
-                        MeasuredValues.Items.Add(Value);
+                        TreeViewItem Name = new TreeViewItem();
+                        Name.Header = "Pin " + GCIToDUTMap[PinID].ToString();
+
+                        TreeViewItem Average = new TreeViewItem();
+                        Average.Header = "Average: " + LearnResults[PinID].GetVoltageAverage() + " V";
+
+                        TreeViewItem StdDev = new TreeViewItem();
+                        StdDev.Header = "StdDev: " + LearnResults[PinID].GetStandardDeviation() + " V";
+
+                        TreeViewItem MeasuredValues = new TreeViewItem();
+                        MeasuredValues.Header = LearnResults[PinID].VoltageReadings.Count.ToString() + " Measured Voltages";
+                        for (int i = 0; i < LearnResults[PinID].VoltageReadings.Count; i++)
+                        {
+                            TreeViewItem Value = new TreeViewItem();
+                            Value.Header = "Iteration " + (i + 1).ToString() + ") " + LearnResults[PinID].VoltageReadings[i].ToString();
+                            MeasuredValues.Items.Add(Value);
+                        }
+                        Name.Items.Add(Average);
+                        Name.Items.Add(StdDev);
+                        Name.Items.Add(MeasuredValues);
+                        Root.Items.Add(Name);
                     }
-                    Name.Items.Add(Average);
-                    Name.Items.Add(StdDev);
-                    Name.Items.Add(MeasuredValues);
-                    Root.Items.Add(Name);
-                }
-            }));
+                }));
+            }
+            else
+            {
+                Console.WriteLine("build short Report");
+                Dispatcher.BeginInvoke(new Action(delegate ()
+                {
+                    treeResults.Items.Clear();
+                    TreeViewItem Root = new TreeViewItem();
+                    Root.Header = SelectedPartName;
+                    treeResults.Items.Add(Root);
+                }));
+            }
         }
 
         private void UpdateCurrentIteration(bool Visible)
@@ -249,8 +371,14 @@ namespace GCITester
                     labelProgress.Visibility = Visibility.Hidden;
                     return;
                 }
+<<<<<<< HEAD
                 labelProgress.Content = "Progress (" + (CurrentDeviceNumber + 1).ToString() + " / " + TotalDevices.ToString() + ")  Pin (" + (LearnControl[CurrentDeviceNumber].CurrentPinNumber + 1).ToString()
                 + "/" + LearnControl[CurrentDeviceNumber].PinsToTest.Count.ToString() + ")";
+=======
+                try { labelProgress.Content = "Progress (" + (CurrentDeviceNumber + 1).ToString() + " / " + TotalDevices.ToString() + ")  Pin (" + (LearnControl[CurrentDeviceNumber].CurrentPinNumber + 1).ToString() + "/" + LearnControl[CurrentDeviceNumber].PinsToTest.Count.ToString() + ")"; }
+                catch { Console.WriteLine("catch ran after progress test finish"); }
+                
+>>>>>>> a7b0d59cec76cd323652b820e8a136c1249dafec
             }));
         }
 
@@ -298,9 +426,29 @@ namespace GCITester
             //numIterPartCount.pinValue = Properties.Settings.Default.Learn_DefaultNumberOfParts;
             //numericSigma.pinValue = Properties.Settings.Default.ProductionLimit_DefaultSigma;
             GCIDB.Initialize();
-            PopulatePartList();
+            testType_ComboBox.SelectedIndex = 0;
+            SelectedTestType = "Continuous";
+            //PopulatePartList(); // This may need to be changed to a different method, when the test is selected
             Communication.OnResultComplete += new Communication.ResultComplete(Communication_OnResultComplete);
 
+        }
+
+        private void testType_ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox test = (ComboBox)sender;
+            SelectedTestType = test.SelectedItem.ToString();
+            PopulatePartList();//Repopulate the list when the testType combo box is changed
+            Console.WriteLine($"Test Type Selected: {SelectedTestType}");
+        }
+
+        private void testType_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<string> testList = new List<string>();
+            testList.Add("Continuity");
+            testList.Add("Short");
+
+            ComboBox test = (ComboBox)sender;
+            test.ItemsSource =  testList;
         }
     }
 }
