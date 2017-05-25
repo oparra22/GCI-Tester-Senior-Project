@@ -26,5 +26,7 @@
         <CheckBox x:Name="allChecked" Content="All" Grid.Column="4" HorizontalAlignment="Left" Height="22" Margin="377,148,0,0" VerticalAlignment="Top" Width="82" FontSize="13" Checked="allPins_checked" FontWeight="Bold" BorderThickness="2"/>
         <TextBlock x:Name="Partnum" HorizontalAlignment="Left" Margin="0,42,0,0" TextWrapping="Wrap" Text="Select Part" VerticalAlignment="Top" Height="36" Width="234" FontSize="21" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.ColumnSpan="3" Grid.Column="2"/>
         <ComboBox x:Name="comboPartName" HorizontalAlignment="Left" Margin="237,38,0,0" VerticalAlignment="Top" Width="185" Height="40" BorderThickness="5" BorderBrush="#FF15315F" SelectionChanged="comboPartName_SelectedIndexChanged" Grid.Column="4" FontSize="18" FontFamily="Microsoft JhengHei UI"/>
+        <TextBlock x:Name="resistanceLabel" HorizontalAlignment="Left" Margin="0,83,0,0" TextWrapping="Wrap" Text="Resistance" VerticalAlignment="Top" Height="36" Width="116" FontSize="21" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" Grid.ColumnSpan="3" Grid.Column="2"/>
+        <TextBox x:Name="resistance_TextBox" Grid.Column="4" HorizontalAlignment="Left" Height="41" Margin="77,78,0,0" TextWrapping="Wrap" Text="1000" VerticalAlignment="Top" Width="118" FontSize="21"/>
     </Grid>
 </Window>

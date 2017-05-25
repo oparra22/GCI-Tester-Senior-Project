@@ -145,17 +145,21 @@ namespace GCITester
             Double Current = Voltagedrop / 4700;
             Double Resistance = VoltageIn / Current;
             bool shortPass = false;
-            if (Resistance > 1000)
+            Dispatcher.BeginInvoke(new Action(delegate ()
             {
-                shortPass = true;
-                AddLog("Passed. Pins Tested: " + TestedPin + " and " + TestedPin2 + ". Resistance:" + string.Format("{0:0.00}", Resistance) + "Ohms. VoltageDrop:" + Voltagedrop);
+                if (Resistance > Convert.ToInt32(resistance_TextBox.Text))
+                {
+                    shortPass = true;
+                    AddLog("Passed. Pins Tested: " + TestedPin + " and " + TestedPin2 + ". Resistance:" + string.Format("{0:0.00}", Resistance) + "Ohms. VoltageDrop:" + Voltagedrop);
 
-            }
-            else
-            {
-                shortPass = false;
-                AddLog("Failed. Pins Tested: Pin1: " + TestedPin + " Pin2: " + TestedPin2 + ". Resistance:" + Resistance + "Ohms. VoltageDrop:" + Voltagedrop);
-            }
+                }
+                else
+                {
+                    shortPass = false;
+                    AddLog("Failed. Pins Tested: Pin1: " + TestedPin + " Pin2: " + TestedPin2 + ". Resistance:" + Resistance + "Ohms. VoltageDrop:" + Voltagedrop);
+                }
+            }));
+                
             Communication.SetResultLED(shortPass);
             //AddLog("Pin " + TestedPin.ToString() + " Measured: " + VoltageIn.ToString() + "V  [0x" + Communication.PinValue.ToString("X4") + "]" + "\t Voltage Drop: " + (double)(VoltageRef - Voltage) + "Testedpin 2 = " + TestedPin2);
             //AddLog("Pin1:" + TestedPin +" Pin2:" + TestedPin2 + ". VoltageIn read:" + VoltageIn + " VoltageDrop:" +Voltagedrop+ ". Resistance:" + Resistance+ "Ohms.");

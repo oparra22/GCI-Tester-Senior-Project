@@ -281,7 +281,7 @@ namespace GCITester
                         if (MessageBox.Show("Please place part #" + (CurrentDeviceNumber + 1).ToString() + " in the socket", "Next Part", MessageBoxButton.OKCancel, MessageBoxImage.Information) == MessageBoxResult.OK)
                         {
                             NextPin = LearnControl[CurrentDeviceNumber].GetNextPin();
-                            //Communication.TestPin(NextPin); This needs to be uncommented
+                            Communication.TestPin(NextPin); //This needs to be uncommented
                         }
                     }
                     else
@@ -391,11 +391,11 @@ namespace GCITester
             int ProductionLimitID = GCIDB.AssociatePartToNewProductionLimit(SelectedPartName);
             if (ProductionLimitID != 0)
             {
-                /*List<LimitEntity> UserLimits = BuildLimitEntityList();
-                foreach (LimitEntity entry in UserLimits)
-                {
-                    GCIDB.AddProductionLimit(LimitID, entry.PinID, entry.UCL, entry.LCL);
-                }*/
+                //List<LimitEntity> UserLimits = BuildLimitEntityList();
+                //foreach (LimitEntity entry in UserLimits)
+                //{
+                //    GCIDB.AddProductionLimit(LimitID, entry.PinID, entry.UCL, entry.LCL);
+                //}
                 foreach (int PinID in LearnResults.Keys)
                 {
                     int DutPinID = GCIToDUTMap[PinID];
